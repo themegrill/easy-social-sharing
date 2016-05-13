@@ -1,0 +1,720 @@
+/**
+ * easy-social-sharing.scss
+ * Governs the general look and feel of EasySocialSharing sections using themes that do not
+ * integrate with EasySocialSharing specifically.
+ */
+
+
+/**
+ * Imports
+ */
+
+@import "bourbon";
+@import "mixins";
+@import "variables";
+@import "animation";
+@import "fonts";
+
+/**
+ * Styling begins
+ */
+
+
+/**
+ * Clearfix
+ */
+
+.ess-clear {
+    @include clearfix;
+    &:before {
+        content: '';
+        display: table;
+    }
+}
+
+.ess-clear {
+    clear: both;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
+/** --------------------------------------------------------------
+ ESS SOCIAL ICON SIDEBAR CSS
+ ----------------------------------------------------------------*/
+
+#ess-wrap-sidebar-networks {
+    background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+    left: 0;
+    padding: 64px 10px 35px;
+    position: fixed;
+    top: 50%;
+    @include transform(translate(-100%, -50%));
+    @include transition(all 0.5s ease);
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        .socicon {
+            color: #fff;
+            padding: 10px;
+            .ess-social-count {
+                background: #333 none repeat scroll 0 0;
+                display: block;
+                font-size: 14px;
+                font-weight: 400;
+                right: -130%;
+                opacity: 0;
+                padding: 2px 10px 5px;
+                position: absolute;
+                top: 50%;
+                @include transform(translateY(-50%));
+                @include transition(all 0.5s ease);
+                visibility: hidden;
+                border-radius: 2px;
+                &:after {
+                    position: absolute;
+                    top: 50%;
+                    left: -5px;
+                    border-right: 5px solid #333333;
+                    border-top: 5px solid transparent;
+                    border-bottom: 5px solid transparent;
+                    content: "";
+                    @include transform(translateY(-50%));
+                }
+            }
+            &:hover {
+                .ess-social-count {
+                    opacity: 1;
+                    visibility: visible;
+                    right: -120%;
+                }
+            }
+        }
+        li.ess-spacing {
+            .socicon {
+                margin: 5px 0;
+            }
+        }
+        a {
+            outline: medium none;
+        }
+    }
+    .ess-total-share {
+        background: #333 none repeat scroll 0 0;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        left: 0;
+        line-height: 18px;
+        padding: 10px 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+        span {
+            font-weight: 400;
+            display: block;
+        }
+        &:after {
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #333;
+            position: absolute;
+            bottom: -4px;
+            content: "";
+            left: 50%;
+            @include transform(translateX(-50%));
+        }
+    }
+}
+
+#ess-wrap-sidebar-networks.ess-sidebar-enable {
+    @include transform(translate(0, -50%));
+}
+
+#ess-wrap-sidebar-networks.ess-right-layout {
+    left: auto;
+    right: 0;
+    ul .socicon .ess-social-count {
+        left: -130%;
+        right: auto;
+    }
+    ul .socicon:hover .ess-social-count {
+        left: -120%;
+    }
+    ul .socicon .ess-social-count::after {
+        border-left: 5px solid #333333;
+        border-right: none;
+        left: auto;
+        right: -5px;
+    }
+}
+
+#ess-wrap-sidebar-networks.ess-rounded-icon {
+    .socicon {
+        border-radius: 100%;
+    }
+}
+
+#ess-wrap-sidebar-networks.ess-no-total-shares {
+    padding: 4px 10px 35px;
+    &.ess-no-all-networks {
+        padding: 4px 10px 10px;
+    }
+}
+
+#ess-wrap-sidebar-networks.ess-no-all-networks {
+    padding: 64px 10px 10px;
+}
+
+#ess-wrap-inline-networks .ess-social-sharing {
+    margin: 6px 10px 6px 0;
+}
+
+#ess-wrap-sidebar-networks .ess-all-networks {
+    background: #333 none repeat scroll 0 0;
+    bottom: 0;
+    color: #fff;
+    left: 0;
+    padding: 3px 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    span {
+        @include transform (rotate(90deg));
+        display: block;
+        font-size: 20px;
+        text-align: center;
+        margin-left: 8px;
+        line-height: 20px;
+    }
+}
+
+.ess-all-networks-toggle {
+    background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+    font-size: 20px;
+    font-weight: 700;
+    height: 30px;
+    right: -30px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    @include transform(translateY(-50%));
+    width: 30px;
+    cursor: pointer;
+    span {
+        display: inline-block;
+        line-height: 28px;
+        vertical-align: top;
+    }
+}
+
+.ess-sidebar-enable .ess-all-networks-toggle {
+    span {
+        @include transform (rotateY(180deg));
+    }
+}
+
+#ess-wrap-sidebar-networks.ess-right-layout {
+    @include transform(translate(100%, -50%));
+    .ess-all-networks-toggle {
+        right: auto;
+        left: -30px;
+    }
+}
+
+#ess-wrap-sidebar-networks.ess-right-layout.ess-sidebar-enable {
+    @include transform(translate(0, -50%));
+}
+
+.ess-right-layout .ess-all-networks-toggle {
+    span {
+        @include transform (rotateY(180deg));
+    }
+}
+
+.ess-right-layout.ess-sidebar-enable .ess-all-networks-toggle {
+    span {
+        @include transform (rotateY(0deg));
+    }
+}
+
+
+/** --------------------------------------------------------------
+ ESS SOCIAL ICON INLINE CSS
+ ----------------------------------------------------------------*/
+
+.ess-social-sharing {
+    line-height: 30px;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    a {
+        color: #ffffff;
+        text-decoration: none;
+        display: block;
+        border: none !important;
+        &:focus {
+            outline: none;
+        }
+        .ess-icon {
+            color: #fff;
+            display: inline-block;
+            font-size: 18px;
+            padding: 10px;
+            top: 0;
+        }
+        .ess-text {
+            color: #fff;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 38px;
+            margin: 0 20px;
+            vertical-align: top;
+        }
+        .ess-social-count {
+            color: #fff;
+            display: inline-block;
+            font-size: 14px;
+            line-height: 18px;
+            padding: 10px;
+            vertical-align: top;
+            position: relative;
+            float: right;
+        }
+    }
+}
+
+.ess-social-sharing .ess-social-count:after {
+    background: inherit;
+    width: 10px;
+    height: 10px;
+    content: "";
+    left: -5px;
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%) rotate(45deg));
+}
+
+#ess-wrap-inline-networks.ess-rounded-icon {
+    .ess-social-sharing {
+        border-radius: 25px;
+    }
+    .ess-icon {
+        border-radius: 25px 0 0 25px;
+    }
+    .ess-social-count {
+        border-radius: 0 25px 25px 0;
+    }
+    .ess-all-networks,
+    &.ess-no-share-counts .ess-icon {
+        border-radius: 25px;
+    }
+}
+
+#ess-wrap-inline-networks {
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+    .ess-all-networks {
+        background: #333 none repeat scroll 0 0;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        margin-top: 6px;
+        padding: 8px 20px;
+        text-transform: capitalize;
+        margin-left: 0;
+        line-height: 23px;
+    }
+}
+
+
+/** social sharing color **/
+
+.ess-icon,
+.ess-social-count {
+    background-color: #1a4e97;
+}
+
+.ess-facebook,
+.ess-no-network-label .ess-facebook .ess-social-count {
+    background-color: #2f72cd;
+}
+
+.ess-facebook .ess-social-count,
+.socicon-facebook {
+    background: #1a4e97 none repeat scroll 0 0;
+}
+
+.ess-twitter,
+.ess-no-network-label .ess-twitter .ess-social-count {
+    background-color: #50c6f8;
+}
+
+.ess-twitter .ess-social-count,
+.socicon-twitter {
+    background: #27a2d6 none repeat scroll 0 0;
+}
+
+.ess-googleplus,
+.ess-no-network-label .ess-googleplus .ess-social-count {
+    background-color: #f55f46;
+}
+
+.ess-googleplus .ess-social-count,
+.socicon-googleplus {
+    background: #c83c25 none repeat scroll 0 0;
+}
+
+.ess-linkedin,
+.ess-no-network-label .ess-linkedin .ess-social-count {
+    background-color: #129fe4;
+}
+
+.ess-linkedin .ess-social-count,
+.socicon-linkedin {
+    background: #0c6b99 none repeat scroll 0 0;
+}
+
+.ess-pinterest,
+.ess-no-network-label .ess-pinterest .ess-social-count {
+    background-color: #e23139;
+}
+
+.ess-pinterest .ess-social-count,
+.socicon-pinterest {
+    background: #93080b none repeat scroll 0 0;
+}
+
+.ess-stumbleupon,
+.ess-no-network-label .ess-stumbleupon .ess-social-count {
+    background-color: #ea4b24;
+}
+
+.ess-stumbleupon .ess-social-count,
+.socicon-stumbleupon {
+    background: #d24320 none repeat scroll 0 0;
+}
+
+.ess-yahoomail,
+.ess-no-network-label .ess-yahoomail .ess-social-count {
+    background-color: #511295;
+}
+
+.ess-yahoomail .ess-social-count,
+.socicon-yahoomail {
+    background: #3d0975 none repeat scroll 0 0;
+}
+
+.ess-vkontakte,
+.ess-no-network-label .ess-vkontakte .ess-social-count {
+    background-color: #4c75a3;
+}
+
+.ess-vkontakte .ess-social-count,
+.socicon-vkontakte {
+    background: #3c6695 none repeat scroll 0 0;
+}
+
+.ess-amazon,
+.ess-no-network-label .ess-amazon .ess-social-count {
+    background-color: #373636;
+}
+
+.ess-amazon .ess-social-count,
+.socicon-amazon {
+    background: #0c0c0c none repeat scroll 0 0;
+}
+
+.ess-reddit,
+.ess-no-network-label .ess-reddit .ess-social-count {
+    background-color: #ff4500;
+}
+
+.ess-reddit .ess-social-count,
+.socicon-reddit {
+    background: #cb3802 none repeat scroll 0 0;
+}
+
+.ess-tumblr,
+.ess-no-network-label .ess-tumblr .ess-social-count {
+    background: #45556c;
+}
+
+.ess-tumblr .ess-social-count,
+.socicon-tumblr {
+    background: #34465E none repeat scroll 0 0;
+}
+
+.ess-blogger,
+.ess-no-network-label .ess-blogger .ess-social-count {
+    background: #ec661c;
+}
+
+.ess-blogger .ess-social-count,
+.socicon-blogger {
+    background: #BF4707 none repeat scroll 0 0;
+}
+
+.ess-myspace,
+.ess-no-network-label .ess-myspace .ess-social-count {
+    background: #323232;
+}
+
+.ess-myspace .ess-social-count,
+.socicon-myspace {
+    background: #141414 none repeat scroll 0 0;
+}
+
+.ess-delicious,
+.ess-no-network-label .ess-delicious .ess-social-count {
+    background: #444343;
+}
+
+.ess-delicious .ess-social-count,
+.socicon-delicious {
+    background: #141414 none repeat scroll 0 0;
+}
+
+.ess-printfriendly,
+.ess-no-network-label .ess-printfriendly .ess-social-count {
+    background: #89B546;
+}
+
+.ess-printfriendly .ess-social-count,
+.socicon-printfriendly {
+    background: #709634 none repeat scroll 0 0;
+}
+
+.ess-newsvine,
+.ess-no-network-label .ess-newsvine .ess-social-count {
+    background: #075b2f;
+}
+
+.ess-newsvine .ess-social-count,
+.socicon-newsvine {
+    background: #034221 none repeat scroll 0 0;
+}
+
+.ess-digg,
+.ess-no-network-label .ess-digg .ess-social-count {
+    background: #1d1d1b;
+}
+
+.ess-digg .ess-social-count,
+.socicon-digg {
+    background: #050505 none repeat scroll 0 0;
+}
+
+.ess-friendfeed,
+.ess-no-network-label .ess-friendfeed .ess-social-count {
+    background: #2f72c4;
+}
+
+.ess-friendfeed .ess-social-count,
+.socicon-friendfeed {
+    background: #1D59A3 none repeat scroll 0 0;
+}
+
+.ess-buffer,
+.ess-no-network-label .ess-buffer .ess-social-count {
+    background: #333;
+}
+
+.ess-buffer .ess-social-count,
+.socicon-buffer {
+    background: #000 none repeat scroll 0 0;
+}
+
+.ess-gmail,
+.ess-no-network-label .ess-gmail .ess-social-count {
+    background: #DD4B39;
+}
+
+.ess-gmail .ess-social-count,
+.socicon-gmail {
+    background: #BF3222 none repeat scroll 0 0;
+}
+
+.ess-aol,
+.ess-no-network-label .ess-aol .ess-social-count {
+    background: #01BF01;
+}
+
+.ess-aol .ess-social-count,
+.socicon-aol {
+    background: #018901 none repeat scroll 0 0;
+}
+
+/**
+ * popup design
+ */
+
+.ess-popup-overlay,
+.ess-pinterest-popup-overlay {
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    @include transition(all 0.5s ease);
+    z-index: 999;
+}
+
+.ess-popup-enable .ess-popup-overlay,
+.ess-pinterest-popup-enable .ess-pinterest-popup-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ess-pinterest-popup-overlay {
+    z-index: 9999;
+}
+
+.ess-popup-wrapper,
+.ess-pinterest-img-picker-popup {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    left: 50%;
+    width: 755px;
+    padding: 30px 30px 30px 40px;
+    position: fixed;
+    top: 55%;
+    @include transform (translate(-50%, -50%));
+    @include transition(all 0.5s ease);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+}
+
+.ess-pinterest-img-picker-popup {
+    z-index: 9999;
+}
+
+.ess-pinterest-img-picker-popup {
+    max-width: 500px;
+}
+
+.ess-popup-enable .ess-popup-wrapper,
+.ess-pinterest-popup-enable .ess-pinterest-img-picker-popup {
+    opacity: 1;
+    visibility: visible;
+    top: 50%;
+}
+
+.ess-pinterest-img-picker-popup {
+    padding: 10px 30px 10px 30px;
+}
+
+.ess-popup-close,
+.ess-pinterest-popup-close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #fff;
+    border: 2px solid #000;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 18px;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.ess-popup-wrapper #ess-wrap-inline-networks .ess-social-sharing {
+    width: 215px;
+}
+
+.ess-social-pin-images {
+    margin: 0 0 3% -3%;
+    list-style: none;
+    padding: 0;
+    .ess-social-pin-image {
+        float: left;
+        height: 90px;
+        margin-bottom: 3%;
+        margin-left: 3%;
+        overflow: hidden;
+        position: relative;
+        width: 30.33%;
+        img {
+            max-width: 100%;
+            margin: 0;
+        }
+        a.ess-pinterest-tag {
+            visibility: hidden;
+            position: absolute;
+            left: 0;
+            top: 0;
+            @include transition(all 0.5s ease);
+            opacity: 0;
+            font-size: 36px;
+            color: #ffffff;
+            background: rgba(147, 8, 11, 0.5);
+            width: 100%;
+            height: 100%;
+            display: block;
+            i {
+                background: none;
+                color: #ffffff;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                @include transform (translate(-50%, -50%));
+            }
+        }
+        &:hover > a.ess-pinterest-tag {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.ess-pinterest-popup-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px 0 20px;
+    padding: 0;
+}
+
+.ess-no-pinterest-img-found {
+    color: #d1d1d1;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 200px;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .ess-popup-wrapper,
+    .ess-pinterest-img-picker-popup {
+        width: 525px;
+    }
+}
+
+@media (max-width: 530px) {
+    .ess-popup-wrapper,
+    .ess-pinterest-img-picker-popup {
+        height: 300px;
+        overflow-y: scroll;
+        width: 299px;
+    }
+    .ess-popup-close {
+        right: 10px;
+        top: 10px;
+    }
+}

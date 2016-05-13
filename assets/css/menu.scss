@@ -1,0 +1,40 @@
+/**
+ * menu.scss
+ * Styles applied to dashboard menu items added via EasySocialSharing.
+ * Adds icons to top level menu items, tinyMCE shortcode button, etc.
+ */
+
+/**
+ * Imports
+ */
+@import "bourbon";
+@import "mixins";
+@import "variables";
+@import "fonts";
+
+/**
+ * Styling begins
+ */
+.ess_plugin_upgrade_notice {
+	font-weight: normal;
+	color: #fff;
+	background: #d54d21;
+	padding: 1em;
+	margin: 9px 0;
+
+	a {
+		color: #fff;
+		text-decoration: underline;
+	}
+
+	&:before {
+		content: "\f348";
+		display: inline-block;
+		font: 400 18px/1 dashicons;
+		speak: none;
+		margin: 0 8px 0 -2px;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		vertical-align: top;
+	}
+}
