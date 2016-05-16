@@ -42,9 +42,14 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 
 == Screenshots ==
 
+1. Available Social Buttons
+2. Social Share with Count
+3. General Option
+4. Layout Option
+
 1. Easy Social Sharing.
 
 == Changelog ==
 
-= 1.0.0 - 13/05/2016 =
+= 1.0.0 - 16/05/2016 =
 * Initial Public Release
