@@ -11,7 +11,10 @@ Easy Social Sharing provides you with an easy way to display various popular soc
 
 == Description ==
 
-Social Sharing provides you with an easy way to display various popular social share buttons.
+Easy Social Sharing plugin provides you with an easy way to display various popular social share buttons. Also comes with Social Share count feature too.
+
+We have collected 18 Popular social sharing buttons that you can embed right into your posts, page. Sharing your content has never been so easy. We have packed the plugin with some very handy features like social count, multiple layouts, multiple design, custom colors and more.
+
 
 Get free support at http://themegrill.com/support-forum/
 
@@ -22,7 +25,16 @@ Check the demo at http://demo.themegrill.com/easy-social-sharing/
 Check the docs at http://docs.themegrill.com/easy-social-sharing/
 
 ### Features And Options:
-* TODO
+* Simple, Clean and Beautiful Buttons
+* Responsive Design
+* Multiple Button Designs
+* 18 Popular Social Network Buttons
+* Social Share Count
+* Ajax count update
+* Floating Social Buttons
+* Inline Social Buttons
+* Rectangular and Circular Design
+* Easy Dashboard Settings
 
 == Installation ==
 
