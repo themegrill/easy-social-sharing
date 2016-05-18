@@ -171,7 +171,7 @@ body {
 }
 
 #ess-wrap-inline-networks .ess-social-sharing {
-    margin: 6px 10px 6px 0;
+    margin: 6px 10px 6px 0 !important;
 }
 
 #ess-wrap-sidebar-networks .ess-all-networks {
@@ -258,8 +258,11 @@ body {
         text-decoration: none;
         display: block;
         border: none !important;
-        &:focus {
+        &:focus,
+        &:hover,
+        &:active {
             outline: none;
+            text-decoration: none !important;
         }
         .ess-icon {
             color: #fff;
