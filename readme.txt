@@ -63,8 +63,8 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 
 == Changelog ==
 
-= 1.0.0 - 16/05/2016 =
-* Initial Public Release
-
 = 1.0.1 - 19/05/2016 =
 * Fix - Sharing button design issue
+
+= 1.0.0 - 16/05/2016 =
+* Initial Public Release
