@@ -137,7 +137,7 @@ final class EasySocialSharing {
 	 * @return bool
 	 */
 	private function is_mobile() {
-		if ( 'yes' == get_option( 'ess_social_sharing_handheld_disable' ) && wp_is_mobile() ) {
+		if ( 'yes' == get_option( 'easy_social_sharing_handheld_disable' ) && wp_is_mobile() ) {
 			return true;
 		}
 
