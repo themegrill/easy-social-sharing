@@ -118,6 +118,17 @@ function ess_get_allowed_screen_types() {
 }
 
 /**
+ * Get allowed specific screen locations.
+ * @return array
+ */
+function ess_get_allowed_screen_locations() {
+	return (array) apply_filters( 'easy_social_sharing_allowed_screen_locations', array(
+		'inline'  => __( 'Inline', 'easy-social-sharing' ),
+		'sidebar' => __( 'Sidebar', 'easy-social-sharing' )
+	) );
+}
+
+/**
  * Checks whether the content passed contains a specific short code.
  *
  * @param  string $tag Shortcode tag to check.

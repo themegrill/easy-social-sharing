@@ -57,10 +57,7 @@ class ESS_Settings_General extends ESS_Settings_Page {
 				'css'      => 'width: 450px;',
 				'default'  => '',
 				'desc_tip' => true,
-				'options'  => array(
-					'inline'  => __( 'Inline', 'easy-social-sharing' ),
-					'sidebar' => __( 'Sidebar', 'easy-social-sharing' )
-				),
+				'options'  => ess_get_allowed_screen_locations(),
 				'custom_attributes' => array(
 					'data-placeholder' => __( 'Choose Locations&hellip;', 'easy-social-sharing' )
 				)
