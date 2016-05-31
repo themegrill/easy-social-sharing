@@ -290,6 +290,16 @@ class ESS_Settings_Layouts extends ESS_Settings_Page {
 				),
 
 				array(
+					'title'    => __( 'Front Page Display', 'easy-social-sharing' ),
+					'desc'     => __( 'Enable on Front Page Display', 'easy-social-sharing' ),
+					'id'       => 'easy_social_sharing_front_page_enable',
+					'default'  => 'yes',
+					'type'     => 'checkbox',
+					'desc_tip' =>  __( 'Allows to enable share buttons on front page.', 'easy-social-sharing' ),
+					'autoload' => false
+				),
+
+				array(
 					'title'    => __( 'Mobile Behaviours', 'easy-social-sharing' ),
 					'desc'     => __( 'Disable on Handheld Devices', 'easy-social-sharing' ),
 					'id'       => 'easy_social_sharing_handheld_disable',

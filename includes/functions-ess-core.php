@@ -62,7 +62,6 @@ function ess_get_screen_types() {
 
 	$post_types   = get_post_types( array( 'public' => true, 'show_in_menu' => true, '_builtin' => false ), 'names' );
 	$screen_types = apply_filters( 'easy_social_sharing_screens_types', array(
-		'home' => __( 'Home', 'easy-social-sharing' ),
 		'post' => __( 'Post', 'easy-social-sharing' ),
 		'page' => __( 'Page', 'easy-social-sharing' )
 	) );

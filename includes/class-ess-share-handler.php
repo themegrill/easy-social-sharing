@@ -64,9 +64,10 @@ class ESS_Share_Handler {
 	 */
 	private function check_capability( $location ) {
 		$post_types = ess_get_allowed_screen_types();
+		$front_page = get_option( 'easy_social_sharing_front_page_enable' );
 
 		if ( is_front_page() ) {
-			if ( ( in_array( 'home', $post_types ) && 'inline' !== $location ) || ( is_page() && in_array( 'home', $post_types ) && 'inline' == $location ) ) {
+			if ( ( 'yes' == $front_page && 'inline' !== $location ) || ( is_page() && 'yes' == $front_page && 'inline' == $location ) ) {
 				return true;
 			}
 		} else {
