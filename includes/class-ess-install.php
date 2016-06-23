@@ -86,11 +86,10 @@ class ESS_Install {
 		// Queue upgrades/setup wizard
 		$current_ess_version = get_option( 'easy_social_sharing_version', null );
 		$current_db_version  = get_option( 'easy_social_sharing_db_version', null );
-		$major_ess_version   = substr( ESS()->version, 0, strrpos( ESS()->version, '.' ) );
 
 		ESS_Admin_Notices::remove_all_notices();
 
-		if ( ! empty( self::$db_updates ) && ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
+		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
 			ESS_Admin_Notices::add_notice( 'update' );
 		} else {
 			self::update_db_version();
