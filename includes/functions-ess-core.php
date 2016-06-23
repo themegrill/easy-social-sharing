@@ -39,15 +39,18 @@ function ess_print_js() {
 	global $ess_queued_js;
 
 	if ( ! empty( $ess_queued_js ) ) {
-
-		echo "<!-- EasySocialSharing JavaScript -->\n<script type=\"text/javascript\">\njQuery(function($) {";
-
-		// Sanitize
+		// Sanitize.
 		$ess_queued_js = wp_check_invalid_utf8( $ess_queued_js );
 		$ess_queued_js = preg_replace( '/&#(x)?0*(?(1)27|39);?/i', "'", $ess_queued_js );
 		$ess_queued_js = str_replace( "\r", '', $ess_queued_js );
 
-		echo $ess_queued_js . "});\n</script>\n";
+		$js = "<!-- EasySocialSharing JavaScript -->\n<script type=\"text/javascript\">\njQuery(function($) { $ess_queued_js });\n</script>\n";
+
+		/**
+		 * easy_social_sharing_queued_js filter.
+		 * @param string $js JavaScript code.
+		 */
+		echo apply_filters( 'easy_social_sharing_queued_js', $js );
 
 		unset( $ess_queued_js );
 	}
