@@ -7,7 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$min_cnt = get_option( 'easy_social_sharing_minimum_share_count' );
 $post_id = is_front_page() && ! is_page() ? '-1' : get_the_ID();
 
 $spacing = 'yes' == get_option( 'easy_social_sharing_sidebar_icons_spacing' ) ? 'ess-spacing' : 'ess-no-spacing';
@@ -40,7 +39,7 @@ if ( 'right' == get_option( 'easy_social_sharing_sidebar_layout_orientation' ) )
 		<?php foreach ( $allowed_networks as $network ) :
 			$pinterest = ( 'pinterest' == $network ) ? 'ess-social-share-pinterest' : 'ess-social-share'; ?>
 			<li class="ess-social-networks <?php echo esc_attr( $spacing ); ?>">
-				<a href="<?php echo esc_url( ess_share_link( $network ) ); ?>" class="<?php echo esc_attr( $pinterest . ' ' . $counter ); ?>" rel="nofollow" data-social-name="<?php echo esc_attr( $network ); ?>" data-min-count="<?php echo esc_attr( $min_cnt ); ?>" data-post-id="<?php echo esc_attr( $post_id ); ?>" data-location="sidebar">
+				<a href="<?php echo esc_url( ess_share_link( $network ) ); ?>" class="<?php echo esc_attr( $pinterest . ' ' . $counter ); ?>" rel="nofollow" data-social-name="<?php echo esc_attr( $network ); ?>" data-min-count="<?php echo esc_attr( $network_count[ $network ] ); ?>" data-post-id="<?php echo esc_attr( $post_id ); ?>" data-location="sidebar">
 					<span class="sidebar-networks socicon socicon-<?php echo esc_attr( $network ); ?>">
 						<?php if ( 'yes' == get_option( 'easy_social_sharing_sidebar_enable_share_counts' ) ) : ?>
 							<span class="ess-social-count">&hellip;</span>

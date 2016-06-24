@@ -30,6 +30,19 @@ class ESS_Admin {
 	}
 
 	/**
+	 * Check if is Network Options settings page.
+	 * @return bool
+	 */
+	private function is_network_options_settings_page() {
+		return isset( $_GET['page'] )
+			&& 'easy-social-sharing' == $_GET['page']
+			&& isset( $_GET['tab'] )
+			&& 'network' == $_GET['tab']
+			&& isset( $_GET['section'] )
+			&& 'options' == $_GET['section'];
+	}
+
+	/**
 	 * Includes any classes we need within admin.
 	 */
 	public function includes() {
@@ -56,14 +69,8 @@ class ESS_Admin {
 	 * Gets a facebook access token.
 	 */
 	public function fb_access_token() {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
-		}
-		$current_screen = get_current_screen();
-		$ess_pages      = ess_get_screen_ids();
-
-		if ( isset( $current_screen->id ) && apply_filters( 'easy_social_sharing_get_facebook_access_token', in_array( $current_screen->id, $ess_pages ) ) ) {
-			$client_id = get_option( 'easy_social_sharing_facebook_client_id' );
+		if ( $this->is_network_options_settings_page() && current_user_can( 'manage_options' ) ) {
+			$client_id     = get_option( 'easy_social_sharing_facebook_client_id' );
 			$client_secret = get_option( 'easy_social_sharing_facebook_client_secret' );
 
 			// Check for autorization code.
@@ -85,9 +92,18 @@ class ESS_Admin {
 					if ( isset( $response->access_token ) ) {
 						update_option( 'easy_social_sharing_facebook_access_token', ess_clean( $response->access_token ) );
 					}
+				} else {
+					add_action( 'admin_notices', array( $this, 'access_token_error' ) );
 				}
 			}
 		}
+	}
+
+	/**
+	 * Error shown if the facebook token is missing.
+	 */
+	public function access_token_error() {
+		echo '<div class="error"><p>' . __( 'Facebook Access Token Error: Please ensure your facebook credentials are correct.', 'easy-social-sharing' ) . '</p></div>';
 	}
 
 	/**

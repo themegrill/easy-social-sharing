@@ -2,7 +2,7 @@
 /**
  * EasySocialSharing Uninstall
  *
- * Uninstalls the plugin deletes options.
+ * Uninstalls the plugin deletes tables and options.
  *
  * @author   ThemeGrill
  * @category Core
@@ -15,6 +15,9 @@ if( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 global $wpdb;
+
+// Drop Tables.
+$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}ess_social_networks" );
 
 // Delete options.
 $wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE 'easy_social_sharing\_%';" );

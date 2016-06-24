@@ -58,7 +58,9 @@ jQuery( document ).ready( function( $ ) {
 				type: 'POST',
 				success: function( response ) {
 					if ( response ) {
-						$this_el.find( 'span.ess-social-count' ).text( response );
+						$this_el.find( 'span.ess-social-count' ).text( response ).show();
+					} else {
+						$this_el.find( 'span.ess-social-count' ).remove();
 					}
 				}
 			});

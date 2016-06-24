@@ -106,7 +106,8 @@ class ESS_Share_Handler {
 	 * Output Sidebar Layout.
 	 */
 	public function display_sidebar() {
-		$allowed_networks = get_option( 'easy_social_sharing_allowed_networks', array() );
+		$network_count    = ESS_Social_Networks::get_network_count();
+		$allowed_networks = ESS_Social_Networks::get_allowed_networks();
 
 		if ( $allowed_networks && $this->check_capability( 'sidebar' ) ) {
 			include( 'views/html-view-layout-sidebar.php' );
@@ -119,7 +120,8 @@ class ESS_Share_Handler {
 	public function generate_inline_icons( $class = 'ess-inline-top' ) {
 		ob_start();
 
-		$allowed_networks = get_option( 'easy_social_sharing_allowed_networks', array() );
+		$network_count    = ESS_Social_Networks::get_network_count();
+		$allowed_networks = ESS_Social_Networks::get_allowed_networks();
 
 		if ( $allowed_networks && $this->check_capability( 'inline' ) ) {
 			include( 'views/html-view-layout-inline.php' );

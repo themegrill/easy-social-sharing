@@ -49,7 +49,7 @@ class ESS_Settings_General extends ESS_Settings_Page {
 			),
 
 			array(
-				'title'    => __( 'Specific Location(s)', 'easy-social-sharing' ),
+				'title'    => __( 'Specific Locations', 'easy-social-sharing' ),
 				'desc'     => __( 'This option lets you limit which location placements you are willing to display to.', 'easy-social-sharing' ),
 				'id'       => 'easy_social_sharing_allowed_locations',
 				'type'     => 'multiselect',
@@ -64,8 +64,60 @@ class ESS_Settings_General extends ESS_Settings_Page {
 			),
 
 			array(
+				'title'    => __( 'Custom Screen(s)', 'easy-social-sharing' ),
+				'desc'     => __( 'This option lets you limit which screens you are willing to display to.', 'easy-social-sharing' ),
+				'id'       => 'easy_social_sharing_allowed_screens',
+				'default'  => 'all',
+				'type'     => 'select',
+				'class'    => 'ess-enhanced-select',
+				'css'      => 'min-width: 350px;',
+				'desc_tip' => true,
+				'options'  => array(
+					'all'        => __( 'Enable to All Screens', 'easy-social-sharing' ),
+					'all_except' => __( 'Enable to All Screens, Except For&hellip;', 'easy-social-sharing' ),
+					'specific'   => __( 'Enable to Specific Screens', 'easy-social-sharing' )
+				)
+			),
+
+			array(
+				'title'   => __( 'Allow All Screens, Except For&hellip;', 'easy-social-sharing' ),
+				'desc'    => '',
+				'id'      => 'easy_social_sharing_all_except_screens',
+				'css'     => 'min-width: 350px;',
+				'default' => '',
+				'type'    => 'multi_select_screens'
+			),
+
+			array(
+				'title'   => __( 'Allow Specific Screens', 'easy-social-sharing' ),
+				'desc'    => '',
+				'id'      => 'easy_social_sharing_specific_allowed_screens',
+				'css'     => 'min-width: 350px;',
+				'default' => '',
+				'type'    => 'multi_select_screens'
+			),
+
+			array(
+				'title'    => __( 'Front Page Display', 'easy-social-sharing' ),
+				'desc'     => __( 'Enable share icons on front page display', 'easy-social-sharing' ),
+				'id'       => 'easy_social_sharing_front_page_enable',
+				'default'  => 'yes',
+				'type'     => 'checkbox',
+				'autoload' => false
+			),
+
+			array(
+				'title'    => __( 'Mobile Behaviours', 'easy-social-sharing' ),
+				'desc'     => __( 'Enable share on mobile or handheld devices', 'easy-social-sharing' ),
+				'id'       => 'easy_social_sharing_handheld_enable',
+				'default'  => 'yes',
+				'type'     => 'checkbox',
+				'autoload' => false
+			),
+
+			array(
 				'title'    => __( 'Reset WordPress Loop', 'easy-social-sharing' ),
-				'desc'     => __( 'Enable to reset post data', 'easy-social-sharing' ),
+				'desc'     => __( 'Enable to reset the post data after a custom query', 'easy-social-sharing' ),
 				'id'       => 'easy_social_sharing_reset_postdata',
 				'default'  => 'no',
 				'type'     => 'checkbox',
@@ -76,61 +128,7 @@ class ESS_Settings_General extends ESS_Settings_Page {
 			array(
 				'type' => 'sectionend',
 				'id'   => 'general_options'
-			),
-
-			array( 'title' => __( 'Social Network Options', 'easy-social-sharing' ), 'type' => 'title', 'id' => 'social_network_options' ),
-
-			array(
-				'title'    => __( 'Social Network(s)', 'easy-social-sharing' ),
-				'desc'     => __( 'This option lets you limit which social networks you are willing to display on frontend.', 'easy-social-sharing' ),
-				'id'       => 'easy_social_sharing_allowed_networks',
-				'type'     => 'multiselect',
-				'class'    => 'ess-enhanced-select',
-				'css'      => 'width: 450px;',
-				'default'  => '',
-				'desc_tip' => true,
-				'options'  => ess_get_core_supported_social_networks(),
-				'custom_attributes' => array(
-					'data-max_selection' => 10,
-					'data-placeholder'   => __( 'Choose social networks&hellip;', 'easy-social-sharing' )
-				)
-			),
-
-			array(
-				'title'       => __( 'Twitter Username', 'easy-social-sharing' ),
-				'desc'        => __( 'Enter twitter username used while sharing.', 'easy-social-sharing' ),
-				'id'          => 'easy_social_sharing_twitter_username',
-				'type'        => 'text',
-				'css'         => 'min-width:350px;',
-				'placeholder' => __( 'Username', 'easy-social-sharing' ),
-				'default'     => '',
-				'autoload'    => false,
-				'desc_tip'    => true,
-			),
-
-			array(
-				'title'    => __( 'Facebook App ID', 'easy-social-sharing' ),
-				'desc'     => __( 'Enter your App ID provided by facebook.', 'easy-social-sharing' ),
-				'id'       => 'easy_social_sharing_facebook_client_id',
-				'type'     => 'text',
-				'css'      => 'width: 350px;',
-				'default'  => '',
-				'autoload' => false,
-				'desc_tip' => true
-			),
-
-			array(
-				'title'    => __( 'Facebook App Secret', 'easy-social-sharing' ),
-				'desc'     => __( 'Enter your App ID provided by facebook.', 'easy-social-sharing' ),
-				'id'       => 'easy_social_sharing_facebook_client_secret',
-				'type'     => 'password',
-				'css'      => 'width: 350px;',
-				'default'  => '',
-				'autoload' => false,
-				'desc_tip' => true
-			),
-
-			array( 'type' => 'sectionend', 'id' => 'social_network_options' )
+			)
 
 		) );
 

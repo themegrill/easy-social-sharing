@@ -28,6 +28,7 @@ class ESS_Install {
 		),
 		'1.2.0' => array(
 			'ess_update_120_social_networks',
+			'ess_update_120_delete_options',
 			'ess_update_120_db_version',
 		),
 	);
@@ -97,6 +98,7 @@ class ESS_Install {
 		include_once( 'admin/class-ess-admin-notices.php' );
 
 		self::create_options();
+		self::create_tables();
 
 		// Queue upgrades wizard
 		$current_ess_version = get_option( 'easy_social_sharing_version', null );
@@ -202,6 +204,58 @@ class ESS_Install {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Set up the database table which the plugin need to function.
+	 *
+	 * Tables:
+	 *    ess_social_networks - Table for storing social networks data.
+	 */
+	private static function create_tables() {
+		global $wpdb;
+
+		$wpdb->hide_errors();
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+		dbDelta( self::get_schema() );
+	}
+
+	/**
+	 * Get Table schema.
+	 * @return string
+	 */
+	private static function get_schema() {
+		global $wpdb;
+
+		$charset_collate = '';
+
+		if ( $wpdb->has_cap( 'collation' ) ) {
+			$charset_collate = $wpdb->get_charset_collate();
+		}
+
+		/*
+		 * Indexes have a maximum size of 767 bytes. Historically, we haven't need to be concerned about that.
+		 * As of WordPress 4.2, however, we moved to utf8mb4, which uses 4 bytes per character. This means that an index which
+		 * used to have room for floor(767/3) = 255 characters, now only has room for floor(767/4) = 191 characters.
+		 */
+		$max_index_length = 191;
+
+		$tables = "
+CREATE TABLE {$wpdb->prefix}ess_social_networks (
+  network_id bigint(20) NOT NULL auto_increment,
+  network_name varchar(200) NOT NULL,
+  network_desc longtext NULL,
+  network_order bigint(20) NOT NULL,
+  network_count bigint(20) NOT NULL DEFAULT 0,
+  is_api_support tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY  (network_id),
+  UNIQUE KEY network_name (network_name($max_index_length))
+) $charset_collate;
+		";
+
+		return $tables;
 	}
 
 	/**

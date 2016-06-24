@@ -40,7 +40,7 @@ class ESS_Settings_Layouts extends ESS_Settings_Page {
 	 */
 	public function get_sections() {
 		$sections = array(
-			''        => __( 'General', 'easy-social-sharing' ),
+			''        => __( 'Layout Options', 'easy-social-sharing' ),
 			'inline'  => __( 'Inline Layout', 'easy-social-sharing' ),
 			'sidebar' => __( 'Sidebar Layout', 'easy-social-sharing' )
 		);
@@ -239,83 +239,11 @@ class ESS_Settings_Layouts extends ESS_Settings_Page {
 
 			$settings = apply_filters( 'easy_social_sharing_layouts_general_settings', array(
 
-				array( 'title' => __( 'Display Options', 'easy-social-sharing' ), 'type' => 'title', 'id' => 'layouts_display_options' ),
-
-				array(
-					'title'             => __( 'Minimum Count', 'easy-social-sharing' ),
-					'desc'              => __( 'Threshold that must be reached for each network before a share count is displayed.', 'easy-social-sharing' ),
-					'id'                => 'easy_social_sharing_minimum_share_count',
-					'type'              => 'number',
-					'custom_attributes' => array(
-						'min'  => 0,
-						'step' => 1
-					),
-					'default'           => '0',
-					'desc_tip'          => true,
-					'autoload'          => false
-				),
-
-				array(
-					'title'    => __( 'Custom Screen(s)', 'easy-social-sharing' ),
-					'desc'     => __( 'This option lets you limit which screens you are willing to display to.', 'easy-social-sharing' ),
-					'id'       => 'easy_social_sharing_allowed_screens',
-					'default'  => 'all',
-					'type'     => 'select',
-					'class'    => 'ess-enhanced-select',
-					'css'      => 'min-width: 350px;',
-					'desc_tip' => true,
-					'options'  => array(
-						'all'        => __( 'Enable to All Screens', 'easy-social-sharing' ),
-						'all_except' => __( 'Enable to All Screens, Except For&hellip;', 'easy-social-sharing' ),
-						'specific'   => __( 'Enable to Specific Screens', 'easy-social-sharing' )
-					)
-				),
-
-				array(
-					'title'   => __( 'Allow All Screens, Except For&hellip;', 'easy-social-sharing' ),
-					'desc'    => '',
-					'id'      => 'easy_social_sharing_all_except_screens',
-					'css'     => 'min-width: 350px;',
-					'default' => '',
-					'type'    => 'multi_select_screens'
-				),
-
-				array(
-					'title'   => __( 'Allow Specific Screens', 'easy-social-sharing' ),
-					'desc'    => '',
-					'id'      => 'easy_social_sharing_specific_allowed_screens',
-					'css'     => 'min-width: 350px;',
-					'default' => '',
-					'type'    => 'multi_select_screens'
-				),
-
-				array(
-					'title'    => __( 'Front Page Display', 'easy-social-sharing' ),
-					'desc'     => __( 'Enable on Front Page Display', 'easy-social-sharing' ),
-					'id'       => 'easy_social_sharing_front_page_enable',
-					'default'  => 'yes',
-					'type'     => 'checkbox',
-					'desc_tip' =>  __( 'Allows to enable share buttons on front page.', 'easy-social-sharing' ),
-					'autoload' => false
-				),
-
-				array(
-					'title'    => __( 'Mobile Behaviours', 'easy-social-sharing' ),
-					'desc'     => __( 'Disable on Handheld Devices', 'easy-social-sharing' ),
-					'id'       => 'easy_social_sharing_handheld_disable',
-					'default'  => 'no',
-					'type'     => 'checkbox',
-					'desc_tip' =>  __( 'Allows to hide share buttons from different mobile devices.', 'easy-social-sharing' ),
-					'autoload' => false
-				),
-
-				array( 'type' => 'sectionend', 'id' => 'layouts_display_options' ),
-
-				array( 'title' => __( 'Color Options', 'easy-social-sharing' ), 'desc'  => __( 'If Background or Icon color is not defined below, the default network colors will be used for that element.', 'easy-social-sharing' ), 'type' => 'title', 'id' => 'layouts_color_options' ),
+				array( 'title' => __( 'Layout Color Options', 'easy-social-sharing' ), 'desc'  => __( 'This section lets you customize the background color for share icons, by default network colors will be used.', 'easy-social-sharing' ), 'type' => 'title', 'id' => 'layout_color_options' ),
 
 				array(
 					'title'    => __( 'Custom Colors', 'easy-social-sharing' ),
-					'desc'     => __( 'Enable Custom Colors', 'easy-social-sharing' ),
+					'desc'     => __( 'Enable custom colors', 'easy-social-sharing' ),
 					'id'       => 'easy_social_sharing_custom_colors_enabled',
 					'default'  => 'no',
 					'type'     => 'checkbox',

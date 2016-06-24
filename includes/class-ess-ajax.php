@@ -33,10 +33,11 @@ class ESS_AJAX {
 	public static function add_ajax_events() {
 		// easy_social_sharing_EVENT => nopriv
 		$ajax_events = array(
-			'update_single_share' => true,
-			'get_shares_count'    => true,
-			'get_total_counts'    => true,
-			'rated'               => false
+			'update_single_share'          => true,
+			'get_shares_count'             => true,
+			'get_total_counts'             => true,
+			'rated'                        => false,
+			'social_networks_save_changes' => false,
 		);
 
 		foreach ( $ajax_events as $ajax_event => $nopriv ) {
@@ -143,7 +144,7 @@ class ESS_AJAX {
 		}
 
 		$total_shares     = 0;
-		$allowed_networks = get_option( 'easy_social_sharing_allowed_networks', array() );
+		$allowed_networks = ESS_Social_Networks::get_network_names();
 
 		foreach ( $allowed_networks as $network ) {
 			$total_shares += self::get_shares_count( $network, 0, $post_id, $page_url, false );
@@ -164,6 +165,75 @@ class ESS_AJAX {
 
 		update_option( 'easy_social_sharing_admin_footer_text_rated', 1 );
 		die();
+	}
+
+	/**
+	 * Handle submissions from assets/js/ess-social-networks.js Backbone model.
+	 */
+	public static function social_networks_save_changes() {
+		if ( ! isset( $_POST['ess_social_networks_nonce'], $_POST['changes'] ) ) {
+			wp_send_json_error( 'missing_fields' );
+			exit;
+		}
+
+		if ( ! wp_verify_nonce( $_POST['ess_social_networks_nonce'], 'ess_social_networks_nonce' ) ) {
+			wp_send_json_error( 'bad_nonce' );
+			exit;
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( 'missing_capabilities' );
+			exit;
+		}
+
+		global $wpdb;
+
+		$changes = $_POST['changes'];
+
+		foreach ( $changes as $network_id => $data ) {
+			if ( isset( $data['deleted'] ) ) {
+				if ( isset( $data['newRow'] ) ) {
+					// So the user added and deleted a new row.
+					// That's fine, it's not in the database anyways. NEXT!
+					continue;
+				}
+				ESS_Social_Networks::_delete_network( $network_id );
+				continue;
+			}
+
+			// If network name already exists, no need to update database.
+			if ( isset( $data['network_name'] ) && in_array( $data['network_name'], ESS_Social_Networks::get_network_names() ) ) {
+				continue;
+			}
+
+			$network_data = array_intersect_key( $data, array(
+				'network_id'     => 1,
+				'network_name'   => 1,
+				'network_desc'   => 1,
+				'network_order'  => 1,
+				'network_count'  => 1,
+				'is_api_support' => 1
+			) );
+
+			if ( isset( $data['newRow'] ) ) {
+				// Hurrah, shiny and new!
+				$network_id = ESS_Social_Networks::_insert_network( $network_data );
+			} else {
+				// Updating an existing network..
+				if ( ! empty( $network_data ) ) {
+					ESS_Social_Networks::_update_network( $network_id, $network_data );
+				}
+			}
+
+			// Update an API support for a network...
+			if ( ! empty( $data['network_name'] ) ) {
+				ESS_Social_Networks::_update_network_api_support( $network_id, $data['network_name'] );
+			}
+		}
+
+		wp_send_json_success( array(
+			'social_networks' => ESS_Social_Networks::get_networks()
+		) );
 	}
 }
 

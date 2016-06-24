@@ -137,7 +137,7 @@ final class EasySocialSharing {
 	 * @return bool
 	 */
 	private function is_mobile() {
-		if ( 'yes' == get_option( 'easy_social_sharing_handheld_disable' ) && wp_is_mobile() ) {
+		if ( 'yes' !== get_option( 'easy_social_sharing_handheld_enable' ) && wp_is_mobile() ) {
 			return true;
 		}
 
@@ -167,7 +167,8 @@ final class EasySocialSharing {
 	 */
 	public function frontend_includes() {
 		include_once( 'includes/class-ess-frontend-scripts.php' );  // Frontend Scripts
-		include_once( 'includes/class-ess-share-handler.php' );     // Social Share Handler
+		include_once( 'includes/class-ess-social-networks.php' );   // Social Networks class
+		include_once( 'includes/class-ess-share-handler.php' );     // Social Share Handler class
 	}
 
 	/**

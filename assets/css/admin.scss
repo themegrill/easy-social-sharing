@@ -20,6 +20,113 @@
 	@include loader();
 }
 
+table.ess-social-networks {
+	td, th {
+		vertical-align: top;
+		line-height: 24px;
+		padding: 1em;
+		font-size: 14px;
+		background: #fff;
+		li {
+			line-height: 24px;
+			font-size: 14px;
+		}
+	}
+	tbody.ess-social-network-rows {
+		tr:nth-child(odd) {
+			td {
+				background: #f9f9f9;
+			}
+		}
+	}
+	ul, p {
+		margin: 0;
+	}
+	td.ess-social-network-sort {
+		cursor: move;
+		font-size: 15px;
+		width: 17px;
+		text-align: center;
+
+		&:before {
+			content: "\f333";
+			font-family: 'Dashicons';
+			text-align: center;
+			line-height: 1;
+			color: #999;
+			display: block;
+			width: 17px;
+			float: left;
+			height: 100%;
+			line-height: 24px;
+		}
+		&:hover {
+			&:before {
+				color: #333;
+			}
+		}
+	}
+	.ess-social-network-icon {
+		width: 6%;
+		.socicon {
+			top: 0;
+			color: #fff;
+			padding: 7px;
+		}
+	}
+	.ess-social-network-name {
+		width: 20%;
+	}
+	.ess-social-network-description {
+		width: 40%;
+		mark {
+			margin-left: 30px;
+		}
+	}
+	.ess-social-network-min-count,
+	.ess-social-network-api-support {
+		width: 15%;
+		text-align: center;
+	}
+	.ess-social-network-icon,
+	.ess-social-network-name,
+	.ess-social-network-description,
+	.ess-social-network-min-count,
+	.ess-social-network-api-support {
+		mark {
+			background: transparent none;
+			&.no {
+				color: $red;
+			}
+			&.yes {
+				color: $green;
+			}
+			&.dash {
+				color: #999;
+			}
+		}
+		input, select, textarea {
+			width: 100%;
+		}
+		a.ess-social-network-delete {
+			color: red;
+		}
+	}
+	tfoot {
+		input, select {
+			vertical-align: middle !important;
+		}
+		.button-secondary {
+			float: right;
+		}
+	}
+	.editing {
+		.ess-social-network-view, .ess-social-network-edit {
+			display: none;
+		}
+	}
+}
+
 .easy-social-sharing {
 
 	h2.ess-nav-tab-wrapper {
