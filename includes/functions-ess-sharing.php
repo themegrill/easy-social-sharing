@@ -35,6 +35,7 @@ function ess_check_cached_counts( $post_id, $network, $click_update ) {
 
 	return $is_cached;
 }
+
 /**
  * Social share networks with Link.
  * @param  string  $network
@@ -149,14 +150,6 @@ function ess_share_link( $network, $media_url = '', $i = 0, $post_link = '', $po
 	}
 
 	return $link;
-}
-
-/**
- * Social share networks with API support.
- * @return array
- */
-function ess_get_share_networks_with_api_support() {
-	return array( 'facebook', 'linkedin', 'pinterest', 'googleplus', 'stumbleupon', 'vkontakte', 'reddit', 'buffer' );
 }
 
 /**

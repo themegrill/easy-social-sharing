@@ -18,18 +18,41 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class ESS_Install {
 
-	/** @var array DB updates that need to be run */
-	private static $db_updates = array();
+	/** @var array DB updates and callbacks that need to be run per version */
+	private static $db_updates = array(
+		'1.0.0' => array(
+			'ess_update_100_db_version',
+		),
+		'1.0.1' => array(
+			'ess_update_101_db_version',
+		),
+		'1.2.0' => array(
+			'ess_update_120_social_networks',
+			'ess_update_120_db_version',
+		),
+	);
+
+	/** @var object Background update class */
+	private static $background_updater;
 
 	/**
 	 * Hook in tabs.
 	 */
 	public static function init() {
 		add_action( 'init', array( __CLASS__, 'check_version' ), 5 );
+		add_action( 'init', array( __CLASS__, 'init_background_updater' ), 5 );
 		add_action( 'admin_init', array( __CLASS__, 'install_actions' ) );
 		add_action( 'in_plugin_update_message-easy-social-sharing/easy-social-sharing.php', array( __CLASS__, 'in_plugin_update_message' ) );
 		add_filter( 'plugin_action_links_' . ESS_PLUGIN_BASENAME, array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
+	}
+
+	/**
+	 * Init background updates.
+	 */
+	public static function init_background_updater() {
+		include_once( 'class-ess-background-updater.php' );
+		self::$background_updater = new ESS_Background_Updater();
 	}
 
 	/**
@@ -52,20 +75,12 @@ class ESS_Install {
 	public static function install_actions() {
 		if ( ! empty( $_GET['do_update_easy_social_sharing'] ) ) {
 			self::update();
-			ESS_Admin_Notices::remove_notice( 'update' );
-			add_action( 'admin_notices', array( __CLASS__, 'updated_notice' ) );
+			ESS_Admin_Notices::add_notice( 'update' );
 		}
-	}
-
-	/**
-	 * Show notice stating update was successful.
-	 */
-	public static function updated_notice() {
-		?>
-		<div id="message" class="updated easy-social-sharing-message ess-connect">
-			<p><?php _e( 'Easy Social Sharing data update complete. Thank you for updating to the latest version!', 'easy-social-sharing' ); ?></p>
-		</div>
-		<?php
+		if ( ! empty( $_GET['force_update_easy_social_sharing'] ) ) {
+			do_action( 'wp_ess_updater_cron' );
+			wp_safe_redirect( admin_url( 'options-general.php?page=easy-social-sharing' ) );
+		}
 	}
 
 	/**
@@ -83,11 +98,16 @@ class ESS_Install {
 
 		self::create_options();
 
-		// Queue upgrades/setup wizard
+		// Queue upgrades wizard
 		$current_ess_version = get_option( 'easy_social_sharing_version', null );
 		$current_db_version  = get_option( 'easy_social_sharing_db_version', null );
 
 		ESS_Admin_Notices::remove_all_notices();
+
+		// No versions? This is a new install :)
+		if ( is_null( $current_ess_version ) && is_null( $current_db_version ) && apply_filters( 'easy_social_sharing_enable_setup_wizard', true ) ) {
+			set_transient( '_ess_activation_redirect', 1, 30 );
+		}
 
 		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
 			ESS_Admin_Notices::add_notice( 'update' );
@@ -127,31 +147,33 @@ class ESS_Install {
 	}
 
 	/**
-	 * Update DB version to current.
-	 */
-	private static function update_db_version( $version = null ) {
-		delete_option( 'easy_social_sharing_db_version' );
-		add_option( 'easy_social_sharing_db_version', is_null( $version ) ? ESS()->version : $version );
-	}
-
-	/**
-	 * Handle updates.
+	 * Push all needed DB updates to the queue for processing.
 	 */
 	private static function update() {
-		if ( ! defined( 'ESS_UPDATING' ) ) {
-			define( 'ESS_UPDATING', true );
-		}
-
 		$current_db_version = get_option( 'easy_social_sharing_db_version' );
+		$update_queued      = false;
 
-		foreach ( self::$db_updates as $version => $updater ) {
+		foreach ( self::$db_updates as $version => $update_callbacks ) {
 			if ( version_compare( $current_db_version, $version, '<' ) ) {
-				include( $updater );
-				self::update_db_version( $version );
+				foreach ( $update_callbacks as $update_callback ) {
+					self::$background_updater->push_to_queue( $update_callback );
+					$update_queued = true;
+				}
 			}
 		}
 
-		self::update_db_version();
+		if ( $update_queued ) {
+			self::$background_updater->save()->dispatch();
+		}
+	}
+
+	/**
+	 * Update DB version to current.
+	 * @param string $version
+	 */
+	public static function update_db_version( $version = null ) {
+		delete_option( 'easy_social_sharing_db_version' );
+		add_option( 'easy_social_sharing_db_version', is_null( $version ) ? ESS()->version : $version );
 	}
 
 	/**

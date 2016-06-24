@@ -175,6 +175,14 @@ function ess_get_core_supported_social_networks() {
 }
 
 /**
+ * Social share networks with API support.
+ * @return array
+ */
+function ess_get_share_networks_with_api_support() {
+	return array( 'facebook', 'linkedin', 'pinterest', 'googleplus', 'stumbleupon', 'vkontakte', 'reddit', 'buffer' );
+}
+
+/**
  * Display a EasySocialSharing help tip.
  * @param  string $tip        Help tip text
  * @param  bool   $allow_html Allow sanitized HTML if true or escape
