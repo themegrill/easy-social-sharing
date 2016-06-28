@@ -8,6 +8,7 @@
 /**
  * Imports
  */
+
 @import "bourbon";
 @import "mixins";
 @import "variables";
@@ -17,6 +18,7 @@
 /**
  * Styling begins
  */
+
 .ess-clear {
     @include clearfix;
     &:before {
@@ -32,6 +34,7 @@
 body {
     overflow-x: hidden;
 }
+
 
 /** --------------------------------------------------------------
  ESS SOCIAL ICON SIDEBAR CSS
@@ -54,7 +57,9 @@ body {
             color: #fff;
             display: block;
             font-size: 16px;
-            padding: 8px 0;
+            line-height: 28px;
+            min-height: 28px;
+            padding: 3px 0 8px;
             text-align: center;
             width: 50px;
             @include transition(all 0.5s ease);
@@ -69,6 +74,7 @@ body {
                 margin-top: 3px;
                 text-align: center;
                 font-family: "Open Sans", sans-serif;
+                line-height: 12px;
             }
         }
         li.ess-spacing {
@@ -78,6 +84,7 @@ body {
         }
         a {
             outline: medium none;
+            text-decoration: none;
         }
     }
     .ess-total-share {
@@ -101,13 +108,14 @@ body {
         color: #fff;
         cursor: pointer;
         display: block;
-        font-size: 12px;
+        font-size: 20px;
+        height: 30px;
+        line-height: 23px;
         margin-left: 0;
         margin-top: 10px;
-        padding: 2px 0;
-        text-align: center;
-        width: 28px;
         position: relative;
+        text-align: center;
+        width: 30px;
         @include transition(all 0.5s ease);
     }
 }
@@ -158,10 +166,10 @@ body {
 
 #ess-wrap-sidebar-networks .ess-all-networks {
     background: #d1d1d1 none repeat scroll 0 0;
-    padding: 6px 0 3px;
-    width: 50px;
-    display: inline-block;
     cursor: pointer;
+    display: inline-block;
+    padding: 7px 0;
+    width: 50px;
     span {
         display: block;
         font-weight: 700;
@@ -328,7 +336,7 @@ body {
 }
 
 #ess-wrap-inline-networks.ess-inline-layout-two .ess-all-networks {
-  padding: 6px 20px;
+    padding: 6px 20px;
 }
 
 

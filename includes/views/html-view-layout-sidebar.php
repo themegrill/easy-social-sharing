@@ -32,25 +32,27 @@ if ( 'right' == get_option( 'easy_social_sharing_sidebar_layout_orientation' ) )
 
 ?>
 <div id="ess-wrap-sidebar-networks" class="ess-sidebar-enable <?php echo esc_attr( implode( ' ', $visbility_class ) ); ?>">
-	<?php if ( 'yes' == get_option( 'easy_social_sharing_sidebar_enable_total_shares' ) ) : ?>
-		<div class="ess-total-share" data-post-id="<?php echo esc_attr( $post_id ); ?>"><span class="ess-total-count">&hellip;</span><span><?php esc_html_e( 'Shares', 'easy-social-sharing' ); ?></span></div>
-	<?php endif; ?>
-	<ul class="ess-social-network-lists">
-		<?php foreach ( $allowed_networks as $network ) :
-			$pinterest = ( 'pinterest' == $network ) ? 'ess-social-share-pinterest' : 'ess-social-share'; ?>
-			<li class="ess-social-networks <?php echo esc_attr( $spacing ); ?>">
-				<a href="<?php echo esc_url( ess_share_link( $network ) ); ?>" class="<?php echo esc_attr( $pinterest . ' ' . $counter ); ?>" rel="nofollow" data-social-name="<?php echo esc_attr( $network ); ?>" data-min-count="<?php echo esc_attr( $network_count[ $network ] ); ?>" data-post-id="<?php echo esc_attr( $post_id ); ?>" data-location="sidebar">
-					<span class="sidebar-networks socicon socicon-<?php echo esc_attr( $network ); ?>">
-						<?php if ( 'yes' == get_option( 'easy_social_sharing_sidebar_enable_share_counts' ) ) : ?>
-							<span class="ess-social-count">&hellip;</span>
-						<?php endif; ?>
-					</span>
-				</a>
-			</li>
-		<?php endforeach; ?>
-	</ul>
-	<?php if ( 'yes' == get_option( 'easy_social_sharing_sidebar_enable_all_networks' ) ) : ?>
-		<div class="ess-all-networks"><span>&raquo;</span></div>
-	<?php endif; ?>
-	<div class="ess-all-networks-toggle"><span>&rsaquo;</span></div>
+		<div class="ess-sidebar-icon-count-wrapper ess-clear">
+				<?php if ( 'yes' == get_option( 'easy_social_sharing_sidebar_enable_total_shares' ) ) : ?>
+					<div class="ess-total-share" data-post-id="<?php echo esc_attr( $post_id ); ?>"><span class="ess-total-count">&hellip;</span><span><?php esc_html_e( 'Shares', 'easy-social-sharing' ); ?></span></div>
+				<?php endif; ?>
+				<ul class="ess-social-network-lists">
+					<?php foreach ( $allowed_networks as $network ) :
+						$pinterest = ( 'pinterest' == $network ) ? 'ess-social-share-pinterest' : 'ess-social-share'; ?>
+						<li class="ess-social-networks <?php echo esc_attr( $spacing ); ?>">
+							<a href="<?php echo esc_url( ess_share_link( $network ) ); ?>" class="<?php echo esc_attr( $pinterest . ' ' . $counter ); ?>" rel="nofollow" data-social-name="<?php echo esc_attr( $network ); ?>" data-min-count="<?php echo esc_attr( $network_count[ $network ] ); ?>" data-post-id="<?php echo esc_attr( $post_id ); ?>" data-location="sidebar">
+								<span class="sidebar-networks socicon socicon-<?php echo esc_attr( $network ); ?>">
+									<?php if ( 'yes' == get_option( 'easy_social_sharing_sidebar_enable_share_counts' ) ) : ?>
+										<span class="ess-social-count">&hellip;</span>
+									<?php endif; ?>
+								</span>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+				<?php if ( 'yes' == get_option( 'easy_social_sharing_sidebar_enable_all_networks' ) ) : ?>
+					<div class="ess-all-networks"><span><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span></div>
+				<?php endif; ?>
+	</div>
+	<div class="ess-all-networks-toggle"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
 </div>
