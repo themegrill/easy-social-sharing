@@ -145,6 +145,10 @@ jQuery( document ).ready( function( $ ) {
 
 	}).trigger( 'ess-pinterest-image-picker' );
 
+	// Centering Sidebar Networks
+	var top = ( $( '#ess-wrap-sidebar-networks' ).height()/2 );
+	$( '#ess-wrap-sidebar-networks' ).css( 'margin-top', -top );
+
 	// Sidebar Network - Open/close
 	$('.ess-all-networks-toggle').click(function() {
         $('#ess-wrap-sidebar-networks').toggleClass('ess-sidebar-enable');
