@@ -52,6 +52,12 @@ class ESS_Frontend_Scripts {
 	 */
 	public static function get_styles() {
 		return apply_filters( 'easy_social_sharing_enqueue_styles', array(
+			'fontawesome' => array(
+				'src'     => 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css',
+				'deps'    => '',
+				'version' => ESS_VERSION,
+				'media'   => 'all'
+			),
 			'easy-social-sharing-general' => array(
 				'src'     => str_replace( array( 'http:', 'https:' ), '', ESS()->plugin_url() ) . '/assets/css/easy-social-sharing.css',
 				'deps'    => '',
