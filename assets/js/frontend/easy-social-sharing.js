@@ -159,15 +159,9 @@ jQuery( document ).ready( function( $ ) {
         $('.ess-all-networks-toggle i').toggleClass('fa-chevron-left');
     });
 
-	//centering sidebar
-    var top = ($('#ess-wrap-sidebar-networks').height() / 2);
-    $('#ess-wrap-sidebar-networks').css("margin-top", -top);
-
-    //
     $('.ess-popup-layout-close').click(function() {
         $('.ess-popup-layout-wrapper').addClass('ess-popup-layout-wrapper-disable');
     });
-
 
     //fly in
     var stickyNavTop = $('#header').offset().top;
