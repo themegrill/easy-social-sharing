@@ -187,15 +187,6 @@ class ESS_Settings_Layouts extends ESS_Settings_Page {
 					)
 				),
 
-				array(
-					'title'    => __( 'Adjust Icons Spacing', 'easy-social-sharing' ),
-					'desc'     => __( 'Enable spacing between icons', 'easy-social-sharing' ),
-					'id'       => 'easy_social_sharing_sidebar_icons_spacing',
-					'default'  => 'no',
-					'type'     => 'checkbox',
-					'autoload' => false
-				),
-
 				array( 'type' => 'sectionend', 'id' => 'layouts_sidebar_style_options' ),
 
 				array( 'title' => __( 'Share Options', 'easy-social-sharing' ), 'type' => 'title', 'id' => 'layout_share_options' ),

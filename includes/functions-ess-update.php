@@ -49,6 +49,7 @@ function ess_update_120_social_networks() {
 function ess_update_120_delete_options() {
 	delete_option( 'easy_social_sharing_handheld_disable' );
 	delete_option( 'easy_social_sharing_minimum_share_count' );
+	delete_option( 'easy_social_sharing_sidebar_icons_spacing' );
 }
 
 function ess_update_120_db_version() {

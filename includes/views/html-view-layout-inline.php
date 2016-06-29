@@ -9,7 +9,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $post_id = is_front_page() && ! is_page() ? '-1' : get_the_ID();
 
-$spacing = 'yes' == get_option( 'easy_social_sharing_inline_icons_spacing' ) ? 'ess-spacing' : 'ess-no-spacing';
 $counter = 'yes' == get_option( 'easy_social_sharing_inline_enable_share_counts' ) ? 'ess-display-counts' : 'ess-no-display-counts';
 
 $visbility_class = array();
@@ -35,7 +34,7 @@ $social_networks = ess_get_core_supported_social_networks();
 	<ul class="ess-social-network-lists">
 		<?php foreach ( $allowed_networks as $network ) :
 			$pinterest = ( 'pinterest' == $network ) ? 'ess-social-share-pinterest' : 'ess-social-share'; ?>
-			<li class="ess-social-networks ess-<?php echo esc_attr( $network ); ?> ess-spacing ess-social-sharing <?php echo esc_attr( $spacing ); ?>">
+			<li class="ess-social-networks ess-<?php echo esc_attr( $network ); ?> ess-spacing ess-social-sharing">
 				<a href="<?php echo esc_url( ess_share_link( $network ) ); ?>" class="<?php echo esc_attr( $pinterest . ' ' . $counter ); ?>" rel="nofollow" data-social-name="<?php echo esc_attr( $network ); ?>" data-min-count="<?php echo esc_attr( $network_count[ $network ] ); ?>" data-post-id="<?php echo esc_attr( $post_id ); ?>" data-location="inline">
 					<span class="inline-networks socicon ess-icon socicon-<?php echo esc_attr( $network ); ?>"></span>
 					<?php if ( 'yes' == get_option( 'easy_social_sharing_inline_enable_networks_label' ) ) : ?>
