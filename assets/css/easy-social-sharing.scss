@@ -311,24 +311,22 @@ body {
 			.ess-social-count {
 				float: none;
 				font-size: 14px;
-				line-height: 0;
+				line-height: 14px;
 				padding: 0;
 				vertical-align: middle;
 			}
 			.ess-text {
 				font-weight: 400;
 				@include transition(all 0.5s ease);
-				margin: 0 10px;
+				margin: 0 0 0 10px;
 			}
 			.ess-social-count {
 				font-weight: bold;
+				margin-left: 10px;
 				&:after {
 					display: none;
 				}
 			}
-		}
-		&:hover .ess-text {
-			margin: 0 15px 0 10px;
 		}
 	}
 }
@@ -337,10 +335,13 @@ body {
 	padding: 6px 20px;
 }
 
+#ess-wrap-inline-networks.ess-inline-layout-two.ess-no-network-label .ess-social-count{
+	background: none ;
+}
 
 /** --------------------------------------------------------------
 SOCIAL SHARING COLOR
- ----------------------------------------------------------------*/
+ --------------------------- -------------------------------------*/
 
 .ess-icon,
 .ess-social-count {
@@ -742,199 +743,4 @@ POPUP DESIGN
 		right: 10px;
 		top: 10px;
 	}
-}
-
-.ess-popup-layout-wrapper {
-	font-family: "Open Sans", sans-serif;
-	@include transition (all 0.5s ease);
-	.ess-popup-layout-overlay {
-		background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
-		height: 100%;
-		left: 0;
-		position: fixed;
-		top: 0;
-		width: 100%;
-	}
-	.ess-popup-block-wrapper {
-		background: #fff none repeat scroll 0 0;
-		left: 50%;
-		margin-left: -305px;
-		max-width: 572px;
-		padding: 20px;
-		position: fixed;
-		top: 50%;
-		@include transform(translateY(-50%));
-		padding: 20px;
-		.ess-popup-layout-close {
-			color: #333;
-			font-size: 20px;
-			position: absolute;
-			right: 20px;
-			top: 10px;
-			cursor: pointer;
-		}
-		.ess-popup-title {
-			color: #333;
-			font-size: 18px;
-			margin: 0;
-			text-transform: uppercase;
-		}
-		ul {
-			margin: 10px 0 0px -2%;
-			padding: 0;
-		}
-		.ess-social-sharing {
-			background: transparent none repeat scroll 0 0;
-			float: left;
-			margin-left: 2%;
-			margin-top: 10px;
-			width: 14.66%;
-			a .ess-text {
-				color: #333;
-				display: block;
-				font-size: 12px;
-				font-weight: 600;
-				margin: 0;
-				text-align: center;
-			}
-			.ess-count {
-				bottom: 0;
-				left: 0;
-				position: absolute;
-				text-align: center;
-				width: 100%;
-			}
-			.popup-icon-count-wrapper {
-				position: relative;
-				display: block;
-				.ess-icon {
-					display: block;
-					height: 40px;
-					margin: 0 auto;
-					padding: 4px 11px 15px;
-					text-align: center;
-					width: 40px;
-					@include transition(all 0.5s ease);
-				}
-				&:hover .ess-icon {
-					border-radius: 5px;
-				}
-			}
-		}
-	}
-}
-
-.ess-popup-layout-wrapper-disable {
-	opacity: 0;
-	visibility: hidden;
-}
-
-.ess-fly-layout-wrapper {
-	background: #fff none repeat scroll 0 0;
-	bottom: -100%;
-	box-sizing: border-box;
-	font-family: "Open Sans", sans-serif;
-	padding: 20px;
-	position: fixed;
-	right: 0;
-	@include transition (all 1s ease);
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	width: 350px;
-	.ess-fly-layout-close {
-		color: #333;
-		font-size: 20px;
-		position: absolute;
-		right: 20px;
-		top: 10px;
-		cursor: pointer;
-	}
-	.ess-fly-title {
-		color: #333;
-		font-size: 18px;
-		margin: 0;
-		text-transform: uppercase;
-	}
-	ul {
-		margin: 10px 0 0px -2%;
-		padding: 0;
-	}
-	.ess-social-sharing {
-		background: transparent none repeat scroll 0 0;
-		float: left;
-		margin-left: 2%;
-		margin-top: 10px;
-		width: 31.33%;
-		margin-bottom: 10px;
-		.ess-text {
-			bottom: 0;
-			color: #fff;
-			display: block;
-			font-size: 10px;
-			font-weight: 400;
-			margin: 0;
-			position: absolute;
-			text-align: center;
-			width: 100%;
-			@include transform(scale(0.3));
-			@include transition(all 0.5s ease);
-			opacity: 0;
-			visibility: hidden;
-		}
-		.ess-count {
-			bottom: 0;
-			left: 0;
-			position: absolute;
-			text-align: center;
-			width: 100%;
-			@include transition(all 0.5s ease);
-		}
-		.fly-icon-count-wrapper {
-			position: relative;
-			display: block;
-			.ess-icon {
-				display: block;
-				font-size: 14px;
-				height: 40px;
-				line-height: 46px;
-				margin: 0 auto;
-				padding: 4px 20px 30px;
-				position: relative;
-				text-align: center;
-				width: 40px;
-				@include transition(all 0.5s ease);
-				&:after {
-					background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
-					border-radius: 100%;
-					content: "";
-					height: 30px;
-					left: 50%;
-					margin-left: -15px;
-					position: absolute;
-					top: 10px;
-					width: 30px;
-					z-index: 1;
-				}
-				&:before {
-					position: relative;
-					z-index: 999;
-				}
-			}
-			&:hover .ess-icon {
-				border-radius: 5px;
-			}
-			&:hover .ess-count {
-				opacity: 0;
-				visibility: hidden;
-			}
-			&:hover .ess-text {
-				@include transform(scale(1));
-				opacity: 1;
-				visibility: visible;
-			}
-		}
-	}
-}
-
-.ess-fly-layout-wrapper.fly-in {
-	bottom: 0;
 }
