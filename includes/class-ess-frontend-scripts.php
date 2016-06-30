@@ -182,26 +182,38 @@ class ESS_Frontend_Scripts {
 
 		$inline_css = '
 			#ess-wrap-sidebar-networks .socicon,
-			#ess-wrap-inline-networks .ess-social-sharing {
+			#ess-wrap-inline-networks .ess-social-sharing,
+			#ess-wrap-inline-networks.ess-inline-layout-two .socicon,
+			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-count,
+			#ess-wrap-inline-networks.ess-inline-layout-two .ess-more-networks  {
 				background: %1$s;
 				color: %7$s !important;
 			}
 
 			#ess-wrap-sidebar-networks .socicon:hover,
-			#ess-wrap-inline-networks .ess-social-sharing:hover {
+			#ess-wrap-inline-networks .ess-social-sharing:hover,
+			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-sharing:hover .socicon,
+			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-sharing:hover .ess-social-count,
+			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-sharing:hover .ess-more-networks {
 				background: %2$s;
 				color: %8$s !important;
 			}
 
-			#ess-wrap-inline-networks .socicon,
-			#ess-wrap-inline-networks .ess-social-count,
-			#ess-wrap-inline-networks .ess-more-networks {
+			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-sharing:hover .socicon,
+			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-sharing:hover .ess-social-count,
+			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-sharing:hover .ess-more-networks{
+			color:#ffffff !important;
+		}
+
+			#ess-wrap-inline-networks.ess-inline-layout-one .socicon,
+			#ess-wrap-inline-networks.ess-inline-layout-one .ess-social-count,
+			#ess-wrap-inline-networks.ess-inline-layout-one .ess-more-networks {
 				background: %3$s;
 				color: %7$s !important;
 			}
 
-			#ess-wrap-inline-networks .ess-social-sharing:hover .socicon,
-			#ess-wrap-inline-networks .ess-social-sharing:hover .ess-social-count {
+			#ess-wrap-inline-networks.ess-inline-layout-one .ess-social-sharing:hover .socicon,
+			#ess-wrap-inline-networks.ess-inline-layout-one .ess-social-sharing:hover .ess-social-count {
 				background: %4$s;
 				color: %8$s !important;
 			}
