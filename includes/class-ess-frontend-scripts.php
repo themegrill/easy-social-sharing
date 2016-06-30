@@ -201,14 +201,14 @@ class ESS_Frontend_Scripts {
 
 			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-sharing:hover .socicon,
 			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-sharing:hover .ess-social-count,
-			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-sharing:hover .ess-more-networks{
-			color:#ffffff !important;
-		}
+			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-sharing:hover .ess-more-networks {
+				color:#ffffff !important;
+			}
 
 			#ess-wrap-inline-networks.ess-inline-layout-one .socicon,
 			#ess-wrap-inline-networks.ess-inline-layout-one .ess-social-count,
 			#ess-wrap-inline-networks.ess-inline-layout-one .ess-more-networks,
-			.ess-popup-wrapper .inline-networks  {
+			.ess-popup-wrapper .inline-networks {
 				background: %3$s;
 				color: %7$s !important;
 			}
