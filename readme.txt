@@ -3,7 +3,7 @@ Contributors: ThemeGrill, shivapoudel
 Tags: social, media, sharing, brands, social sharing, social networking, social media, social icon, social icons, social profile, social counter, count
 Requires at least: 4.0
 Tested up to: 4.5
-Stable tag: 1.0.1
+Stable tag: 1.2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,6 @@ Easy Social Sharing provides you with an easy way to display various popular soc
 Easy Social Sharing plugin provides you with an easy way to display various popular social share buttons. Also comes with Social Share count feature too.
 
 We have collected 18 Popular social sharing buttons that you can embed right into your posts, page. Sharing your content has never been so easy. We have packed the plugin with some very handy features like social count, multiple layouts, multiple design, custom colors and more.
-
 
 Get free support at http://themegrill.com/support-forum/
 
@@ -63,8 +62,23 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 
 == Changelog ==
 
+= 1.2.0 - TBD =
+* Fix - Check for handheld devices behaviour
+* Tweak - Move the Home from custom screen setting section
+* Tweak - easy_social_sharing_queued_js filter
+* Tweak - `ess_clean` to ignore non-scalar vars
+* Tweak - Custom layout design for inline
+* Refactor - Frontend Sidebar layout design
+* Feature - Handle DB updates in the background
+* Feature - Sortable networks and settings optimize
+
 = 1.0.1 - 19/05/2016 =
 * Fix - Sharing button design issue
 
 = 1.0.0 - 16/05/2016 =
 * Initial Public Release
+
+== Upgrade Notice ==
+
+= 1.2.0 =
+1.2.0 is a major update so it is important that you make backups, and ensure themes and extensions are 1.2 compatible before upgrading.
