@@ -215,7 +215,7 @@ class ESS_Frontend_Scripts {
 			}
 		';
 
-		wp_add_inline_style( 'easy-social-sharing-general', sprintf( $inline_css, esc_attr( $bg ), esc_attr( $bg_hover ),	esc_attr( $bg_darker ), esc_attr( $bg_hover_darker ), esc_attr( $bg_lighter ), esc_attr( $bg_hover_lighter ), esc_attr( $base_text ), esc_attr( $base_text_hover ) ) );
+		wp_add_inline_style( 'easy-social-sharing-general', sprintf( $inline_css, esc_attr( $bg ), esc_attr( $bg_hover ), esc_attr( $bg_darker ), esc_attr( $bg_hover_darker ), esc_attr( $bg_lighter ), esc_attr( $bg_hover_lighter ), esc_attr( $base_text ), esc_attr( $base_text_hover ) ) );
 	}
 
 	/**

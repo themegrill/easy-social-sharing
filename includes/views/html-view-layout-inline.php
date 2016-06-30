@@ -15,6 +15,10 @@ $visbility_class = array();
 
 $visbility_class[] = $class;
 
+if ( 'two' == get_option( 'easy_social_sharing_inline_layouts' ) ) {
+	$visbility_class[] = 'ess-inline-layout-two';
+}
+
 if ( 'rounded' == get_option( 'easy_social_sharing_inline_icon_shape' ) ) {
 	$visbility_class[] = 'ess-rounded-icon';
 }
