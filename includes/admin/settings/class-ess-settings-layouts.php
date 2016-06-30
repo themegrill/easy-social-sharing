@@ -97,6 +97,21 @@ class ESS_Settings_Layouts extends ESS_Settings_Page {
 				),
 
 				array(
+					'title'    => __( 'Choose Layout', 'easy-social-sharing' ),
+					'desc'     => __( 'This option lets you choose the desire layouts.', 'easy-social-sharing' ),
+					'id'       => 'easy_social_sharing_inline_layouts',
+					'class'    => 'ess-enhanced-select',
+					'css'      => 'min-width:300px;',
+					'default'  => 'one',
+					'type'     => 'select',
+					'desc_tip' => true,
+					'options'  => array(
+						'one' => __( 'Layout One', 'easy-social-sharing' ),
+						'two' => __( 'Layout Two', 'easy-social-sharing' ),
+					)
+				),
+
+				array(
 					'title'    => __( 'Choose Location', 'easy-social-sharing' ),
 					'desc'     => __( 'This option lets you choose the icons location.', 'easy-social-sharing' ),
 					'id'       => 'easy_social_sharing_inline_icons_location',
