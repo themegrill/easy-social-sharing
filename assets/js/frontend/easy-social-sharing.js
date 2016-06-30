@@ -155,10 +155,6 @@ jQuery( document ).ready( function( $ ) {
         $('.ess-all-networks-toggle i').toggleClass('fa-chevron-right');
     });
 
-    $('.ess-right-layout .ess-all-networks-toggle').click(function() {
-        $('.ess-all-networks-toggle i').toggleClass('fa-chevron-left');
-    });
-
     $('.ess-popup-layout-close').click(function() {
         $('.ess-popup-layout-wrapper').addClass('ess-popup-layout-wrapper-disable');
     });

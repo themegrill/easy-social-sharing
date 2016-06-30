@@ -185,7 +185,7 @@ class ESS_Frontend_Scripts {
 			#ess-wrap-inline-networks .ess-social-sharing,
 			#ess-wrap-inline-networks.ess-inline-layout-two .socicon,
 			#ess-wrap-inline-networks.ess-inline-layout-two .ess-social-count,
-			#ess-wrap-inline-networks.ess-inline-layout-two .ess-more-networks  {
+			#ess-wrap-inline-networks.ess-inline-layout-two .ess-more-networks {
 				background: %1$s;
 				color: %7$s !important;
 			}
@@ -207,7 +207,8 @@ class ESS_Frontend_Scripts {
 
 			#ess-wrap-inline-networks.ess-inline-layout-one .socicon,
 			#ess-wrap-inline-networks.ess-inline-layout-one .ess-social-count,
-			#ess-wrap-inline-networks.ess-inline-layout-one .ess-more-networks {
+			#ess-wrap-inline-networks.ess-inline-layout-one .ess-more-networks,
+			.ess-popup-wrapper .inline-networks  {
 				background: %3$s;
 				color: %7$s !important;
 			}
