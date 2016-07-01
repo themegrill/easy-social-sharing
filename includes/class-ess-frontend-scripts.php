@@ -143,8 +143,11 @@ class ESS_Frontend_Scripts {
 		$assets_path          = str_replace( array( 'http:', 'https:' ), '', ESS()->plugin_url() ) . '/assets/';
 		$frontend_script_path = $assets_path . 'js/frontend/';
 
+		// Register any scripts for later use, or used as dependencies
+		self::register_script( 'jquery-tiptip', $assets_path . 'js/jquery-tiptip/jquery.tipTip' . $suffix . '.js', array( 'jquery' ), '3.5.4' );
+
 		// Global frontend scripts
-		self::enqueue_script( 'easy-social-sharing', $frontend_script_path . 'easy-social-sharing' . $suffix . '.js', array( 'jquery' ) );
+		self::enqueue_script( 'easy-social-sharing', $frontend_script_path . 'easy-social-sharing' . $suffix . '.js', array( 'jquery', 'jquery-tiptip' ) );
 
 		// CSS Styles
 		if ( $enqueue_styles = self::get_styles() ) {

@@ -106,6 +106,7 @@ class ESS_Share_Handler {
 	 * Output Sidebar Layout.
 	 */
 	public function display_sidebar() {
+		$network_desc     = ESS_Social_Networks::get_network_desc();
 		$network_count    = ESS_Social_Networks::get_network_count();
 		$allowed_networks = ESS_Social_Networks::get_allowed_networks();
 
@@ -120,6 +121,7 @@ class ESS_Share_Handler {
 	public function generate_inline_icons( $class = 'ess-inline-top' ) {
 		ob_start();
 
+		$network_desc     = ESS_Social_Networks::get_network_desc();
 		$network_count    = ESS_Social_Networks::get_network_count();
 		$allowed_networks = ESS_Social_Networks::get_allowed_networks();
 

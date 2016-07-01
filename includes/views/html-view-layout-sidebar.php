@@ -40,7 +40,7 @@ if ( 'right' == get_option( 'easy_social_sharing_sidebar_layout_orientation' ) )
 				$pinterest = ( 'pinterest' == $network ) ? 'ess-social-share-pinterest' : 'ess-social-share'; ?>
 				<li class="ess-social-networks">
 					<a href="<?php echo esc_url( ess_share_link( $network ) ); ?>" class="<?php echo esc_attr( $pinterest . ' ' . $counter ); ?>" rel="nofollow" data-social-name="<?php echo esc_attr( $network ); ?>" data-min-count="<?php echo esc_attr( $network_count[ $network ] ); ?>" data-post-id="<?php echo esc_attr( $post_id ); ?>" data-location="sidebar">
-						<span class="sidebar-networks socicon socicon-<?php echo esc_attr( $network ); ?>">
+						<span class="sidebar-networks socicon socicon-<?php echo esc_attr( $network ); ?>" data-tip="<?php echo ess_sanitize_tooltip( $network_desc[ $network ] ); ?>">
 							<?php if ( 'yes' == get_option( 'easy_social_sharing_sidebar_enable_share_counts' ) ) : ?>
 								<span class="ess-social-count">&hellip;</span>
 							<?php endif; ?>

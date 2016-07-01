@@ -1,6 +1,20 @@
 /* global easy_social_sharing_params */
 jQuery( document ).ready( function( $ ) {
 
+	// Tooltips
+	$( document.body ).on( 'init_tooltips', function() {
+		var tiptip_args = {
+			'attribute': 'data-tip',
+			'defaultPosition': $( this ).data( 'tip-position' ),
+			'fadeIn': 50,
+			'fadeOut': 50,
+			'delay': 200
+		};
+
+		$( '.socicon' ).tipTip( tiptip_args );
+
+	}).trigger( 'init_tooltips' );
+
 	// Open Share Window
 	$( document.body ).on( 'click', '.ess-social-share', function() {
 		var top = ( $( window ).height()/2 ) - ( 450/2 ),

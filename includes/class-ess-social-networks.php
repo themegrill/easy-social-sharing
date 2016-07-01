@@ -47,9 +47,18 @@ class ESS_Social_Networks {
 	}
 
 	/**
+	 * Get social network desc.
+	 * @since  1.2.0
+	 * @return array of strings
+	 */
+	public static function get_network_desc() {
+		return wp_list_pluck( self::get_networks(), 'network_desc', 'network_name' );
+	}
+
+	/**
 	 * Get social network count.
-	 * @param  string $network_name
-	 * @return int
+	 * @since  1.2.0
+	 * @return array of strings
 	 */
 	public static function get_network_count() {
 		return wp_list_pluck( self::get_networks(), 'network_count', 'network_name' );
