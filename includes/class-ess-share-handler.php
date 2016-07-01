@@ -63,16 +63,23 @@ class ESS_Share_Handler {
 	 * @return bool
 	 */
 	private function check_capability( $location ) {
-		$post_types = ess_get_allowed_screen_types();
-		$front_page = get_option( 'easy_social_sharing_front_page_enable' );
+		$post_types         = ess_get_allowed_screen_types();
+		$front_page         = get_option( 'easy_social_sharing_front_page_enable' );
+		$disabled_locations = get_post_meta( get_the_ID(), '_ess_location_disabled', true );
 
-		if ( is_front_page() ) {
-			if ( ( 'yes' == $front_page && 'inline' !== $location ) || ( is_page() && 'yes' == $front_page && 'inline' == $location ) ) {
+		if ( $disabled_locations ) {
+			if ( ! in_array( $location, $disabled_locations ) && ! ( 'inline' == $location && is_singular( 'product' ) ) ) {
 				return true;
 			}
 		} else {
-			if ( ! empty( $post_types ) && is_singular( $post_types ) && ! ( 'inline' == $location && is_singular( 'product' ) ) ) {
-				return true;
+			if ( is_front_page() ) {
+				if ( ( 'yes' == $front_page && 'inline' !== $location ) || ( is_page() && 'yes' == $front_page && 'inline' == $location ) ) {
+					return true;
+				}
+			} else {
+				if ( ! empty( $post_types ) && is_singular( $post_types ) && ! ( 'inline' == $location && is_singular( 'product' ) ) ) {
+					return true;
+				}
 			}
 		}
 

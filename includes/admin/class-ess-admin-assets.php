@@ -47,7 +47,7 @@ class ESS_Admin_Assets {
 		wp_enqueue_style( 'easy-social-sharing-menu' );
 
 		// Admin styles for ESS pages only
-		if ( in_array( $screen_id, ess_get_screen_ids() ) ) {
+		if ( in_array( $screen_id, ess_get_screen_ids() ) || in_array( $screen_id, ess_get_allowed_screen_types() ) ) {
 			wp_enqueue_style( 'easy-social-sharing-admin' );
 			wp_enqueue_style( 'jquery-ui-style' );
 			wp_enqueue_style( 'wp-color-picker' );

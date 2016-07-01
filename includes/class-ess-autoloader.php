@@ -68,7 +68,9 @@ class ESS_Autoloader {
 		$file  = $this->get_file_name_from_class( $class );
 		$path  = '';
 
-		if ( strpos( $class, 'ess_admin' ) === 0 ) {
+		if ( strpos( $class, 'ess_meta_box' ) === 0 ) {
+			$path = $this->include_path . 'admin/meta-boxes/';
+		} elseif ( strpos( $class, 'ess_admin' ) === 0 ) {
 			$path = $this->include_path . 'admin/';
 		}
 
