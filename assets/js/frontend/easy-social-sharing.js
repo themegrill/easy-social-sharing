@@ -5,7 +5,6 @@ jQuery( document ).ready( function( $ ) {
 	$( document.body ).on( 'init_tooltips', function() {
 		var tiptip_args = {
 			'attribute': 'data-tip',
-			'defaultPosition': $( this ).data( 'tip-position' ),
 			'fadeIn': 50,
 			'fadeOut': 50,
 			'delay': 200
