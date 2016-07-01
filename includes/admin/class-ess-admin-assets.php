@@ -98,6 +98,11 @@ class ESS_Admin_Assets {
 
 			wp_localize_script( 'easy-social-sharing-admin', 'easy_social_sharing_admin', $params );
 		}
+
+		// Meta boxes
+		if ( in_array( $screen_id, ess_get_allowed_screen_types() ) ) {
+			wp_enqueue_script( 'ess-enhanced-select' );
+		}
 	}
 }
 
