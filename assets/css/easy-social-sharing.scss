@@ -212,9 +212,12 @@ body {
 }
 
 .ess-rounded-icon .ess-social-networks .sidebar-networks {
-  margin: 2px 0;
+	margin: 2px 0;
 }
 
+#ess-wrap-sidebar-networks ul .ess-hide-count .socicon {
+	line-height: 45px;
+}
 /** --------------------------------------------------------------
  ESS SOCIAL ICON INLINE CSS
  ----------------------------------------------------------------*/
