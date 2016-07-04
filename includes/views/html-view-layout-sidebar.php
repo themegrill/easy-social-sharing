@@ -29,6 +29,8 @@ if ( 'right' == get_option( 'easy_social_sharing_sidebar_layout_orientation' ) )
 	$visbility_class[] = 'ess-right-layout';
 }
 
+$social_networks = ess_get_core_supported_social_networks();
+
 ?>
 <div id="ess-wrap-sidebar-networks" class="ess-sidebar-share ess-sidebar-enable <?php echo esc_attr( implode( ' ', $visbility_class ) ); ?>">
 	<div class="ess-sidebar-icon-count-wrapper ess-clear">

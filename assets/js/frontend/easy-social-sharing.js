@@ -173,4 +173,13 @@ jQuery( document ).ready( function( $ ) {
     $('.ess-popup-layout-close').click(function() {
         $('.ess-popup-layout-wrapper').addClass('ess-popup-layout-wrapper-disable');
     });
+
+    // mobile share
+	$('.ess-mobile-share-toggle').click(function() {
+        $(this).parent().toggleClass('ess-mobile-share-enable');
+    });
+
+    $('.ess-mobile-share-toggle .ess-close-mob-share').click(function() {
+        $('.ess-mobile-bottom-share').hide();
+    });
 });
