@@ -763,6 +763,56 @@ POPUP DESIGN
 	}
 }
 
+/** --------------------------------------------------------------
+Mobile share design
+ ----------------------------------------------------------------*/
+.ess-mobile-bottom-share {
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	width: 100%;
+}
+
+.ess-mobile-share-toggle {
+	background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+	color: #fff;
+	padding: 8px 0;
+	position: relative;
+	text-align: center;
+	cursor: pointer;
+}
+
+.ess-close-mob-share {
+	color: #fff;
+	font-size: 20px;
+	position: absolute;
+	right: 20px;
+	top: 51%;
+	@include transform(translateY(-50%));
+}
+
+
+.ess-mobile-bottom-share .ess-social-network-lists {
+	background: #fff none repeat scroll 0 0;
+	padding: 20px !important;
+}
+
+.ess-inline-layout-two.ess-mobile-bottom-share .ess-social-sharing,
+#ess-wrap-inline-networks.ess-mobile-bottom-share .ess-all-networks {
+	width: 170px;
+	display: inline-block;
+	float: none;
+}
+
+#ess-wrap-inline-networks.ess-mobile-bottom-share .ess-all-networks {
+	margin-right: 10px;
+	padding: 6px 0;
+	width: 200px;
+}
+
+.ess-inline-layout-two.ess-mobile-bottom-share{
+	text-align: center;
+}
 
 /**
  * Tooltips
@@ -858,72 +908,17 @@ img.help_tip {
 	width: 0;
 }
 
-.ess_error_tip {
-	max-width: 20em;
-	line-height: 1.8em;
-	position: absolute;
-	white-space: normal;
-	background: #d82223;
-	margin: 1.5em 1px 0 -1em;
-	z-index: 9999999;
-
-	&:after {
-		content: "";
-		display: block;
-		border: 8px solid #d82223;
-		border-right-color: transparent;
-		border-left-color: transparent;
-		border-top-color: transparent;
-		position: absolute;
-		top: -3px;
-		left: 50%;
-		margin: -1em 0 0 -3px;
-	}
-}
-
-/**
- * Help Tip
- */
-.easy-social-sharing-help-tip {
-	color: #666;
-	display: inline-block;
-	font-size: 1.1em;
-	font-style: normal;
-	height: 16px;
-	line-height: 16px;
-	position: relative;
-	vertical-align: middle;
-	width: 16px;
-
-	&:after {
-		@include icon_dashicons( "\f223" );
-		cursor: help;
-	}
-}
-
 /**
  * Optimisation for screens 900px and smaller
  */
-@media only screen and (max-width: 900px) {
-	#ess-wrap-sidebar-networks {
+@media only screen and (max-width: 1024px) {
+	.ess-sidebar-share {
 		display: none;
 	}
 }
 
-/**
- * Select2
- */
-.select2-drop {
-	z-index: 999999 !important;
-}
-.select2-container-multi .select2-choices .select2-search-field input {
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-	padding: 3px 5px;
-	width: 100% !important;
-}
-.select2-container {
-	line-height: 1.85em;
-	font-size: 14px;
+@media only screen and (min-width: 1025px){
+	.ess-mobile-bottom-share {
+		display: none !important;
+	}
 }
