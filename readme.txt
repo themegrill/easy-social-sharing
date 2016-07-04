@@ -62,7 +62,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 
 == Changelog ==
 
-= 1.2.0 - TBD =
+= 1.2.0 - 04/07/2016 =
 * Fix - Check for handheld devices behaviour
 * Tweak - Move the Home from custom screen setting section
 * Tweak - easy_social_sharing_queued_js filter
