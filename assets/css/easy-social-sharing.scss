@@ -900,3 +900,30 @@ img.help_tip {
 		cursor: help;
 	}
 }
+
+/**
+ * Optimisation for screens 900px and smaller
+ */
+@media only screen and (max-width: 900px) {
+	#ess-wrap-sidebar-networks {
+		display: none;
+	}
+}
+
+/**
+ * Select2
+ */
+.select2-drop {
+	z-index: 999999 !important;
+}
+.select2-container-multi .select2-choices .select2-search-field input {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	padding: 3px 5px;
+	width: 100% !important;
+}
+.select2-container {
+	line-height: 1.85em;
+	font-size: 14px;
+}
