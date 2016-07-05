@@ -122,7 +122,7 @@ class ESS_Admin {
 		if ( isset( $current_screen->id ) && apply_filters( 'easy_social_sharing_display_admin_footer_text', in_array( $current_screen->id, $ess_pages ) ) ) {
 			// Change the footer text
 			if ( ! get_option( 'easy_social_sharing_admin_footer_text_rated' ) ) {
-				$footer_text = sprintf( __( 'If you like <strong>Easy Social Sharing</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from ThemeGrill in advance!', 'easy-social-sharing' ), '<a href="https://wordpress.org/support/view/plugin-reviews/easy-social-sharing?filter=5#postform" target="_blank" class="ess-rating-link" data-rated="' . esc_attr__( 'Thanks :)', 'easy-social-sharing' ) . '">', '</a>' );
+				$footer_text = sprintf( __( 'If you like <strong>Easy Social Sharing</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thanks in advance!', 'easy-social-sharing' ), '<a href="https://wordpress.org/support/view/plugin-reviews/easy-social-sharing?filter=5#postform" target="_blank" class="ess-rating-link" data-rated="' . esc_attr__( 'Thanks :)', 'easy-social-sharing' ) . '">', '</a>' );
 				ess_enqueue_js( "
 					jQuery( 'a.ess-rating-link' ).click( function() {
 						jQuery.post( '" . ESS()->ajax_url() . "', { action: 'easy_social_sharing_rated' } );
@@ -130,7 +130,7 @@ class ESS_Admin {
 					});
 				" );
 			} else {
-				$footer_text = __( 'Thank you for using Easy Social Sharing.', 'easy-social-sharing' );
+				$footer_text = __( 'Thank you for sharing with Easy Social Sharing.', 'easy-social-sharing' );
 			}
 		}
 
