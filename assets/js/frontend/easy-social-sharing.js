@@ -165,21 +165,21 @@ jQuery( document ).ready( function( $ ) {
 	$( '#ess-wrap-sidebar-networks' ).css( 'margin-top', -top );
 
 	// Sidebar Network - Open/close
-	$('.ess-all-networks-toggle').click(function() {
-        $('#ess-wrap-sidebar-networks').toggleClass('ess-sidebar-enable');
-        $('.ess-all-networks-toggle i').toggleClass('fa-chevron-right');
+	$( '.ess-all-networks-toggle' ).click( function() {
+        $( '#ess-wrap-sidebar-networks' ).toggleClass( 'ess-sidebar-enable' );
+        $( '.ess-all-networks-toggle i' ).toggleClass( 'fa-chevron-right' );
     });
 
-    $('.ess-popup-layout-close').click(function() {
+    $( '.ess-popup-layout-close' ).click( function() {
         $('.ess-popup-layout-wrapper').addClass('ess-popup-layout-wrapper-disable');
     });
 
-    // mobile share
-	$('.ess-mobile-share-toggle').click(function() {
-        $(this).parent().toggleClass('ess-mobile-share-enable');
+    // Mobile Bottom Share
+	$('.ess-mobile-share-toggle').click( function() {
+        $( this ).parent().toggleClass( 'ess-mobile-share-enable' );
     });
 
-    $('.ess-mobile-share-toggle .ess-close-mob-share').click(function() {
-        $('.ess-mobile-bottom-share').hide();
+    $('.ess-mobile-share-toggle .ess-close-mob-share').click( function() {
+        $( '.ess-mobile-bottom-share' ).hide();
     });
 });
