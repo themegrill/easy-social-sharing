@@ -51,7 +51,7 @@ $social_networks = ess_get_core_supported_social_networks();
 			</li>
 		<?php endforeach; ?>
 		<?php if ( 'yes' == get_option( 'easy_social_sharing_inline_enable_all_networks' ) ) : ?>
-			<li class="ess-all-networks"><span>&raquo;</span></li>
+			<li class="ess-all-networks"><span><i aria-hidden="true" class="fa fa-ellipsis-h"></i></span></li>
 		<?php endif; ?>
 	</ul>
 </div>
