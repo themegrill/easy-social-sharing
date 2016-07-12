@@ -60,7 +60,9 @@ $social_networks = ess_get_core_supported_social_networks();
 	</div>
 </div>
 <?php if ( 'yes' === get_option( 'easy_social_sharing_handheld_enable' ) ) : ?>
+<div class="ess-mobile-share-collection"><i class="fa fa-share-alt"></i></div>
 <div id="ess-wrap-inline-networks" class="ess-mobile-bottom-share ess-clear ess-inline-top ess-inline-layout-two">
+	<div class="ess-mobile-share-overlay"></div>
 	<div class="ess-mobile-share-toggle">
 		<div class="ess-share-mob-text"><?php esc_html_e( 'Share This', 'easy-social-sharing' ); ?> <i class="fa fa-angle-down"> </i> </div>
 		<div class="ess-close-mob-share"> <i class="fa fa-close"> </i> </div>
@@ -79,7 +81,7 @@ $social_networks = ess_get_core_supported_social_networks();
 			</li>
 		<?php endforeach; ?>
 		<?php if ( 'yes' == get_option( 'easy_social_sharing_sidebar_enable_all_networks' ) ) : ?>
-			<li class="ess-all-networks"><span>&raquo;</span></li>
+			<li class="ess-all-networks"><i aria-hidden="true" class="fa fa-ellipsis-h"></i></li>
 		<?php endif; ?>
 	</ul>
 </div>

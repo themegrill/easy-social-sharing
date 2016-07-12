@@ -152,7 +152,7 @@ jQuery( document ).ready( function( $ ) {
 				}
 			});
 
-			//Append error message if no images found on page
+			// Append error message if no images found on page
 			if ( 0 === $i ) {
 				$( '.ess-social-pin-images' ).append( '<div class="ess-no-pinterest-img-found">' + easy_social_sharing_params.i18n_no_img_message + '</div>' );
 			}
@@ -166,20 +166,27 @@ jQuery( document ).ready( function( $ ) {
 
 	// Sidebar Network - Open/close
 	$( '.ess-all-networks-toggle' ).click( function() {
-        $( '#ess-wrap-sidebar-networks' ).toggleClass( 'ess-sidebar-enable' );
-        $( '.ess-all-networks-toggle i' ).toggleClass( 'fa-chevron-right' );
-    });
+		$( '#ess-wrap-sidebar-networks' ).toggleClass( 'ess-sidebar-enable' );
+		$( '.ess-all-networks-toggle i' ).toggleClass( 'fa-chevron-right' );
+	});
 
-    $( '.ess-popup-layout-close' ).click( function() {
-        $('.ess-popup-layout-wrapper').addClass('ess-popup-layout-wrapper-disable');
-    });
+	$( '.ess-popup-layout-close' ).click( function() {
+		$('.ess-popup-layout-wrapper').addClass('ess-popup-layout-wrapper-disable');
+	});
 
-    // Mobile Bottom Share
-	$('.ess-mobile-share-toggle').click( function() {
-        $( this ).parent().toggleClass( 'ess-mobile-share-enable' );
-    });
+	// Mobile Bottom Share
+	$( '.ess-mobile-share-toggle' ).click( function() {
+		$( this ).parent().toggleClass( 'ess-mobile-share-enable' );
+		$( '.ess-mobile-share-overlay' ).toggleClass( 'active' );
+	});
 
-    $('.ess-mobile-share-toggle .ess-close-mob-share').click( function() {
-        $( '.ess-mobile-bottom-share' ).hide();
-    });
+	$( '.ess-mobile-share-toggle .ess-close-mob-share' ).click( function() {
+		$( '.ess-mobile-bottom-share' ).hide();
+		$( '.ess-mobile-share-collection' ).toggleClass( 'active' );
+	});
+
+	$( '.ess-mobile-share-collection' ).click(function() {
+		$( '.ess-mobile-bottom-share' ).show();
+		$( this ).removeClass( 'active' );
+	});
 });
