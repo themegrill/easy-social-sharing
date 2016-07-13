@@ -31,6 +31,9 @@ class ESS_Install {
 			'ess_update_120_delete_options',
 			'ess_update_120_db_version',
 		),
+		'1.2.1' => array(
+			'ess_update_121_db_version',
+		),
 	);
 
 	/** @var object Background update class */
