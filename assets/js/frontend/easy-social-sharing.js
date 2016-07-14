@@ -32,11 +32,11 @@ jQuery( document ).ready( function( $ ) {
 		var $this_el = $( this );
 
 		var data = {
-			post_id: $this_el.data( 'post-id' ),
-			network:   $this_el.data( 'social-name' ),
-			page_url:  '' !== easy_social_sharing_params.page_url ? easy_social_sharing_params.page_url : window.location.href,
-			action:    'easy_social_sharing_update_single_share',
-			security:  easy_social_sharing_params.update_share_nonce
+			post_id:  $this_el.data( 'post-id' ),
+			network:  $this_el.data( 'social-name' ),
+			page_url: '' !== easy_social_sharing_params.page_url ? easy_social_sharing_params.page_url : window.location.href,
+			action:   'easy_social_sharing_update_single_share',
+			security: easy_social_sharing_params.update_share_nonce
 		};
 
 		$.ajax({
@@ -88,10 +88,10 @@ jQuery( document ).ready( function( $ ) {
 			var $this_el = $( this );
 
 			var data = {
-				post_id:   $this_el.data( 'post-id' ),
-				page_url:  '' !== easy_social_sharing_params.page_url ? easy_social_sharing_params.page_url : window.location.href,
-				action:    'easy_social_sharing_get_total_counts',
-				security:  easy_social_sharing_params.total_counts_nonce
+				post_id:  $this_el.data( 'post-id' ),
+				page_url: '' !== easy_social_sharing_params.page_url ? easy_social_sharing_params.page_url : window.location.href,
+				action:   'easy_social_sharing_get_total_counts',
+				security: easy_social_sharing_params.total_counts_nonce
 			};
 
 			$.ajax({
