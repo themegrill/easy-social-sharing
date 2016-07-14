@@ -214,17 +214,20 @@ final class EasySocialSharing {
 
 endif;
 
-/**
- * Main instance of EasySocialSharing.
- *
- * Returns the main instance of ESS to prevent the need to use globals.
- *
- * @since  1.0.0
- * @return EasySocialSharing
- */
-function ESS() {
-	return EasySocialSharing::get_instance();
-}
+if ( ! function_exists( 'ESS' ) ) {
 
-// Global for backwards compatibility.
-$GLOBALS['easy_social_sharing'] = ESS();
+	/**
+	 * Main instance of EasySocialSharing.
+	 *
+	 * Returns the main instance of ESS to prevent the need to use globals.
+	 *
+	 * @since  1.0.0
+	 * @return EasySocialSharing
+	 */
+	function ESS() {
+		return EasySocialSharing::get_instance();
+	}
+
+	// Global for backwards compatibility.
+	$GLOBALS['easy_social_sharing'] = ESS();
+}
