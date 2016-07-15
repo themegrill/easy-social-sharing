@@ -148,6 +148,16 @@ class ESS_Settings_Layouts extends ESS_Settings_Page {
 					'id'            => 'easy_social_sharing_inline_enable_share_counts',
 					'default'       => 'yes',
 					'type'          => 'checkbox',
+					'checkboxgroup' => '',
+					'autoload'      => false,
+				),
+
+				array(
+					'desc'          => __( 'Display total shares counter', 'easy-social-sharing' ),
+					'id'            => 'easy_social_sharing_inline_enable_total_shares',
+					'desc_tip'      => __( 'Allows users to view total shares performed in all social networks.', 'easy-social-sharing' ),
+					'default'       => 'no',
+					'type'          => 'checkbox',
 					'checkboxgroup' => 'end',
 					'autoload'      => false,
 				),

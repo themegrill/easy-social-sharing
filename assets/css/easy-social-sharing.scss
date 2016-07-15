@@ -364,6 +364,20 @@ body {
 	background: none;
 }
 
+.ess-no-network-label .ess-social-sharing a .ess-icon {
+	padding: 10px 15px 10px 10px;
+}
+
+#ess-wrap-inline-networks .ess-total-share {
+	display: inline-block;
+	font-weight: 700;
+	padding: 0 10px;
+}
+
+#ess-wrap-inline-networks .ess-total-share i,
+#ess-wrap-inline-networks .ess-total-share .ess-total-count {
+	margin-right: 5px;
+}
 
 /** --------------------------------------------------------------
 SOCIAL SHARING COLOR
