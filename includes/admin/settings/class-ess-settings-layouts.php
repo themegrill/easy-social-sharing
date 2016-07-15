@@ -218,7 +218,7 @@ class ESS_Settings_Layouts extends ESS_Settings_Page {
 				),
 
 				array(
-					'desc'          => __( 'Display total shares button', 'easy-social-sharing' ),
+					'desc'          => __( 'Display total shares counter', 'easy-social-sharing' ),
 					'id'            => 'easy_social_sharing_sidebar_enable_total_shares',
 					'desc_tip'      => __( 'Allows users to view total shares performed in all social networks.', 'easy-social-sharing' ),
 					'default'       => 'no',
