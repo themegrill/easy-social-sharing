@@ -1,18 +1,20 @@
 /* global easy_social_sharing_params */
 jQuery( document ).ready( function( $ ) {
 
-	// Tooltips
-	$( document.body ).on( 'init_tooltips', function() {
-		var tiptip_args = {
+	// Run tipTip
+	function runTipTip() {
+		// Remove any lingering tooltips
+		$( '#tiptip_holder' ).removeAttr( 'style' );
+		$( '#tiptip_arrow' ).removeAttr( 'style' );
+		$( '.socicon' ).tipTip({
 			'attribute': 'data-tip',
 			'fadeIn': 50,
 			'fadeOut': 50,
 			'delay': 200
-		};
+		});
+	}
 
-		$( '.socicon' ).tipTip( tiptip_args );
-
-	}).trigger( 'init_tooltips' );
+	runTipTip();
 
 	// Open Share Window
 	$( document.body ).on( 'click', '.ess-social-share', function() {
@@ -170,10 +172,6 @@ jQuery( document ).ready( function( $ ) {
 		$( '.ess-all-networks-toggle i' ).toggleClass( 'fa-chevron-right' );
 	});
 
-	$( '.ess-popup-layout-close' ).click( function() {
-		$('.ess-popup-layout-wrapper').addClass('ess-popup-layout-wrapper-disable');
-	});
-
 	// Mobile Bottom Share
 	$( '.ess-mobile-share-toggle' ).click( function() {
 		$( this ).parent().toggleClass( 'ess-mobile-share-enable' );
@@ -188,5 +186,33 @@ jQuery( document ).ready( function( $ ) {
 	$( '.ess-mobile-share-collection' ).click(function() {
 		$( '.ess-mobile-bottom-share' ).show();
 		$( this ).removeClass( 'active' );
+	});
+
+	// Close and Remove Pop-Up Modal
+	$( document.body ).on( 'ess-close-popup-modal', function() {
+		var $popup_wrapper = $( '.ess-popup-layout-wrapper' );
+
+		if ( $popup_wrapper.hasClass( 'ess-social-animated' ) ) {
+			$( '.ess-popup-layout-wrapper' ).removeClass( 'ess-social-visible' );
+
+			setTimeout( function() {
+				$( '.ess-popup-layout-wrapper' ).remove();
+			}, 200 );
+		}
+
+		return false;
+	});
+
+	$( document.body ).on( 'keydown', function( e ) {
+		var button = e.keyCode || e.which;
+
+		// ESC key
+		if ( 27 === button ) {
+			$( document.body ).trigger( 'ess-close-popup-modal' );
+		}
+	});
+
+	$( '.ess-popup-layout-close, .ess-popup-layout-wrapper .ess-popup-layout-overlay' ).click( function() {
+		$( document.body ).trigger( 'ess-close-popup-modal' );
 	});
 });
