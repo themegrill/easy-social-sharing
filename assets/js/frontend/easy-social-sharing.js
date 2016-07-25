@@ -172,6 +172,13 @@ jQuery( document ).ready( function( $ ) {
 		$( '.ess-all-networks-toggle i' ).toggleClass( 'fa-chevron-right' );
 	});
 
+	$( '.ess-right-layout .ess-all-networks-toggle i' ).removeClass( 'fa-chevron-left' );
+	$( '.ess-right-layout .ess-all-networks-toggle i' ).addClass( 'fa-chevron-right' );
+
+	$( '.ess-right-layout .ess-all-networks-toggle' ).click( function() {
+		$( '.ess-all-networks-toggle i' ).toggleClass( 'fa-chevron-left' );
+	});
+
 	// Mobile Bottom Share
 	$( '.ess-mobile-share-toggle' ).click( function() {
 		$( this ).parent().toggleClass( 'ess-mobile-share-enable' );
