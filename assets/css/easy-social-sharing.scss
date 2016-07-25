@@ -565,6 +565,30 @@ body {
 		}
 	}
 
+	&.ess-mobile-bottom-share {
+		.ess-all-networks {
+			height: 32px;
+			line-height: 32px;
+			padding: 0 20px;
+			text-align: center;
+		}
+
+		.ess-social-sharing,
+		.ess-all-networks {
+			display: block;
+			float: left;
+			margin: 6px 0 6px 3% !important;
+			width: 47%;
+			box-sizing: border-box;
+		}
+
+		.ess-social-network-lists {
+			margin-left: -3%;
+			max-height: 215px;
+			overflow-y: scroll;
+		}
+	}
+
 	&.ess-inline-layout-one {
 		.ess-social-sharing {
 			.ess-social-count {
@@ -656,11 +680,9 @@ body {
 	}
 }
 
-
-/** --------------------------------------------------------------
-POPUP DESIGN
- ----------------------------------------------------------------*/
-
+/**
+ * Pop-Up Layout
+ */
 .ess-popup-overlay,
 .ess-pinterest-popup-overlay,
 .ess-mobile-share-overlay {
@@ -804,17 +826,22 @@ POPUP DESIGN
 	text-align: center;
 }
 
-
-/** --------------------------------------------------------------
-Mobile share design
- ----------------------------------------------------------------*/
-
+/**
+ * Mobile Bottom Share
+ */
 .ess-mobile-bottom-share {
 	bottom: -255px;
 	left: 0;
 	position: fixed;
 	width: 100%;
 	@include transition(all 0.5s ease);
+
+	.ess-social-network-lists {
+		z-index: 999;
+		position: relative;
+		padding: 20px !important;
+		background: #fff none repeat scroll 0 0;
+	}
 
 	.ess-share-mob-text i {
 		margin-left: 5px;
@@ -824,24 +851,14 @@ Mobile share design
 		@include transition(all 0.5s ease);
 		@include transform(rotate(0deg));
 	}
-}
 
-.ess-mobile-bottom-share.ess-mobile-share-enable {
-	bottom: 0;
-	.ess-share-mob-text i {
-		@include transform(rotate(-180deg));
+	&.ess-mobile-share-enable {
+		bottom: 0;
+
+		.ess-share-mob-text i {
+			@include transform(rotate(-180deg));
+		}
 	}
-}
-
-.ess-mobile-share-toggle {
-	background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
-	color: #fff;
-	height: 20px;
-	padding: 10px 0;
-	position: relative;
-	text-align: center;
-	cursor: pointer;
-	z-index: 999;
 }
 
 .ess-close-mob-share {
@@ -853,34 +870,15 @@ Mobile share design
 	@include transform(translateY(-50%));
 }
 
-.ess-mobile-bottom-share .ess-social-network-lists {
-	background: #fff none repeat scroll 0 0;
-	padding: 20px !important;
+.ess-mobile-share-toggle {
+	background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+	color: #fff;
+	height: 20px;
+	padding: 10px 0;
 	position: relative;
-	z-index: 999;
-}
-
-#ess-wrap-inline-networks.ess-mobile-bottom-share .ess-social-sharing,
-#ess-wrap-inline-networks.ess-mobile-bottom-share .ess-all-networks {
-	display: block;
-	float: left;
-	margin: 6px 0 6px 3% !important;
-	width: 47%;
-	box-sizing: border-box;
-}
-
-#ess-wrap-inline-networks.ess-mobile-bottom-share .ess-all-networks {
-	height: 32px;
-	line-height: 32px;
-	padding: 0 20px;
 	text-align: center;
-	width: 47%;
-}
-
-#ess-wrap-inline-networks.ess-mobile-bottom-share .ess-social-network-lists {
-	margin-left: -3%;
-	max-height: 215px;
-	overflow-y: scroll;
+	cursor: pointer;
+	z-index: 999;
 }
 
 .ess-mobile-share-collection {
@@ -909,7 +907,6 @@ Mobile share design
 /**
  * Tooltips
  */
-
 .tips {
 	cursor: help;
 	text-decoration: none;
@@ -935,6 +932,7 @@ img.help_tip {
 #tiptip_holder {
 	&.tip_top {
 		padding-bottom: 5px;
+
 		#tiptip_arrow_inner {
 			margin-top: -7px;
 			margin-left: -6px;
@@ -943,6 +941,7 @@ img.help_tip {
 	}
 	&.tip_bottom {
 		padding-top: 5px;
+
 		#tiptip_arrow_inner {
 			margin-top: -5px;
 			margin-left: -6px;
@@ -951,6 +950,7 @@ img.help_tip {
 	}
 	&.tip_right {
 		padding-left: 5px;
+
 		#tiptip_arrow_inner {
 			margin-top: -6px;
 			margin-left: -5px;
@@ -959,6 +959,7 @@ img.help_tip {
 	}
 	&.tip_left {
 		padding-right: 5px;
+
 		#tiptip_arrow_inner {
 			margin-top: -6px;
 			margin-left: -7px;
@@ -977,6 +978,7 @@ img.help_tip {
 	border-radius: 3px;
 	padding: .618em 1em;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
 	code {
 		padding: 1px;
 		background: #888;
@@ -993,11 +995,9 @@ img.help_tip {
 	width: 0;
 }
 
-
 /**
  * Small screen optimisation
  */
-
 @media only screen and (max-width: 1024px) {
 	.ess-sidebar-share {
 		display: none !important;
@@ -1026,14 +1026,15 @@ img.help_tip {
 }
 
 @media (max-width: 530px) {
+	.ess-popup-close {
+		top: 10px;
+		right: 10px;
+	}
+
 	.ess-popup-wrapper,
 	.ess-pinterest-img-picker-popup {
+		width: 299px;
 		height: 300px;
 		overflow-y: scroll;
-		width: 299px;
-	}
-	.ess-popup-close {
-		right: 10px;
-		top: 10px;
 	}
 }
