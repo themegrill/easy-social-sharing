@@ -369,9 +369,10 @@ body {
 }
 
 #ess-wrap-inline-networks .ess-total-share {
-	display: inline-block;
-	font-weight: 700;
+	margin: 0;
 	padding: 0 10px;
+	font-weight: 700;
+	display: inline-block;
 }
 
 #ess-wrap-inline-networks .ess-total-share i,
