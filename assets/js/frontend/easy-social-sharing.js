@@ -112,11 +112,11 @@ jQuery( document ).ready( function( $ ) {
 	// Pop-Up Modal
 	$( document.body ).on( 'ess-init-network-modal', function() {
 		// All Social Networks.
-		$( '.ess-all-networks' ).click( function() {
-			$( 'body' ).toggleClass( 'ess-popup-enable' );
-		});
 		$( '.ess-popup-close, .ess-popup-overlay' ).click( function() {
 			$( 'body' ).removeClass( 'ess-popup-enable' );
+		});
+		$( '.ess-all-networks' ).filter( ':not(.enhanced)' ).click( function() {
+			$( 'body' ).toggleClass( 'ess-popup-enable' );
 		});
 
 		// Pinterest Image Picker.
