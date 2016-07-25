@@ -44,6 +44,10 @@ body {
 	vertical-align: top;
 	display: inline-block;
 
+	* {
+		box-sizing: content-box;
+	}
+
 	a {
 		color: #fff;
 		display: block;
@@ -77,6 +81,14 @@ body {
 			display: inline-block;
 			font-family: "Open Sans", sans-serif;
 		}
+	}
+}
+
+.ess-all-networks,
+.ess-all-networks-popup {
+	list-style: none;
+	span {
+		box-sizing: content-box;
 	}
 }
 
