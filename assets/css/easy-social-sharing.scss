@@ -310,6 +310,22 @@ body {
 		margin: 6px 10px 6px 0 !important;
 	}
 
+	&.ess-rounded-icon {
+		.ess-icon {
+			border-radius: 25px 0 0 25px;
+		}
+
+		.ess-social-count {
+			border-radius: 0 25px 25px 0;
+		}
+
+		.ess-all-networks,
+		.ess-social-sharing,
+		&.ess-no-share-counts .ess-icon {
+			border-radius: 25px;
+		}
+	}
+
 	&.ess-inline-layout-one {
 		.ess-social-sharing {
 			.ess-social-count {
