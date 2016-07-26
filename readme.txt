@@ -66,6 +66,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 * Tweak - Mobile bottom share UI.
 * Tweak - Admin footer text to remove references.
 * Tweak - Use fontawesome glyph for close and more icon.
+* Feature - Display total shares counter for inline layout.
 
 = 1.2.0 - 04/07/2016 =
 * Fix - Check for handheld devices behaviour
