@@ -93,6 +93,10 @@ class ESS_Install {
 	public static function install() {
 		global $wpdb;
 
+		if ( ! is_blog_installed() ) {
+			return;
+		}
+
 		if ( ! defined( 'ESS_INSTALLING' ) ) {
 			define( 'ESS_INSTALLING', true );
 		}
