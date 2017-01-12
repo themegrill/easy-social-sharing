@@ -127,7 +127,7 @@ class ESS_Install {
 		self::update_ess_version();
 
 		// Flush rules after install
-		flush_rewrite_rules();
+		do_action( 'easy_social_sharing_flush_rewrite_rules' );
 
 		/*
 		 * Deletes all expired transients. The multi-table delete syntax is used

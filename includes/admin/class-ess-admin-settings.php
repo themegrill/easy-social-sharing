@@ -76,7 +76,7 @@ class ESS_Admin_Settings {
 		self::add_message( __( 'Your settings have been saved.', 'easy-social-sharing' ) );
 
 		// Flush rules
-		flush_rewrite_rules();
+		wp_schedule_single_event( time(), 'easy_social_sharing_flush_rewrite_rules' );
 
 		do_action( 'easy_social_sharing_settings_saved' );
 	}
