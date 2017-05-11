@@ -74,12 +74,14 @@ function ess_share_link( $network, $media_url = '', $i = 0, $post_link = '', $po
 
 	$twitter_username = get_option( 'easy_social_sharing_twitter_username' );
 
+	$username_limit = ! empty( $twitter_username ) ? $twitter_username : get_bloginfo( 'name' );
+
 	switch ( $network ) {
 		case 'facebook' :
 			$link = sprintf( 'http://www.facebook.com/sharer.php?u=%1$s&t=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 		break;
 		case 'twitter' :
-			$link = sprintf( 'http://twitter.com/share?text=%2$s&url=%1$s&via=%3$s', esc_attr( $permalink ), esc_attr( $title ), ! empty( $twitter_username ) ? esc_attr( $twitter_username ) : get_bloginfo( 'name' ) );
+			$link = sprintf( 'http://twitter.com/share?text=%2$s&url=%1$s&via=%3$s', esc_attr( $permalink ), esc_attr( ess_tweet_limit_length( $title, count( $username_limit ) ) ), $username_limit );
 		break;
 		case 'googleplus' :
 			$link = sprintf( 'https://plus.google.com/share?url=%1$s&t=%2$s', esc_attr( $permalink ), esc_attr( $title ) );

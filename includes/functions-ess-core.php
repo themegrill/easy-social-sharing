@@ -175,6 +175,23 @@ function ess_get_core_supported_social_networks() {
 }
 
 /**
+ * Limit length of a tweet message.
+ *
+ * @param  string  $string
+ * @param  integer $limit
+ * @return string
+ */
+function ess_tweet_limit_length( $string, $username_limit = 10, $limit = 135 ) {
+	$limit = $limit - $username_limit;
+
+	if ( strlen( $string ) > $limit ) {
+		$string = substr( $string, 0, $limit - 3 ) . '...';
+	}
+
+	return $string;
+}
+
+/**
  * Social share networks with API support.
  * @return array
  */
