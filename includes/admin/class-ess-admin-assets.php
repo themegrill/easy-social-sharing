@@ -67,11 +67,9 @@ class ESS_Admin_Assets {
 		wp_register_script( 'jquery-blockui', ESS()->plugin_url() . '/assets/js/jquery-blockui/jquery.blockUI' . $suffix . '.js', array( 'jquery' ), '2.70', true );
 		wp_register_script( 'jquery-tiptip', ESS()->plugin_url() . '/assets/js/jquery-tiptip/jquery.tipTip' . $suffix . '.js', array( 'jquery' ), ESS_VERSION, true );
 		wp_register_script( 'ess-social-networks', ESS()->plugin_url() . '/assets/js/admin/ess-social-networks' . $suffix . '.js', array( 'jquery', 'wp-util', 'underscore', 'backbone', 'jquery-ui-sortable', 'ess-enhanced-select' ), ESS_VERSION );
-		wp_register_script( 'select2', ESS()->plugin_url() . '/assets/js/select2/select2' . $suffix . '.js', array( 'jquery' ), '3.5.4' );
+		wp_register_script( 'select2', ESS()->plugin_url() . '/assets/js/select2/select2.full' . $suffix . '.js', array( 'jquery' ), '3.5.4' );
 		wp_register_script( 'ess-enhanced-select', ESS()->plugin_url() . '/assets/js/admin/enhanced-select' . $suffix . '.js', array( 'jquery', 'select2' ), ESS_VERSION );
 		wp_localize_script( 'ess-enhanced-select', 'ess_enhanced_select_params', array(
-			'i18n_matches_1'            => _x( 'One result is available, press enter to select it.', 'enhanced select', 'easy-social-sharing' ),
-			'i18n_matches_n'            => _x( '%qty% results are available, use up and down arrow keys to navigate.', 'enhanced select', 'easy-social-sharing' ),
 			'i18n_no_matches'           => _x( 'No matches found', 'enhanced select', 'easy-social-sharing' ),
 			'i18n_ajax_error'           => _x( 'Loading failed', 'enhanced select', 'easy-social-sharing' ),
 			'i18n_input_too_short_1'    => _x( 'Please enter 1 or more characters', 'enhanced select', 'easy-social-sharing' ),
