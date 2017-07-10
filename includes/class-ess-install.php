@@ -32,7 +32,8 @@ class ESS_Install {
 			'ess_update_120_db_version',
 		),
 		'1.3.0' => array(
-			'ess_update_121_db_version',
+			'ess_update_130_db_version',
+			'ess_update_130_social_statics',
 		),
 	);
 
