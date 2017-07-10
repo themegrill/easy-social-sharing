@@ -3,7 +3,7 @@
  * Installation related functions and actions.
  *
  * @class    ESS_Install
- * @version  1.0.0
+ * @version  1.3.0
  * @package  EasySocialSharing/Classes
  * @category Admin
  * @author   ThemeGrill
@@ -31,7 +31,7 @@ class ESS_Install {
 			'ess_update_120_delete_options',
 			'ess_update_120_db_version',
 		),
-		'1.2.1' => array(
+		'1.3.0' => array(
 			'ess_update_121_db_version',
 		),
 	);
@@ -218,6 +218,7 @@ class ESS_Install {
 	 *
 	 * Tables:
 	 *    ess_social_networks - Table for storing social networks data.
+	 *    ess_social_statistics - Table for storing social statistics data.
 	 */
 	private static function create_tables() {
 		global $wpdb;
@@ -231,6 +232,14 @@ class ESS_Install {
 
 	/**
 	 * Get Table schema.
+	 *
+	 * A note on indexes; Indexes have a maximum size of 767 bytes. Historically, we haven't need to be concerned about that.
+	 * As of WordPress 4.2, however, we moved to utf8mb4, which uses 4 bytes per character. This means that an index which
+	 * used to have room for floor(767/3) = 255 characters, now only has room for floor(767/4) = 191 characters.
+	 *
+	 * Changing indexes may cause duplicate index notices in logs due to https://core.trac.wordpress.org/ticket/34870 but dropping
+	 * indexes first causes too much load on some servers/larger DB.
+	 *
 	 * @return string
 	 */
 	private static function get_schema() {
@@ -242,14 +251,19 @@ class ESS_Install {
 			$charset_collate = $wpdb->get_charset_collate();
 		}
 
-		/*
-		 * Indexes have a maximum size of 767 bytes. Historically, we haven't need to be concerned about that.
-		 * As of WordPress 4.2, however, we moved to utf8mb4, which uses 4 bytes per character. This means that an index which
-		 * used to have room for floor(767/3) = 255 characters, now only has room for floor(767/4) = 191 characters.
-		 */
-		$max_index_length = 191;
-
 		$tables = "
+CREATE TABLE {$wpdb->prefix}ess_social_statistics (
+  id bigint(20) NOT NULL auto_increment,
+  network_name varchar(50) NOT NULL,
+  sharing_date datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  post_id bigint(20) NOT NULL,
+  ip_info text NOT NULL,
+  ip_address varchar(200) NOT NULL,
+  share_location varchar(50) NOT NULL,
+  share_url text ,
+  latest_count  bigint(20) NOT NULL,
+  PRIMARY KEY (id)
+) $charset_collate;
 CREATE TABLE {$wpdb->prefix}ess_social_networks (
   network_id bigint(20) NOT NULL auto_increment,
   network_name varchar(200) NOT NULL,
@@ -258,10 +272,9 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
   network_count bigint(20) NOT NULL DEFAULT 0,
   is_api_support tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY  (network_id),
-  UNIQUE KEY network_name (network_name($max_index_length))
+  UNIQUE KEY network_name (network_name(64))
 ) $charset_collate;
 		";
-
 		return $tables;
 	}
 
@@ -297,7 +310,7 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 
 		if ( preg_match( $regexp, $content, $matches ) ) {
 			$version = trim( $matches[1] );
-			$notices = (array) preg_split('~[\r\n]+~', trim( $matches[2] ) );
+			$notices = (array) preg_split( '~[\r\n]+~', trim( $matches[2] ) );
 
 			// Check the latest stable version and ignore trunk.
 			if ( $version === $new_version && version_compare( ESS_VERSION, $version, '<' ) ) {
@@ -330,7 +343,7 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 
 	/**
 	 * Display row meta in the Plugins list table.
-	 * @param  array  $plugin_meta
+	 * @param  array $plugin_meta
 	 * @param  string $plugin_file
 	 * @return array
 	 */

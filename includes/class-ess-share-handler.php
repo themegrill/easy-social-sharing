@@ -132,7 +132,7 @@ class ESS_Share_Handler {
 		$network_count    = ESS_Social_Networks::get_network_count();
 		$allowed_networks = ESS_Social_Networks::get_allowed_networks();
 
-		if ( $allowed_networks && $this->check_capability( 'inline' ) ) {
+		if ( $allowed_networks ) {
 			include( 'views/html-view-layout-inline.php' );
 		}
 

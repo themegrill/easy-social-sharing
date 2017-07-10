@@ -59,12 +59,21 @@ class ESS_Frontend_Scripts {
 				'media'   => 'all'
 			),
 			'easy-social-sharing-general' => array(
-				'src'     => str_replace( array( 'http:', 'https:' ), '', ESS()->plugin_url() ) . '/assets/css/easy-social-sharing.css',
+				'src'     => self::get_asset_url( 'assets/css/easy-social-sharing.css' ),
 				'deps'    => '',
 				'version' => ESS_VERSION,
-				'media'   => 'all'
+				'media'   => 'all',
+				'has_rtl' => true,
 			)
 		) );
+	}
+
+	/**
+	 * Return protocol relative asset URL.
+	 * @param string $path
+	 */
+	private static function get_asset_url( $path ) {
+		return apply_filters( 'easy_social_sharing_get_asset_url', plugins_url( $path, ESS_PLUGIN_FILE ), $path );
 	}
 
 	/**
@@ -111,10 +120,15 @@ class ESS_Frontend_Scripts {
 	 * @param  string[] $deps
 	 * @param  string   $version
 	 * @param  string   $media
+	 * @param  boolean  $has_rtl
 	 */
-	private static function register_style( $handle, $path, $deps = array(), $version = ESS_VERSION, $media = 'all' ) {
+	private static function register_style( $handle, $path, $deps = array(), $version = ESS_VERSION, $media = 'all', $has_rtl = false ) {
 		self::$styles[] = $handle;
 		wp_register_style( $handle, $path, $deps, $version, $media );
+
+		if ( $has_rtl ) {
+			wp_style_add_data( $handle, 'rtl', 'replace' );
+		}
 	}
 
 	/**
@@ -127,10 +141,11 @@ class ESS_Frontend_Scripts {
 	 * @param  string[] $deps
 	 * @param  string   $version
 	 * @param  string   $media
+	 * @param  boolean  $has_rtl
 	 */
-	private static function enqueue_style( $handle, $path = '', $deps = array(), $version = ESS_VERSION, $media = 'all' ) {
+	private static function enqueue_style( $handle, $path = '', $deps = array(), $version = ESS_VERSION, $media = 'all', $has_rtl = false ) {
 		if ( ! in_array( $handle, self::$styles ) && $path ) {
-			self::register_style( $handle, $path, $deps, $version, $media );
+			self::register_style( $handle, $path, $deps, $version, $media, $has_rtl );
 		}
 		wp_enqueue_style( $handle );
 	}
@@ -145,9 +160,10 @@ class ESS_Frontend_Scripts {
 
 		// Register any scripts for later use, or used as dependencies
 		self::register_script( 'jquery-tiptip', $assets_path . 'js/jquery-tiptip/jquery.tipTip' . $suffix . '.js', array( 'jquery' ), '3.5.4' );
+		self::register_script( 'jquery-idletimer', $assets_path . 'js/jquery-idletimer/idle-timer' . $suffix . '.js', array( 'jquery' ), '1.1.0' );
 
 		// Global frontend scripts
-		self::enqueue_script( 'easy-social-sharing', $frontend_script_path . 'easy-social-sharing' . $suffix . '.js', array( 'jquery', 'jquery-tiptip' ) );
+		self::enqueue_script( 'easy-social-sharing', $frontend_script_path . 'easy-social-sharing' . $suffix . '.js', array( 'jquery', 'jquery-tiptip', 'jquery-idletimer' ) );
 
 		// CSS Styles
 		if ( $enqueue_styles = self::get_styles() ) {
@@ -170,8 +186,8 @@ class ESS_Frontend_Scripts {
 	 * @param  string $default_color
 	 */
 	private static function create_inline_styles() {
-		$bg         = get_option( 'easy_social_sharing_background_color' );
-		$bg_hover   = get_option( 'easy_social_sharing_hover_background_color' );
+		$bg       = get_option( 'easy_social_sharing_background_color' );
+		$bg_hover = get_option( 'easy_social_sharing_hover_background_color' );
 
 		// Darker background colors.
 		$bg_darker        = ess_hex_darker( $bg, 20 );
@@ -237,7 +253,7 @@ class ESS_Frontend_Scripts {
 	/**
 	 * Localize a ESS script once.
 	 * @access private
-	 * @since  1.0.0 this needs less wp_script_is() calls due to https://core.trac.wordpress.org/ticket/28404 being added in WP 4.0.
+	 * @since  2.3.0 this needs less wp_script_is() calls due to https://core.trac.wordpress.org/ticket/28404 being added in WP 4.0.
 	 * @param  string $handle
 	 */
 	private static function localize_script( $handle ) {
@@ -251,23 +267,26 @@ class ESS_Frontend_Scripts {
 	/**
 	 * Return data for script handles.
 	 * @access private
+	 *
 	 * @param  string $handle
+	 *
 	 * @return array|bool
 	 */
 	private static function get_script_data( $handle ) {
-
 		switch ( $handle ) {
 			case 'easy-social-sharing' :
 				return array(
-					'ajax_url'            => ESS()->ajax_url(),
-					'page_url'            => is_singular( get_post_types() ) ? get_permalink() : '',
-					'update_share_nonce'  => wp_create_nonce( 'update-share' ),
-					'shares_count_nonce'  => wp_create_nonce( 'shares-count' ),
-					'total_counts_nonce'  => wp_create_nonce( 'total-counts' ),
-					'i18n_no_img_message' => esc_attr__( 'No images found.', 'easy-social-sharing' ),
+					'ajax_url'                       => ESS()->ajax_url(),
+					'page_url'                       => is_singular( get_post_types() ) ? get_permalink() : '',
+					'update_share_nonce'             => wp_create_nonce( 'update-share' ),
+					'shares_count_nonce'             => wp_create_nonce( 'shares-count' ),
+					'all_network_shares_count_nonce' => wp_create_nonce( 'all-network-shares-count' ),
+					'total_counts_nonce'             => wp_create_nonce( 'total-counts' ),
+					'i18n_no_img_message'            => esc_attr__( 'No images found.', 'easy-social-sharing' ),
 				);
-			break;
+				break;
 		}
+
 		return false;
 	}
 

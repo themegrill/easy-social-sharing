@@ -1,0 +1,1086 @@
+/**
+ * _socicon.scss
+ * Styles applied to socicon.
+ */
+
+/**
+ * Socicon fonts
+ */
+@font-face {
+	font-family: 'socicon';
+	src: url('../fonts/socicon.eot');
+	src: url('../fonts/socicon.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/socicon.woff') format('woff'),
+		url('../fonts/socicon.ttf') format('truetype'),
+		url('../fonts/socicon.svg#socicon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/**
+ * Styling begins
+ */
+[data-icon]:before {
+	font-family: "socicon" !important;
+	content: attr(data-icon);
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-variant: normal !important;
+	text-transform: none !important;
+	speak: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+[class^="socicon-"]:before,
+[class*=" socicon-"]:before {
+	font-family: "socicon" !important;
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-variant: normal !important;
+	text-transform: none !important;
+	speak: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.socicon {
+	position: relative;
+	display: inline-block;
+	font-family: 'socicon';
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	font-size: 1.2em;
+}
+
+.socicon-modelmayhem {
+	color: darken( $social-modelmayhem, 10% );
+	background-color: darken( $social-modelmayhem, 10% );
+
+	&:before {
+		content: "\e000";
+	}
+}
+
+.socicon-mixcloud {
+	color: darken( $social-mixcloud, 10% );
+	background-color: darken( $social-mixcloud, 10% );
+
+	&:before {
+		content: "\e001";
+	}
+}
+
+.socicon-drupal {
+	color: darken( $social-drupal, 10% );
+	background-color: darken( $social-drupal, 10% );
+
+	&:before {
+		content: "\e002";
+	}
+}
+
+.socicon-swarm {
+	color: darken( $social-swarm, 10% );
+	background-color: darken( $social-swarm, 10% );
+
+	&:before {
+		content: "\e003";
+	}
+}
+
+.socicon-istock {
+	color: darken( $social-istock, 10% );
+	background-color: darken( $social-istock, 10% );
+
+	&:before {
+		content: "\e004";
+	}
+}
+
+.socicon-yammer {
+	color: darken( $social-yammer, 10% );
+	background-color: darken( $social-yammer, 10% );
+
+	&:before {
+		content: "\e005";
+	}
+}
+
+.socicon-ello {
+	color: darken( $social-ello, 10% );
+	background-color: darken( $social-ello, 10% );
+
+	&:before {
+		content: "\e006";
+	}
+}
+
+.socicon-stackoverflow {
+	color: darken( $social-stackoverflow, 10% );
+	background-color: darken( $social-stackoverflow, 10% );
+
+	&:before {
+		content: "\e007";
+	}
+}
+
+.socicon-persona {
+	color: darken( $social-persona, 10% );
+	background-color: darken( $social-persona, 10% );
+
+	&:before {
+		content: "\e008";
+	}
+}
+
+.socicon-triplej {
+	color: darken( $social-triplej, 10% );
+	background-color: darken( $social-triplej, 10% );
+
+	&:before {
+		content: "\e009";
+	}
+}
+
+.socicon-houzz {
+	color: darken( $social-houzz, 10% );
+	background-color: darken( $social-houzz, 10% );
+
+	&:before {
+		content: "\e00a";
+	}
+}
+
+.socicon-rss {
+	color: darken( $social-rss, 10% );
+	background-color: darken( $social-rss, 10% );
+
+	&:before {
+		content: "\e00b";
+	}
+}
+
+.socicon-paypal {
+	color: darken( $social-paypal, 10% );
+	background-color: darken( $social-paypal, 10% );
+
+	&:before {
+		content: "\e00c";
+	}
+}
+
+.socicon-odnoklassniki {
+	color: darken( $social-odnoklassniki, 10% );
+	background-color: darken( $social-odnoklassniki, 10% );
+
+	&:before {
+		content: "\e00d";
+	}
+}
+
+.socicon-airbnb {
+	color: darken( $social-airbnb, 10% );
+	background-color: darken( $social-airbnb, 10% );
+
+	&:before {
+		content: "\e00e";
+	}
+}
+
+.socicon-periscope {
+	color: darken( $social-periscope, 10% );
+	background-color: darken( $social-periscope, 10% );
+
+	&:before {
+		content: "\e00f";
+	}
+}
+
+.socicon-outlook {
+	color: darken( $social-outlook, 10% );
+	background-color: darken( $social-outlook, 10% );
+
+	&:before {
+		content: "\e010";
+	}
+}
+
+.socicon-coderwall {
+	color: darken( $social-coderwall, 10% );
+	background-color: darken( $social-coderwall, 10% );
+
+	&:before {
+		content: "\e011";
+	}
+}
+
+.socicon-tripadvisor {
+	color: darken( $social-tripadvisor, 10% );
+	background-color: darken( $social-tripadvisor, 10% );
+
+	&:before {
+		content: "\e012";
+	}
+}
+
+.socicon-appnet {
+	color: darken( $social-appnet, 10% );
+	background-color: darken( $social-appnet, 10% );
+
+	&:before {
+		content: "\e013";
+	}
+}
+
+.socicon-goodreads {
+	color: darken( $social-goodreads, 10% );
+	background-color: darken( $social-goodreads, 10% );
+
+	&:before {
+		content: "\e014";
+	}
+}
+
+.socicon-tripit {
+	color: darken( $social-tripit, 10% );
+	background-color: darken( $social-tripit, 10% );
+
+	&:before {
+		content: "\e015";
+	}
+}
+
+.socicon-lanyrd {
+	color: darken( $social-lanyrd, 10% );
+	background-color: darken( $social-lanyrd, 10% );
+
+	&:before {
+		content: "\e016";
+	}
+}
+
+.socicon-slideshare {
+	color: darken( $social-slideshare, 10% );
+	background-color: darken( $social-slideshare, 10% );
+
+	&:before {
+		content: "\e017";
+	}
+}
+
+.socicon-buffer {
+	color: darken( $social-buffer, 10% );
+	background-color: darken( $social-buffer, 10% );
+
+	&:before {
+		content: "\e018";
+	}
+}
+
+.socicon-disqus {
+	color: darken( $social-disqus, 10% );
+	background-color: darken( $social-disqus, 10% );
+
+	&:before {
+		content: "\e019";
+	}
+}
+
+.socicon-vkontakte {
+	color: darken( $social-vkontakte, 10% );
+	background-color: darken( $social-vkontakte, 10% );
+
+	&:before {
+		content: "\e01a";
+	}
+}
+
+.socicon-whatsapp {
+	color: darken( $social-whatsapp, 10% );
+	background-color: darken( $social-whatsapp, 10% );
+
+	&:before {
+		content: "\e01b";
+	}
+}
+
+.socicon-patreon {
+	color: darken( $social-patreon, 10% );
+	background-color: darken( $social-patreon, 10% );
+
+	&:before {
+		content: "\e01c";
+	}
+}
+
+.socicon-storehouse {
+	color: darken( $social-storehouse, 10% );
+	background-color: darken( $social-storehouse, 10% );
+
+	&:before {
+		content: "\e01d";
+	}
+}
+
+.socicon-pocket {
+	color: darken( $social-pocket, 10% );
+	background-color: darken( $social-pocket, 10% );
+
+	&:before {
+		content: "\e01e";
+	}
+}
+
+.socicon-mail {
+	color: darken( $social-mail, 10% );
+	background-color: darken( $social-mail, 10% );
+
+	&:before {
+		content: "\e01f";
+	}
+}
+
+.socicon-gmail {
+	color: darken( $social-gmail, 10% );
+	background-color: darken( $social-gmail, 10% );
+
+	&:before {
+		content: "\e01f";
+	}
+}
+
+.socicon-blogger {
+	color: darken( $social-blogger, 10% );
+	background-color: darken( $social-blogger, 10% );
+
+	&:before {
+		content: "\e020";
+	}
+}
+
+.socicon-technorati {
+	color: darken( $social-technorati, 10% );
+	background-color: darken( $social-technorati, 10% );
+
+	&:before {
+		content: "\e021";
+	}
+}
+
+.socicon-reddit {
+	color: darken( $social-reddit, 10% );
+	background-color: darken( $social-reddit, 10% );
+
+	&:before {
+		content: "\e022";
+	}
+}
+
+.socicon-dribbble {
+	color: darken( $social-dribbble, 10% );
+	background-color: darken( $social-dribbble, 10% );
+
+	&:before {
+		content: "\e023";
+	}
+}
+
+.socicon-stumbleupon {
+	color: darken( $social-stumbleupon, 10% );
+	background-color: darken( $social-stumbleupon, 10% );
+
+	&:before {
+		content: "\e024";
+	}
+}
+
+.socicon-digg {
+	color: darken( $social-digg, 10% );
+	background-color: darken( $social-digg, 10% );
+
+	&:before {
+		content: "\e025";
+	}
+}
+
+.socicon-envato {
+	color: darken( $social-envato, 10% );
+	background-color: darken( $social-envato, 10% );
+
+	&:before {
+		content: "\e026";
+	}
+}
+
+.socicon-behance {
+	color: darken( $social-behance, 10% );
+	background-color: darken( $social-behance, 10% );
+
+	&:before {
+		content: "\e027";
+	}
+}
+
+.socicon-delicious {
+	color: darken( $social-delicious, 10% );
+	background-color: darken( $social-delicious, 10% );
+
+	&:before {
+		content: "\e028";
+	}
+}
+
+.socicon-deviantart {
+	color: darken( $social-deviantart, 10% );
+	background-color: darken( $social-deviantart, 10% );
+
+	&:before {
+		content: "\e029";
+	}
+}
+
+.socicon-forrst {
+	color: darken( $social-forrst, 10% );
+	background-color: darken( $social-forrst, 10% );
+
+	&:before {
+		content: "\e02a";
+	}
+}
+
+.socicon-play {
+	color: darken( $social-play, 10% );
+	background-color: darken( $social-play, 10% );
+
+	&:before {
+		content: "\e02b";
+	}
+}
+
+.socicon-zerply {
+	color: darken( $social-zerply, 10% );
+	background-color: darken( $social-zerply, 10% );
+
+	&:before {
+		content: "\e02c";
+	}
+}
+
+.socicon-wikipedia {
+	color: darken( $social-wikipedia, 10% );
+	background-color: darken( $social-wikipedia, 10% );
+
+	&:before {
+		content: "\e02d";
+	}
+}
+
+.socicon-apple {
+	color: darken( $social-apple, 10% );
+	background-color: darken( $social-apple, 10% );
+
+	&:before {
+		content: "\e02e";
+	}
+}
+
+.socicon-flattr {
+	color: darken( $social-flattr, 10% );
+	background-color: darken( $social-flattr, 10% );
+
+	&:before {
+		content: "\e02f";
+	}
+}
+
+.socicon-github {
+	color: darken( $social-github, 10% );
+	background-color: darken( $social-github, 10% );
+
+	&:before {
+		content: "\e030";
+	}
+}
+
+.socicon-renren {
+	color: darken( $social-renren, 10% );
+	background-color: darken( $social-renren, 10% );
+
+	&:before {
+		content: "\e031";
+	}
+}
+
+.socicon-friendfeed {
+	color: darken( $social-friendfeed, 10% );
+	background-color: darken( $social-friendfeed, 10% );
+
+	&:before {
+		content: "\e032";
+	}
+}
+
+.socicon-newsvine {
+	color: darken( $social-newsvine, 10% );
+	background-color: darken( $social-newsvine, 10% );
+
+	&:before {
+		content: "\e033";
+	}
+}
+
+.socicon-identica {
+	color: darken( $social-identica, 10% );
+	background-color: darken( $social-identica, 10% );
+
+	&:before {
+		content: "\e034";
+	}
+}
+
+.socicon-bebo {
+	color: darken( $social-bebo, 10% );
+	background-color: darken( $social-bebo, 10% );
+
+	&:before {
+		content: "\e035";
+	}
+}
+
+.socicon-zynga {
+	color: darken( $social-zynga, 10% );
+	background-color: darken( $social-zynga, 10% );
+
+	&:before {
+		content: "\e036";
+	}
+}
+
+.socicon-steam {
+	color: darken( $social-steam, 10% );
+	background-color: darken( $social-steam, 10% );
+
+	&:before {
+		content: "\e037";
+	}
+}
+
+.socicon-xbox {
+	color: darken( $social-xbox, 10% );
+	background-color: darken( $social-xbox, 10% );
+
+	&:before {
+		content: "\e038";
+	}
+}
+
+.socicon-windows {
+	color: darken( $social-windows, 10% );
+	background-color: darken( $social-windows, 10% );
+
+	&:before {
+		content: "\e039";
+	}
+}
+
+.socicon-qq {
+	color: darken( $social-qq, 10% );
+	background-color: darken( $social-qq, 10% );
+
+	&:before {
+		content: "\e03a";
+	}
+}
+
+.socicon-douban {
+	color: darken( $social-douban, 10% );
+	background-color: darken( $social-douban, 10% );
+
+	&:before {
+		content: "\e03b";
+	}
+}
+
+.socicon-meetup {
+	color: darken( $social-meetup, 10% );
+	background-color: darken( $social-meetup, 10% );
+
+	&:before {
+		content: "\e03c";
+	}
+}
+
+.socicon-playstation {
+	color: darken( $social-playstation, 10% );
+	background-color: darken( $social-playstation, 10% );
+
+	&:before {
+		content: "\e03d";
+	}
+}
+
+.socicon-android {
+	color: darken( $social-android, 10% );
+	background-color: darken( $social-android, 10% );
+
+	&:before {
+		content: "\e03e";
+	}
+}
+
+.socicon-snapchat {
+	color: darken( $social-snapchat, 10% );
+	background-color: darken( $social-snapchat, 10% );
+
+	&:before {
+		content: "\e03f";
+	}
+}
+
+.socicon-twitter {
+	color: darken( $social-twitter, 10% );
+	background-color: darken( $social-twitter, 10% );
+
+	&:before {
+		content: "\e040";
+	}
+}
+
+.socicon-facebook {
+	color: darken( $social-facebook, 10% );
+	background-color: darken( $social-facebook, 10% );
+
+	&:before {
+		content: "\e041";
+	}
+}
+
+.socicon-googleplus {
+	color: darken( $social-googleplus, 10% );
+	background-color: darken( $social-googleplus, 10% );
+
+	&:before {
+		content: "\e042";
+	}
+}
+
+.socicon-pinterest {
+	color: darken( $social-pinterest, 10% );
+	background-color: darken( $social-pinterest, 10% );
+
+	&:before {
+		content: "\e043";
+	}
+}
+
+.socicon-foursquare {
+	color: darken( $social-foursquare, 10% );
+	background-color: darken( $social-foursquare, 10% );
+
+	&:before {
+		content: "\e044";
+	}
+}
+
+.socicon-yahoo,
+.socicon-yahoomail {
+	color: darken( $social-yahoo, 10% );
+	background-color: darken( $social-yahoo, 10% );
+
+	&:before {
+		content: "\e045";
+	}
+}
+
+.socicon-skype {
+	color: darken( $social-skype, 10% );
+	background-color: darken( $social-skype, 10% );
+
+	&:before {
+		content: "\e046";
+	}
+}
+
+.socicon-yelp {
+	color: darken( $social-yelp, 10% );
+	background-color: darken( $social-yelp, 10% );
+
+	&:before {
+		content: "\e047";
+	}
+}
+
+.socicon-feedburner {
+	color: darken( $social-feedburner, 10% );
+	background-color: darken( $social-feedburner, 10% );
+
+	&:before {
+		content: "\e048";
+	}
+}
+
+.socicon-linkedin {
+	color: darken( $social-linkedin, 10% );
+	background-color: darken( $social-linkedin, 10% );
+
+	&:before {
+		content: "\e049";
+	}
+}
+
+.socicon-viadeo {
+	color: darken( $social-viadeo, 10% );
+	background-color: darken( $social-viadeo, 10% );
+
+	&:before {
+		content: "\e04a";
+	}
+}
+
+.socicon-xing {
+	color: darken( $social-xing, 10% );
+	background-color: darken( $social-xing, 10% );
+
+	&:before {
+		content: "\e04b";
+	}
+}
+
+.socicon-myspace {
+	color: darken( $social-myspace, 10% );
+	background-color: darken( $social-myspace, 10% );
+
+	&:before {
+		content: "\e04c";
+	}
+}
+
+.socicon-soundcloud {
+	color: darken( $social-soundcloud, 10% );
+	background-color: darken( $social-soundcloud, 10% );
+
+	&:before {
+		content: "\e04d";
+	}
+}
+
+.socicon-spotify {
+	color: darken( $social-spotify, 10% );
+	background-color: darken( $social-spotify, 10% );
+
+	&:before {
+		content: "\e04e";
+	}
+}
+
+.socicon-grooveshark {
+	color: darken( $social-grooveshark, 10% );
+	background-color: darken( $social-grooveshark, 10% );
+
+	&:before {
+		content: "\e04f";
+	}
+}
+
+.socicon-lastfm {
+	color: darken( $social-lastfm, 10% );
+	background-color: darken( $social-lastfm, 10% );
+
+	&:before {
+		content: "\e050";
+	}
+}
+
+.socicon-youtube {
+	color: darken( $social-youtube, 10% );
+	background-color: darken( $social-youtube, 10% );
+
+	&:before {
+		content: "\e051";
+	}
+}
+
+.socicon-vimeo {
+	color: darken( $social-vimeo, 10% );
+	background-color: darken( $social-vimeo, 10% );
+
+	&:before {
+		content: "\e052";
+	}
+}
+
+.socicon-dailymotion {
+	color: darken( $social-dailymotion, 10% );
+	background-color: darken( $social-dailymotion, 10% );
+
+	&:before {
+		content: "\e053";
+	}
+}
+
+.socicon-vine {
+	color: darken( $social-vine, 10% );
+	background-color: darken( $social-vine, 10% );
+
+	&:before {
+		content: "\e054";
+	}
+}
+
+.socicon-flickr {
+	color: darken( $social-flickr, 10% );
+	background-color: darken( $social-flickr, 10% );
+
+	&:before {
+		content: "\e055";
+	}
+}
+
+.socicon-500px {
+	color: darken( $social-500px, 10% );
+	background-color: darken( $social-500px, 10% );
+
+	&:before {
+		content: "\e056";
+	}
+}
+
+.socicon-instagram {
+	color: darken( $social-instagram, 10% );
+	background-color: darken( $social-instagram, 10% );
+
+	&:before {
+		content: "\e057";
+	}
+}
+
+.socicon-wordpress {
+	color: darken( $social-wordpress, 10% );
+	background-color: darken( $social-wordpress, 10% );
+
+	&:before {
+		content: "\e058";
+	}
+}
+
+.socicon-tumblr {
+	color: darken( $social-tumblr, 10% );
+	background-color: darken( $social-tumblr, 10% );
+
+	&:before {
+		content: "\e059";
+	}
+}
+
+.socicon-twitch {
+	color: darken( $social-twitch, 10% );
+	background-color: darken( $social-twitch, 10% );
+
+	&:before {
+		content: "\e05a";
+	}
+}
+
+.socicon-8tracks {
+	color: darken( $social-8tracks, 10% );
+	background-color: darken( $social-8tracks, 10% );
+
+	&:before {
+		content: "\e05b";
+	}
+}
+
+.socicon-amazon {
+	color: darken( $social-amazon, 10% );
+	background-color: darken( $social-amazon, 10% );
+
+	&:before {
+		content: "\e05c";
+	}
+}
+
+.socicon-icq {
+	color: darken( $social-icq, 10% );
+	background-color: darken( $social-icq, 10% );
+
+	&:before {
+		content: "\e05d";
+	}
+}
+
+.socicon-smugmug {
+	color: darken( $social-smugmug, 10% );
+	background-color: darken( $social-smugmug, 10% );
+
+	&:before {
+		content: "\e05e";
+	}
+}
+
+.socicon-ravelry {
+	color: darken( $social-ravelry, 10% );
+	background-color: darken( $social-ravelry, 10% );
+
+	&:before {
+		content: "\e05f";
+	}
+}
+
+.socicon-weibo {
+	color: darken( $social-weibo, 10% );
+	background-color: darken( $social-weibo, 10% );
+
+	&:before {
+		content: "\e060";
+	}
+}
+
+.socicon-baidu {
+	color: darken( $social-baidu, 10% );
+	background-color: darken( $social-baidu, 10% );
+
+	&:before {
+		content: "\e061";
+	}
+}
+
+.socicon-angellist {
+	color: darken( $social-angellist, 10% );
+	background-color: darken( $social-angellist, 10% );
+
+	&:before {
+		content: "\e062";
+	}
+}
+
+.socicon-ebay {
+	color: darken( $social-ebay, 10% );
+	background-color: darken( $social-ebay, 10% );
+
+	&:before {
+		content: "\e063";
+	}
+}
+
+.socicon-imdb {
+	color: darken( $social-imdb, 10% );
+	background-color: darken( $social-imdb, 10% );
+
+	&:before {
+		content: "\e064";
+	}
+}
+
+.socicon-stayfriends {
+	color: darken( $social-stayfriends, 10% );
+	background-color: darken( $social-stayfriends, 10% );
+
+	&:before {
+		content: "\e065";
+	}
+}
+
+.socicon-residentadvisor {
+	color: darken( $social-residentadvisor, 10% );
+	background-color: darken( $social-residentadvisor, 10% );
+
+	&:before {
+		content: "\e066";
+	}
+}
+
+.socicon-google {
+	color: darken( $social-google, 10% );
+	background-color: darken( $social-google, 10% );
+
+	&:before {
+		content: "\e067";
+	}
+}
+
+.socicon-yandex {
+	color: darken( $social-yandex, 10% );
+	background-color: darken( $social-yandex, 10% );
+
+	&:before {
+		content: "\e068";
+	}
+}
+
+.socicon-sharethis {
+	color: darken( $social-sharethis, 10% );
+	background-color: darken( $social-sharethis, 10% );
+
+	&:before {
+		content: "\e069";
+	}
+}
+
+.socicon-bandcamp {
+	color: darken( $social-bandcamp, 10% );
+	background-color: darken( $social-bandcamp, 10% );
+
+	&:before {
+		content: "\e06a";
+	}
+}
+
+.socicon-itunes {
+	color: darken( $social-itunes, 10% );
+	background-color: darken( $social-itunes, 10% );
+
+	&:before {
+		content: "\e06b";
+	}
+}
+
+.socicon-deezer {
+	color: darken( $social-deezer, 10% );
+	background-color: darken( $social-deezer, 10% );
+
+	&:before {
+		content: "\e06c";
+	}
+}
+
+.socicon-medium {
+	color: darken( $social-medium, 10% );
+	background-color: darken( $social-medium, 10% );
+
+	&:before {
+		content: "\e06d";
+	}
+}
+
+.socicon-telegram {
+	color: darken( $social-telegram, 10% );
+	background-color: darken( $social-telegram, 10% );
+
+	&:before {
+		content: "\e06e";
+	}
+}
+
+.socicon-openid {
+	color: darken( $social-openid, 10% );
+	background-color: darken( $social-openid, 10% );
+
+	&:before {
+		content: "\e06f";
+	}
+}
+
+.socicon-amplement {
+	color: darken( $social-amplement, 10% );
+	background-color: darken( $social-amplement, 10% );
+
+	&:before {
+		content: "\e070";
+	}
+}
+

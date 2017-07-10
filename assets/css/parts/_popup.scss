@@ -1,0 +1,282 @@
+/*--------------------------------------------------------------
+# Popup Styles
+--------------------------------------------------------------*/
+#ess-main-wrapper {
+	.ess-mobile-share-overlay,
+	.ess-pinterest-popup-overlay,
+	.ess-popup-overlay {
+		position: fixed;
+		background: rgba( 0, 0, 0, 0.5 );
+		z-index: 999;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		transition: all 0.35s;
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	.ess-pinterest-img-picker-popup,
+	.ess-popup-wrapper {
+		position: fixed;
+		top: 50%;
+		left: 0;
+		right: 0;
+		max-width: 747px;
+		margin: 0 auto;
+		background: #fff;
+		border-radius: 5px;
+		padding: 40px;
+		z-index: 999;
+		box-sizing: border-box;
+		visibility: hidden;
+		opacity: 0;
+		transform: translateY(-40%);
+		transition: all 0.5s;
+
+		.ess-pinterest-popup-close,
+		.ess-popup-close {
+			position: absolute;
+			right: -10px;
+			top: -10px;
+			width: 20px;
+			height: 20px;
+			border: 2px solid #252525;
+			text-align: center;
+			border-radius: 50%;
+			font-size: 10px;
+			line-height: 1.8;
+			background: #fff;
+			transition: all 0.35s;
+			cursor: pointer;
+
+			&:hover {
+				background: #c92619;
+				color: #fff;
+			}
+		}
+
+
+		.ess-social-network-lists {
+			margin-right: -10px;
+
+			.ess-social-networks {
+				width: 215px;
+			}
+		}
+	}
+
+	/*----------  Popup  ----------*/
+	.ess-popup-layout-wrapper {
+		visibility: hidden;
+		opacity: 0;
+		transition: all 0.5s;
+
+		.ess-popup-layout-overlay {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0,0,0, 0.5);
+			z-index: 999;
+		}
+
+		.ess-popup-block-wrapper {
+			position: fixed;
+			top: 50%;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			box-sizing: border-box;
+			max-width: 554px;
+			background: #fff;
+			z-index: 999;
+			padding: 20px;
+			transform: translateY( -50% );
+
+			.ess-popup-title {
+				color: #333;
+			    font-size: 18px;
+			    margin: 0 0 15px;
+			}
+
+			.ess-popup-subtitle {
+				margin-bottom: 20px;
+			}
+		}
+
+		.ess-social-network-lists {
+			margin-right: -2%;
+
+			.ess-social-networks {
+				width: 14.66%;
+				height: auto;
+				padding: 10px 5px;
+				box-sizing: border-box;
+				margin-right: 2%;
+
+				.ess-social-share,
+				.ess-social-share-pinterest,
+				.ess-social-network-link {
+					width: 100%;
+				}
+
+				.ess-social-networks-info-wrapper {
+					display: table-cell;
+					height: 100%;
+					vertical-align: middle;
+				}
+
+				.ess-icon,
+				.ess-social-count,
+				.ess-text {
+					display: block;
+					width: 100%;
+					height: 15px;
+					padding: 0;
+				}
+
+				.ess-icon {
+					background: none;
+				}
+
+				.ess-social-count {
+					padding-top: 10px;
+				}
+
+				.ess-text {
+					font-size: 12px;
+					padding-top: 10px;
+				}
+
+				&.ess-all-networks--popup {
+					background: #252525;
+
+					.ess-icon {
+						line-height: 2.6;
+						color: #fff;
+						height: 40px;
+					}
+				}
+			}
+		}
+
+		.ess-available-networks {
+			display: none;
+		}
+
+		.ess-popup-layout-close {
+			position: absolute;
+			right: 11px;
+			top: 11px;
+			font-size: 18px;
+			cursor: pointer;
+		}
+
+		&.ess-popup-layout-rectangular-rounded {
+			.ess-popup-block-wrapper {
+				border-radius: 5px;
+			}
+		}
+
+		&.ess-social-visible {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	.ess-social-pin-images {
+		margin: 0 0 3% -3%;
+		list-style: none;
+		padding: 0;
+
+		.ess-social-pin-image {
+			float: left;
+			height: 90px;
+			margin-bottom: 3%;
+			margin-left: 3%;
+			overflow: hidden;
+			position: relative;
+			width: 30.33%;
+
+			img {
+				max-width: 100%;
+				margin: 0;
+			}
+
+			a.ess-pinterest-tag {
+				visibility: hidden;
+				position: absolute;
+				left: 0;
+				top: 0;
+				transition: all 0.5s ease;
+				opacity: 0;
+				font-size: 36px;
+				color: #ffffff;
+				background: rgba(147, 8, 11, 0.5);
+				width: 100%;
+				height: 100%;
+				display: block;
+
+				i {
+					background: none;
+					color: #ffffff;
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					transform: translate( -50%, -50% );
+				}
+			}
+
+			&:hover > a.ess-pinterest-tag {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+
+	.ess-pinterest-popup-title {
+		font-size: 20px;
+		font-weight: 700;
+		margin: 10px 0 20px;
+		padding: 0;
+	}
+
+	.ess-no-pinterest-img-found {
+		color: #d1d1d1;
+		font-size: 32px;
+		font-weight: 700;
+		line-height: 200px;
+		text-align: center;
+	}
+}
+
+body.ess-popup-enable {
+	#ess-main-wrapper {
+		.ess-popup-overlay,
+		.ess-popup-wrapper {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		.ess-popup-wrapper {
+			transform: translateY( -50% );
+		}
+	}
+}
+
+body.ess-pinterest-popup-enable {
+	#ess-main-wrapper {,
+		.ess-pinterest-img-picker-popup,
+		.ess-pinterest-popup-overlay {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		.ess-pinterest-img-picker-popup{
+			transform: translateY( -50% );
+		}
+	}
+}

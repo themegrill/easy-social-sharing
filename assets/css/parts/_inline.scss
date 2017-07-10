@@ -1,0 +1,174 @@
+/*--------------------------------------------------------------
+# Inline Styles
+--------------------------------------------------------------*/
+#ess-main-wrapper {
+	#ess-wrap-inline-networks {
+		&.ess-inline-networks-container {
+			margin-bottom: 30px;
+
+			.ess-social-network-lists {
+				list-style-type: none;
+
+				.ess-social-networks {
+					&.ess-all-networks {
+						background: #252525;
+
+						.ess-icon {
+							color: #fff;
+						}
+					}
+				}
+			}
+
+			/*----------  Icons Style  ----------*/
+			&.ess-rounded-icon {
+				.ess-social-network-lists {
+					.ess-social-networks {
+						.ess-icon {
+							border-radius: 50%;
+						}
+					}
+				}
+			}
+
+			&.ess-diagonal-icon {
+				.ess-social-network-lists {
+					.ess-social-networks {
+
+						.ess-icon {
+							position: relative;
+
+							&::after {
+								content: '';
+								position: absolute;
+								top: 0;
+								bottom: 0;
+								width: 10px;
+								background: inherit;
+								transform: skew(-10deg);
+								right: -4px;
+							}
+						}
+
+						.ess-social-count {
+							padding-left: 15px;
+						}
+					}
+				}
+				
+				// fix cone going out of the box
+				&.ess-inline-layout-one {
+					.ess-social-network-lists {
+						.ess-social-networks {
+							&::before {
+								left: 42px;
+							}
+						}
+					}
+				}
+			}
+
+			&.ess-rectangular-rounded-icon {
+				.ess-social-network-lists {
+					.ess-social-networks {
+						.ess-icon {
+							border-radius: 3px;
+						}
+					}
+				}
+			}
+				
+			/*----------  Layout ----------*/
+			&.ess-inline-layout-one {
+				.ess-social-network-lists {
+					.ess-social-networks {
+						position: relative;
+
+						&::before {
+							content: '';
+							position: absolute;
+							width: 10px;
+							height: 10px;
+							background: inherit;
+							left: 37px;
+							z-index: 2;
+							top: calc( 50% - 5px );
+							transform: rotate(45deg);
+						}
+
+						.ess-social-count {
+							background: inherit;
+						}
+
+						&.ess-all-networks {
+							background: #252525;
+
+							&::before {
+								content: none;
+							}
+						}
+					}
+				}
+			}
+
+			&.ess-inline-layout-two {
+				.ess-social-network-lists {
+					.ess-social-networks {
+						.ess-icon {
+							background: none;
+						}
+					}
+				}
+			}
+
+			&.ess-inline-layout-rectangular_rounded {
+				.ess-social-network-lists {
+					.ess-social-networks {
+						border-radius: 3px;
+					}
+				}
+			}
+
+			&.ess-inline-layout-rounded {
+				.ess-social-network-lists {
+					.ess-social-networks {
+						border-radius: 50px;
+
+						.ess-social-count {
+							padding-right: 15px;
+						}
+					}
+				}
+			}
+
+			&.ess-inline-layout-text-only {
+				.ess-social-network-lists {
+					.ess-social-networks {
+						background: none;
+						
+						.ess-text,
+						.ess-social-count,
+						.ess-all-networks-button {
+							color: #252525;
+						}
+
+						.ess-text {
+							font-weight: 500;
+						}
+
+						&.ess-all-networks {
+							transition: all 0.35s;
+
+							&:hover {
+								background: #252525;
+								.ess-all-networks-button {
+									color: #fff;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

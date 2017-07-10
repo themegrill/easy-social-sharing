@@ -51,6 +51,7 @@ class ESS_Admin_Settings {
 			$settings[] = include( 'settings/class-ess-settings-general.php' );
 			$settings[] = include( 'settings/class-ess-settings-network.php' );
 			$settings[] = include( 'settings/class-ess-settings-layouts.php' );
+ 			$settings[] = include( 'settings/class-ess-settings-analytics.php' );
 
 			self::$settings = apply_filters( 'easy_social_sharing_get_settings_pages', $settings );
 		}
@@ -119,7 +120,7 @@ class ESS_Admin_Settings {
 	 * Handles the display of the main Social Sharing settings page in admin.
 	 */
 	public static function output() {
-		global $current_section, $current_tab;
+		global $current_section, $current_tab,$ess_preview_class,$default_preview_class;
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
@@ -137,6 +138,13 @@ class ESS_Admin_Settings {
 		// Get current tab/section
 		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( $_GET['tab'] );
 		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( $_REQUEST['section'] );
+
+		$ess_preview_class = array(
+			'inline'  => 'ess-no-network-label ess-inline-top',
+			'sidebar' => 'ess-sidebar-enable ess-no-total-shares',
+			'popup'   => 'ess-popup-layout-wrapper ess-social-visible',
+			'flyin'   => 'ess-fly-layout-wrapper ess-social-visible',
+		);
 
 		// Save settings if data has been posted
 		if ( ! empty( $_POST ) ) {
@@ -161,7 +169,7 @@ class ESS_Admin_Settings {
 	/**
 	 * Get a setting from the settings API.
 	 *
-	 * @param mixed $option_name
+	 * @param  mixed $option_name
 	 * @return string
 	 */
 	public static function get_option( $option_name, $default = '' ) {
@@ -355,7 +363,7 @@ class ESS_Admin_Settings {
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<select
-								name="<?php echo esc_attr( $value['id'] ); ?><?php if ( $value['type'] == 'multiselect' ) echo '[]'; ?>"
+								name="<?php echo esc_attr( $value['id'] ); ?><?php if ( $value['type'] == 'multiselect' ) {echo '[]';} ?>"
 								id="<?php echo esc_attr( $value['id'] ); ?>"
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
@@ -363,6 +371,8 @@ class ESS_Admin_Settings {
 								<?php echo ( 'multiselect' == $value['type'] ) ? 'multiple="multiple"' : ''; ?>
 								>
 								<?php
+								$option_attribute_array=isset($value['option_attribute']) && is_array($value['option_attribute']) ? $value['option_attribute']:array();
+
 									foreach ( $value['options'] as $key => $val ) {
 										?>
 										<option value="<?php echo esc_attr( $key ); ?>" <?php
@@ -373,7 +383,10 @@ class ESS_Admin_Settings {
 												selected( $option_value, $key );
 											}
 
-										?>><?php echo $val ?></option>
+											$option_attribute_value_array=isset($option_attribute_array[$key]) && is_array($option_attribute_array[$key]) ? $option_attribute_array[$key]:array();
+
+											  echo ess_array_to_html_attribute($option_attribute_value_array);
+											?>><?php echo $val ?></option>
 										<?php
 									}
 								?>
@@ -532,6 +545,7 @@ class ESS_Admin_Settings {
 	 * settings types.
 	 *
 	 * @param  array $value The form field value array
+	 *
 	 * @return array The description and tip as a 2 element array
 	 */
 	public static function get_field_description( $value ) {
@@ -573,6 +587,7 @@ class ESS_Admin_Settings {
 	 * Loops though the social sharing options array and outputs each field.
 	 *
 	 * @param  array $options Options array to output
+	 *
 	 * @return bool
 	 */
 	public static function save_fields( $options ) {
@@ -653,4 +668,5 @@ class ESS_Admin_Settings {
 
 		return true;
 	}
+
 }

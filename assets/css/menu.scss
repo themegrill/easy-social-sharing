@@ -7,10 +7,9 @@
 /**
  * Imports
  */
-@import "bourbon";
-@import "mixins";
-@import "variables";
-@import "fonts";
+@import "parts/mixins";
+@import "parts/variables";
+@import "parts/fonts";
 
 /**
  * Styling begins
@@ -36,5 +35,32 @@
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		vertical-align: top;
+	}
+}
+
+/**
+ * Location Styles
+ */
+ul.location_data {
+	p.form-field {
+		margin: 15px 0;
+
+		span,
+		label,
+		select {
+			width: 100%;
+		}
+
+		label {
+			float: left;
+			font-weight: 600;
+		}
+
+		span.side {
+			color: #777;
+			display: block;
+			font-style: normal;
+			margin-bottom: 5px;
+		}
 	}
 }

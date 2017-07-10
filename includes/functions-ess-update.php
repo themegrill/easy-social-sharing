@@ -56,6 +56,6 @@ function ess_update_120_db_version() {
 	ESS_Install::update_db_version( '1.2.0' );
 }
 
-function ess_update_121_db_version() {
-	ESS_Install::update_db_version( '1.2.1' );
+function ess_update_130_db_version() {
+	ESS_Install::update_db_version( '1.3.0' );
 }

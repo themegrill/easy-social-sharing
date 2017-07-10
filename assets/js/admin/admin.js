@@ -1,7 +1,7 @@
 /**
  * EasySocialSharing Admin JS
  */
-jQuery( function ( $ ) {
+jQuery(function ( $ ) {
 
 	// Tooltips
 	$( document.body ).on( 'init_tooltips', function() {
@@ -25,6 +25,15 @@ jQuery( function ( $ ) {
 		}
 	}).change();
 
+	// Checkbox availability
+	$( '.show_if_checked' ).change(function () {
+		if ( $( this ).is( ':checked') ) {
+			$( this ).closest( 'tr' ).next( 'tr' ).show();
+		} else {
+			$( this ).closest( 'tr' ).next( 'tr' ).hide();
+		}
+	}).change();
+
 	// Hidden options
 	$( '.hide_options_if_checked' ).each( function() {
 		$( this ).find( 'input:eq(0)' ).change( function() {
@@ -45,4 +54,24 @@ jQuery( function ( $ ) {
 			}
 		}).change();
 	});
+
+
+	// Show Setting preview popup
+	$( '.easy-social-sharing .ess-enhanced-select' ).change( function() {
+		var select = $( this ),
+			data_class = select.find( 'option:selected' ).attr( 'data-class' );
+
+		$.each( select.find( 'option' ), function () {
+			var data_class_new = $( this ).attr('data-class');
+
+			if ( data_class_new !== 'undefined' && data_class_new !== undefined ) {
+				$( '#ess-main-wrapper .ess-preview-icon-container' ).removeClass( data_class_new );
+			}
+		});
+
+
+		if ( 'undefined' !== data_class && undefined !== data_class ) {
+			$( '#ess-main-wrapper .ess-preview-icon-container' ).addClass( data_class );
+		}
+	}).change();
 });

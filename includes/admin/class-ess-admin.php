@@ -47,8 +47,10 @@ class ESS_Admin {
 	 */
 	public function includes() {
 		include_once( 'functions-ess-admin.php' );
+		include_once( 'functions-ess-meta-box.php' );
 		include_once( 'class-ess-admin-notices.php' );
 		include_once( 'class-ess-admin-assets.php' );
+		include_once( 'class-ess-admin-meta-boxes.php' );
 	}
 
 	/**

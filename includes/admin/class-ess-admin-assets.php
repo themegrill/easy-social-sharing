@@ -43,6 +43,10 @@ class ESS_Admin_Assets {
 		wp_register_style( 'easy-social-sharing-admin', ESS()->plugin_url() . '/assets/css/admin.css', array(), ESS_VERSION );
 		wp_register_style( 'jquery-ui-style', '//code.jquery.com/ui/' . $jquery_version . '/themes/smoothness/jquery-ui.css', array(), $jquery_version );
 
+		// Add RTL support for admin styles
+		wp_style_add_data( 'easy-social-sharing-menu', 'rtl', 'replace' );
+		wp_style_add_data( 'easy-social-sharing-admin', 'rtl', 'replace' );
+
 		// Sitewide menu CSS
 		wp_enqueue_style( 'easy-social-sharing-menu' );
 

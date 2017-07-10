@@ -84,6 +84,7 @@ class ESS_Social_Networks {
 	 */
 	private static function get_formatted_name( $name ) {
 		$supported_networks = ess_get_core_supported_social_networks();
+
 		return $name ? $supported_networks[ $name ] : __( 'Facebook', 'easy-social-sharing' );
 	}
 
@@ -98,6 +99,7 @@ class ESS_Social_Networks {
 				$network_data[ $key ] = call_user_func( array( __CLASS__, 'format_' . $key ), $value );
 			}
 		}
+
 		return $network_data;
 	}
 
@@ -138,7 +140,7 @@ class ESS_Social_Networks {
 	}
 
 	/**
-	 *  Insert a new social network.
+	 * Insert a new social network.
 	 *
 	 * Internal use only.
 	 *
@@ -164,7 +166,7 @@ class ESS_Social_Networks {
 	 * @since  1.2.0
 	 * @access private
 	 *
-	 * @param int   $network_id
+	 * @param int $network_id
 	 * @param array $network_data
 	 */
 	public static function _update_network( $network_id, $network_data ) {
@@ -205,7 +207,7 @@ class ESS_Social_Networks {
 	 * @since  1.2.0
 	 * @access private
 	 *
-	 * @param int    $network_id
+	 * @param int $network_id
 	 * @param string $network_name
 	 */
 	public static function _update_network_api_support( $network_id, $network_name ) {
@@ -214,4 +216,137 @@ class ESS_Social_Networks {
 		$is_api_support = in_array( $network_name, ess_get_share_networks_with_api_support() );
 		$wpdb->update( $wpdb->prefix . 'ess_social_networks', array( 'is_api_support' => $is_api_support ), array( 'network_id' => $network_id ) );
 	}
+
+	/**
+	 * Get social network statistics.
+	 * @since  1.2.0
+	 * @return array
+	 */
+	public static function _get_network_statistics( $network_name, $page_url ) {
+
+		global $wpdb;
+
+		$network_data = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}ess_social_statistics WHERE network_name=%s and share_url=%s order by id desc limit 1", $network_name, $page_url ) );
+
+		if ( isset( $network_data[0] ) ) {
+
+			return ( (array) $network_data[0] );
+		}
+
+		return array();
+
+	}
+
+	/**
+	 * Get social network count.
+	 * @since  1.2.0
+	 * @return array
+	 */
+	public static function get_network_count_for_non_api_support( $network_name, $page_url, $ip_address ) {
+
+		global $wpdb;
+
+		$network_data = $wpdb->get_results( $wpdb->prepare( "
+
+SELECT network_name  FROM {$wpdb->prefix}ess_social_statistics GROUP BY network_name,share_url,ip_address  HAVING
+
+ network_name=%s and share_url=%s  AND ip_address=%s ;", $network_name, $page_url, $ip_address ) );
+
+		return count( $network_data );
+
+	}
+
+	public static function update_single_network_count( $network_name, $post_id, $ip_info, $ip_address, $share_location, $share_url, $latest_cout ) {
+
+		global $wpdb;
+
+		$status = $wpdb->query( $wpdb->prepare(
+			"INSERT INTO  {$wpdb->prefix}ess_social_statistics
+(network_name,sharing_date,post_id,ip_info,ip_address,share_location,share_url,latest_count)
+ 						VALUES(%s,CURRENT_TIMESTAMP ,%d,%s,%s,%s,%s,%d);", $network_name, $post_id, $ip_info, $ip_address, $share_location, $share_url, $latest_cout )
+		);
+
+		return $status;
+
+
+	}
+
+	public static function get_network_analytic_data( $date = array(), $location = "All", $start_date, $end_date, $date_fragment ) {
+
+		global $wpdb;
+
+		$location_query_string = "LOCATION_QUERY";
+
+		$format_date_select_statement = " DATE_FORMAT(sharing_date,'%%b - %%d, %%Y') ";
+
+		$format_date_group_by = " CAST(sharing_date AS DATE) ";
+
+		$format_sharing_date = " DATE_FORMAT(sharing_date,'%%Y-%%m-%%d') ";
+
+
+		if ( $date_fragment == "monthly" ) {
+
+			$format_date_select_statement = " DATE_FORMAT(sharing_date,'%%b - %%Y') ";
+
+			$format_sharing_date = " DATE_FORMAT(sharing_date,'%%Y-%%m') ";
+
+			$format_date_group_by = " EXTRACT(YEAR_MONTH FROM sharing_date) ";
+
+		} else if ( $date_fragment == "yearly" ) {
+
+			$format_sharing_date = " DATE_FORMAT(sharing_date,'%%Y') ";
+
+			$format_date_select_statement = " DATE_FORMAT(sharing_date,'%%Y') ";
+
+			$format_date_group_by = " YEAR(sharing_date) ";
+		}
+
+		$query = "
+SELECT
+    COUNT(*) as total_count,
+    date_string,
+    {$format_sharing_date} as sharing_date,
+     network_name,
+    share_location,
+    post_id
+FROM
+    (SELECT
+
+  $format_date_select_statement as date_string,
+
+        CAST(sharing_date AS DATE) AS sharing_date,
+            network_name,
+            ip_address,
+            share_url,
+            share_location,
+            post_id
+    FROM
+        {$wpdb->prefix}ess_social_statistics
+    GROUP BY network_name , ip_address , {$format_date_group_by} , share_url , share_location
+    HAVING (CAST(sharing_date AS DATE) >= %s
+        AND CAST(sharing_date AS DATE) <= %s)
+        {$location_query_string}
+    ORDER BY sharing_date ASC) tmp
+GROUP BY sharing_date , network_name;";
+
+
+		if ( strtolower( $location ) == "all" || $location == null || $location == "" ) {
+
+			$query = str_replace( $location_query_string, "", $query );
+
+			$network_data = $wpdb->get_results( $wpdb->prepare( $query, $start_date, $end_date ) );
+
+		} else {
+
+			$query = str_replace( $location_query_string, " AND share_location = %s ", $query );
+
+
+			$network_data = $wpdb->get_results( $wpdb->prepare( $query, $start_date, $end_date, $location ) );
+
+
+		}
+
+		return $network_data;
+	}
+
 }
