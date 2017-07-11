@@ -80,7 +80,6 @@
 					$tbody.on( 'sortupdate', { view: this }, this.updateModelOnSort );
 					$( window ).on( 'beforeunload', { view: this }, this.unloadConfirmation );
 					$save_button.on( 'click', { view: this }, this.onSubmit );
-					$( document.body ).on( 'change', '.ess-enhanced-select', { view: this }, this.onSubmit );
 					$( document.body ).on( 'click', '.ess-social-network-add', { view: this }, this.onAddNewRow );
 				},
 				block: function() {
