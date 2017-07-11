@@ -1,5 +1,6 @@
 <?php
 /**
+ * GitHub Plugin URI: https://github.com/themegrill/easy-social-sharing
  * Plugin Name: Easy Social Sharing
  * Plugin URI: http://themegrill.com/plugins/easy-social-sharing
  * Description: Easy Social Sharing provides you with an easy way to display various popular social share buttons.

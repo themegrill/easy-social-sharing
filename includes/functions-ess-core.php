@@ -20,6 +20,7 @@ include( 'functions-ess-formatting.php' );
 
 /**
  * Queue some JavaScript code to be output in the footer.
+ *
  * @param string $code
  */
 function ess_enqueue_js( $code ) {
@@ -48,6 +49,7 @@ function ess_print_js() {
 
 		/**
 		 * easy_social_sharing_queued_js filter.
+		 *
 		 * @param string $js JavaScript code.
 		 */
 		echo apply_filters( 'easy_social_sharing_queued_js', $js );
@@ -181,56 +183,56 @@ function ess_get_core_supported_social_networks() {
  * @return array
  */
 function ess_get_core_supported_social_networks_config() {
-	$all_networks = ess_get_core_supported_social_networks();
+	$all_networks              = ess_get_core_supported_social_networks();
 	$all_network_configuration = array();
 
 	foreach ( $all_networks as $network_key => $network_value ) {
 		$all_network_configuration[ $network_key ] = array(
-			"label" => $network_value,
-			"data" => "",
-			"backgroundColor" => "",
+			"label"                => $network_value,
+			"data"                 => "",
+			"backgroundColor"      => "",
 			"hoverBackgroundColor" => "",
-			"hoverBorderWidth" => 1,
-			"hoverBorderColor" => "lightgrey",
+			"hoverBorderWidth"     => 1,
+			"hoverBorderColor"     => "lightgrey",
 		);
 	}
 
-	$all_network_configuration['facebook']['backgroundColor'] = "#2F72CD";
-	$all_network_configuration['facebook']['hoverBackgroundColor'] = "#4E84C0";
-	$all_network_configuration['twitter']['backgroundColor'] = "#50C6F8";
-	$all_network_configuration['twitter']['hoverBackgroundColor'] = "#4DA7DE";
-	$all_network_configuration['googleplus']['backgroundColor'] = "#F55F46";
-	$all_network_configuration['googleplus']['hoverBackgroundColor'] = "#DD4B39";
-	$all_network_configuration['linkedin']['backgroundColor'] = "#129FE4";
-	$all_network_configuration['linkedin']['hoverBackgroundColor'] = "#3371B7";
-	$all_network_configuration['pinterest']['backgroundColor'] = "#EC661C";
-	$all_network_configuration['pinterest']['hoverBackgroundColor'] = "#C92619";
-	$all_network_configuration['stumbleupon']['backgroundColor'] = "#EA4B24";
+	$all_network_configuration['facebook']['backgroundColor']         = "#2F72CD";
+	$all_network_configuration['facebook']['hoverBackgroundColor']    = "#4E84C0";
+	$all_network_configuration['twitter']['backgroundColor']          = "#50C6F8";
+	$all_network_configuration['twitter']['hoverBackgroundColor']     = "#4DA7DE";
+	$all_network_configuration['googleplus']['backgroundColor']       = "#F55F46";
+	$all_network_configuration['googleplus']['hoverBackgroundColor']  = "#DD4B39";
+	$all_network_configuration['linkedin']['backgroundColor']         = "#129FE4";
+	$all_network_configuration['linkedin']['hoverBackgroundColor']    = "#3371B7";
+	$all_network_configuration['pinterest']['backgroundColor']        = "#EC661C";
+	$all_network_configuration['pinterest']['hoverBackgroundColor']   = "#C92619";
+	$all_network_configuration['stumbleupon']['backgroundColor']      = "#EA4B24";
 	$all_network_configuration['stumbleupon']['hoverBackgroundColor'] = "#E64011";
-	$all_network_configuration['tumblr']['backgroundColor'] = "#444343";
-	$all_network_configuration['tumblr']['hoverBackgroundColor'] = "#45556C";
-	$all_network_configuration['blogger']['backgroundColor'] = "#EC661C";
-	$all_network_configuration['blogger']['hoverBackgroundColor'] = "#ef651a";
-	$all_network_configuration['myspace']['backgroundColor'] = "#323232";
-	$all_network_configuration['myspace']['hoverBackgroundColor'] = "#323232";
-	$all_network_configuration['delicious']['backgroundColor'] = "#444343";
-	$all_network_configuration['delicious']['hoverBackgroundColor'] = "#020202";
-	$all_network_configuration['yahoomail']['backgroundColor'] = "#511295";
-	$all_network_configuration['yahoomail']['hoverBackgroundColor'] = "#3D0975";
-	$all_network_configuration['gmail']['backgroundColor'] = "#DD4B39";
-	$all_network_configuration['gmail']['hoverBackgroundColor'] = "#BF3222";
-	$all_network_configuration['newsvine']['backgroundColor'] = "#075B2F";
-	$all_network_configuration['newsvine']['hoverBackgroundColor'] = "#075B2F";
-	$all_network_configuration['digg']['backgroundColor'] = "#1D1D1B";
-	$all_network_configuration['digg']['hoverBackgroundColor'] = "#1D1D1B";
-	$all_network_configuration['friendfeed']['backgroundColor'] = "#2F72C4";
-	$all_network_configuration['friendfeed']['hoverBackgroundColor'] = "#2F72C4";
-	$all_network_configuration['buffer']['backgroundColor'] = "#333333";
-	$all_network_configuration['buffer']['hoverBackgroundColor'] = "#000000";
-	$all_network_configuration['reddit']['backgroundColor'] = "#FF4500";
-	$all_network_configuration['reddit']['hoverBackgroundColor'] = "#E74A1E";
-	$all_network_configuration['vkontakte']['backgroundColor'] = "#4C75A3";
-	$all_network_configuration['vkontakte']['hoverBackgroundColor'] = "#92AAC4";
+	$all_network_configuration['tumblr']['backgroundColor']           = "#444343";
+	$all_network_configuration['tumblr']['hoverBackgroundColor']      = "#45556C";
+	$all_network_configuration['blogger']['backgroundColor']          = "#EC661C";
+	$all_network_configuration['blogger']['hoverBackgroundColor']     = "#ef651a";
+	$all_network_configuration['myspace']['backgroundColor']          = "#323232";
+	$all_network_configuration['myspace']['hoverBackgroundColor']     = "#323232";
+	$all_network_configuration['delicious']['backgroundColor']        = "#444343";
+	$all_network_configuration['delicious']['hoverBackgroundColor']   = "#020202";
+	$all_network_configuration['yahoomail']['backgroundColor']        = "#511295";
+	$all_network_configuration['yahoomail']['hoverBackgroundColor']   = "#3D0975";
+	$all_network_configuration['gmail']['backgroundColor']            = "#DD4B39";
+	$all_network_configuration['gmail']['hoverBackgroundColor']       = "#BF3222";
+	$all_network_configuration['newsvine']['backgroundColor']         = "#075B2F";
+	$all_network_configuration['newsvine']['hoverBackgroundColor']    = "#075B2F";
+	$all_network_configuration['digg']['backgroundColor']             = "#1D1D1B";
+	$all_network_configuration['digg']['hoverBackgroundColor']        = "#1D1D1B";
+	$all_network_configuration['friendfeed']['backgroundColor']       = "#2F72C4";
+	$all_network_configuration['friendfeed']['hoverBackgroundColor']  = "#2F72C4";
+	$all_network_configuration['buffer']['backgroundColor']           = "#333333";
+	$all_network_configuration['buffer']['hoverBackgroundColor']      = "#000000";
+	$all_network_configuration['reddit']['backgroundColor']           = "#FF4500";
+	$all_network_configuration['reddit']['hoverBackgroundColor']      = "#E74A1E";
+	$all_network_configuration['vkontakte']['backgroundColor']        = "#4C75A3";
+	$all_network_configuration['vkontakte']['hoverBackgroundColor']   = "#92AAC4";
 
 	return $all_network_configuration;
 
@@ -246,8 +248,10 @@ function ess_get_share_networks_with_api_support() {
 
 /**
  * Display a EasySocialSharing help tip.
- * @param  string $tip Help tip text
- * @param  bool $allow_html Allow sanitized HTML if true or escape
+ *
+ * @param  string $tip        Help tip text
+ * @param  bool   $allow_html Allow sanitized HTML if true or escape
+ *
  * @return string
  */
 function ess_help_tip( $tip, $allow_html = false ) {
@@ -263,18 +267,20 @@ function ess_help_tip( $tip, $allow_html = false ) {
 
 /**
  * Return html attribute from array.
+ *
  * @param  array
+ *
  * @return string
  */
-function ess_array_to_html_attribute( $attribute_array=array()) {
+function ess_array_to_html_attribute( $attribute_array = array() ) {
 
-	$attribute_string=' ';
+	$attribute_string = ' ';
 
 	if ( count( $attribute_array ) > 1 ) {
 		return $attribute_string;
 	}
 
-	foreach( $attribute_array as $attribute_key => $attribute_value ) {
+	foreach ( $attribute_array as $attribute_key => $attribute_value ) {
 		if ( 'string' === gettype( $attribute_value ) ) {
 			$attribute_string .= $attribute_key . '="' . $attribute_value . '" ';
 		}
@@ -282,4 +288,3 @@ function ess_array_to_html_attribute( $attribute_array=array()) {
 
 	return $attribute_string;
 }
-

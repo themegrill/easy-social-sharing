@@ -34,7 +34,6 @@ class ESS_AJAX {
 		// easy_social_sharing_EVENT => nopriv
 		$ajax_events = array(
 			'update_single_share'          => true,
-			'get_shares_count'             => true,
 			'get_all_network_shares_count' => true,
 			'get_total_counts'             => true,
 			'rated'                        => false,
