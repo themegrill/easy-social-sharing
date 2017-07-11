@@ -55,7 +55,10 @@ class ESS_Settings_General extends ESS_Settings_Page {
 				'type'     => 'multiselect',
 				'class'    => 'ess-enhanced-select',
 				'css'      => 'width: 450px;',
-				'default'  => '',
+				'default'  => array(
+					'inline',
+					'sidebar'
+				),
 				'desc_tip' => true,
 				'options'  => ess_get_allowed_screen_locations(),
 				'custom_attributes' => array(
