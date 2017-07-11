@@ -573,14 +573,17 @@ jQuery(document).ready(function ( $ ) {
 }(jQuery));
 function get_network_data ( network_name, total_count ) {
 
-	debugger;
 	var network_data = easy_social_sharing_params.network_data;
 
 	if ( network_data[ network_name ] !== undefined && network_data[ network_name ] !== "undefined" ) {
 
-		if ( parseInt(network_data[ network_name ].network_count, 2) < parseInt(total_count, 2) ) {
+		total_count = ( typeof total_count === 'string' ) ? parseInt(total_count) : total_count;
 
-			return parseInt(total_count, 2);
+		var network_count_number = ( typeof network_data[ network_name ].network_count === 'string' ) ? parseInt(network_data[ network_name ].network_count): network_data[ network_name ].network_count;
+
+		if ( network_count_number < total_count ) {
+
+			return total_count;
 		}
 
 	}
