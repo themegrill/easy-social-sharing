@@ -1,19 +1,19 @@
-# Copyright (C) 2016 ThemeGrill
-# This file is distributed under the same license as the Easy Social Sharing Pro package.
+# Copyright (C) 2017 ThemeGrill
+# This file is distributed under the same license as the Easy Social Sharing package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Social Sharing Pro 1.2.1\n"
+"Project-Id-Version: Easy Social Sharing 1.3.0\n"
 "Report-Msgid-Bugs-To: themegrill@gmail.com\n"
-"POT-Creation-Date: 2016-07-13 10:38:53+00:00\n"
+"POT-Creation-Date: 2017-07-11 11:18:36+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
-"X-Generator: grunt-wp-i18n 0.5.4\n"
+"X-Generator: grunt-wp-i18n1.0.0\n"
 
-#: easy-social-sharing-pro.php:69 easy-social-sharing-pro.php:77
+#: easy-social-sharing.php:69 easy-social-sharing.php:77
 #: includes/admin/class-ess-admin-notices.php:107
 msgid "Cheatin&#8217; huh?"
 msgstr ""
@@ -23,31 +23,31 @@ msgid "Share Location"
 msgstr ""
 
 #: includes/admin/class-ess-admin-notices.php:103
-#: includes/admin/class-ess-admin-settings.php:68
+#: includes/admin/class-ess-admin-settings.php:69
 msgid "Action failed. Please refresh the page and retry."
 msgstr ""
 
-#: includes/admin/class-ess-admin-settings.php:76
+#: includes/admin/class-ess-admin-settings.php:77
 msgid "Your settings have been saved."
 msgstr ""
 
-#: includes/admin/class-ess-admin-settings.php:131
+#: includes/admin/class-ess-admin-settings.php:132
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
-#: includes/admin/class-ess-admin-settings.php:508
+#: includes/admin/class-ess-admin-settings.php:521
 msgid "Choose Screens&hellip;"
 msgstr ""
 
-#: includes/admin/class-ess-admin-settings.php:508
+#: includes/admin/class-ess-admin-settings.php:521
 msgid "Screen"
 msgstr ""
 
-#: includes/admin/class-ess-admin-settings.php:516
+#: includes/admin/class-ess-admin-settings.php:529
 msgid "Select all"
 msgstr ""
 
-#: includes/admin/class-ess-admin-settings.php:516
+#: includes/admin/class-ess-admin-settings.php:529
 msgid "Select none"
 msgstr ""
 
@@ -55,7 +55,7 @@ msgstr ""
 msgid "Easy Social Sharing Settings"
 msgstr ""
 
-#: includes/admin/class-ess-admin.php:60
+#. Plugin Name of the plugin/theme
 msgid "Easy Social Sharing"
 msgstr ""
 
@@ -91,12 +91,23 @@ msgstr ""
 msgid "No locations"
 msgstr ""
 
+#: includes/admin/settings/class-ess-settings-analytics.php:64
+msgid "Analytics"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-analytics.php:83
+msgid "This feature is available in pro version of Easy Social Sharing plugin."
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-analytics.php:84
+msgid "Buy pro"
+msgstr ""
+
 #: includes/admin/settings/class-ess-settings-general.php:29
 msgid "General"
 msgstr ""
 
 #: includes/admin/settings/class-ess-settings-general.php:45
-#: includes/functions-ess-extends.php:54 includes/functions-ess-extends.php:139
 msgid "General Options"
 msgstr ""
 
@@ -110,63 +121,63 @@ msgid ""
 "display to."
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:62
+#: includes/admin/settings/class-ess-settings-general.php:65
 msgid "Choose Locations&hellip;"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:67
+#: includes/admin/settings/class-ess-settings-general.php:70
 msgid "Custom Screen(s)"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:68
+#: includes/admin/settings/class-ess-settings-general.php:71
 msgid "This option lets you limit which screens you are willing to display to."
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:76
+#: includes/admin/settings/class-ess-settings-general.php:79
 msgid "Enable to All Screens"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:77
+#: includes/admin/settings/class-ess-settings-general.php:80
 msgid "Enable to All Screens, Except For&hellip;"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:78
+#: includes/admin/settings/class-ess-settings-general.php:81
 msgid "Enable to Specific Screens"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:83
+#: includes/admin/settings/class-ess-settings-general.php:86
 msgid "Allow All Screens, Except For&hellip;"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:92
+#: includes/admin/settings/class-ess-settings-general.php:95
 msgid "Allow Specific Screens"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:101
+#: includes/admin/settings/class-ess-settings-general.php:104
 msgid "Front Page Display"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:102
+#: includes/admin/settings/class-ess-settings-general.php:105
 msgid "Enable share icons on front page display"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:110
+#: includes/admin/settings/class-ess-settings-general.php:113
 msgid "Mobile Behaviours"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:111
+#: includes/admin/settings/class-ess-settings-general.php:114
 msgid "Enable share on mobile or handheld devices"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:119
+#: includes/admin/settings/class-ess-settings-general.php:122
 msgid "Reset WordPress Loop"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:120
+#: includes/admin/settings/class-ess-settings-general.php:123
 msgid "Enable to reset the post data after a custom query"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-general.php:124
+#: includes/admin/settings/class-ess-settings-general.php:127
 msgid "Enable the option if the plugin does not detect permalinks properly."
 msgstr ""
 
@@ -186,189 +197,192 @@ msgstr ""
 msgid "Sidebar Layout"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:82
-#: includes/admin/settings/class-ess-settings-layouts.php:173
-#: includes/functions-ess-extends.php:79 includes/functions-ess-extends.php:164
+#: includes/admin/settings/class-ess-settings-layouts.php:85
+#: includes/admin/settings/class-ess-settings-layouts.php:216
 msgid "Style Options"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:85
-#: includes/admin/settings/class-ess-settings-layouts.php:176
-#: includes/functions-ess-extends.php:82 includes/functions-ess-extends.php:167
+#: includes/admin/settings/class-ess-settings-layouts.php:91
+#: includes/admin/settings/class-ess-settings-layouts.php:222
 msgid "Icon Shape"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:86
-#: includes/admin/settings/class-ess-settings-layouts.php:177
-#: includes/functions-ess-extends.php:83 includes/functions-ess-extends.php:168
+#: includes/admin/settings/class-ess-settings-layouts.php:92
+#: includes/admin/settings/class-ess-settings-layouts.php:223
 msgid "This controls which icon shape is shown for this layout."
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:94
-#: includes/admin/settings/class-ess-settings-layouts.php:185
-#: includes/functions-ess-extends.php:91 includes/functions-ess-extends.php:176
+#: includes/admin/settings/class-ess-settings-layouts.php:100
+#: includes/admin/settings/class-ess-settings-layouts.php:231
 msgid "Square"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:95
-#: includes/admin/settings/class-ess-settings-layouts.php:186
-#: includes/functions-ess-extends.php:92 includes/functions-ess-extends.php:177
+#: includes/admin/settings/class-ess-settings-layouts.php:101
+#: includes/admin/settings/class-ess-settings-layouts.php:126
+msgid "Rectangular Rounded"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:102
+#: includes/admin/settings/class-ess-settings-layouts.php:232
 msgid "Rounded"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:100
-msgid "Choose Layout"
-msgstr ""
-
-#: includes/admin/settings/class-ess-settings-layouts.php:101
-msgid "This option lets you choose the desire layouts."
-msgstr ""
-
-#: includes/admin/settings/class-ess-settings-layouts.php:109
-msgid "Layout One"
-msgstr ""
-
-#: includes/admin/settings/class-ess-settings-layouts.php:110
-msgid "Layout Two"
+#: includes/admin/settings/class-ess-settings-layouts.php:103
+msgid "Diagonal"
 msgstr ""
 
 #: includes/admin/settings/class-ess-settings-layouts.php:115
-#: includes/functions-ess-extends.php:182
-msgid "Choose Location"
+msgid "Choose Layout"
 msgstr ""
 
 #: includes/admin/settings/class-ess-settings-layouts.php:116
-#: includes/functions-ess-extends.php:183
-msgid "This option lets you choose the icons location."
+msgid "This option lets you choose the desire layouts."
 msgstr ""
 
 #: includes/admin/settings/class-ess-settings-layouts.php:124
-msgid "Above content"
+msgid "Layout One"
 msgstr ""
 
 #: includes/admin/settings/class-ess-settings-layouts.php:125
+msgid "Layout Two"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:127
+msgid "Rectangular"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:128
+msgid "Rounded Edge(circular)"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:129
+msgid "Text Only"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:143
+msgid "Choose Location"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:144
+msgid "This option lets you choose the icons location."
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:152
+msgid "Above content"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:153
 msgid "Below content"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:126
+#: includes/admin/settings/class-ess-settings-layouts.php:154
 msgid "Above &amp; below content"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:132
-#: includes/admin/settings/class-ess-settings-layouts.php:207
-#: includes/functions-ess-extends.php:98 includes/functions-ess-extends.php:198
+#: includes/admin/settings/class-ess-settings-layouts.php:161
+#: includes/admin/settings/class-ess-settings-layouts.php:264
 msgid "Share Options"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:135
-#: includes/admin/settings/class-ess-settings-layouts.php:210
-#: includes/functions-ess-extends.php:101
-#: includes/functions-ess-extends.php:201
+#: includes/admin/settings/class-ess-settings-layouts.php:167
+#: includes/admin/settings/class-ess-settings-layouts.php:270
 msgid "Share Visibility"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:136
-#: includes/functions-ess-extends.php:102
-#: includes/functions-ess-extends.php:202
+#: includes/admin/settings/class-ess-settings-layouts.php:168
 msgid "Enable networks label"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:137
-#: includes/functions-ess-extends.php:103
-#: includes/functions-ess-extends.php:203
+#: includes/admin/settings/class-ess-settings-layouts.php:169
 msgid "Allows users to view specific social networks label."
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:146
-#: includes/admin/settings/class-ess-settings-layouts.php:211
-#: includes/functions-ess-extends.php:112
-#: includes/functions-ess-extends.php:212
+#: includes/admin/settings/class-ess-settings-layouts.php:178
+#: includes/admin/settings/class-ess-settings-layouts.php:271
 msgid "Enable social share counts"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:147
-#: includes/admin/settings/class-ess-settings-layouts.php:212
-#: includes/functions-ess-extends.php:113
-#: includes/functions-ess-extends.php:213
+#: includes/admin/settings/class-ess-settings-layouts.php:179
+#: includes/admin/settings/class-ess-settings-layouts.php:272
 msgid "Allows users to view specific social network share counts."
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:156
-#: includes/admin/settings/class-ess-settings-layouts.php:231
-#: includes/functions-ess-extends.php:122
-#: includes/functions-ess-extends.php:222
-msgid "Show All Networks"
+#: includes/admin/settings/class-ess-settings-layouts.php:188
+#: includes/admin/settings/class-ess-settings-layouts.php:281
+msgid "Display total shares counter"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:157
-#: includes/admin/settings/class-ess-settings-layouts.php:232
-#: includes/functions-ess-extends.php:123
-#: includes/functions-ess-extends.php:223
-msgid "Show \"All Networks\" Button"
-msgstr ""
-
-#: includes/admin/settings/class-ess-settings-layouts.php:161
-#: includes/admin/settings/class-ess-settings-layouts.php:236
-#: includes/functions-ess-extends.php:127
-#: includes/functions-ess-extends.php:227
-msgid "Allows users to select and share from all available social networks."
-msgstr ""
-
-#: includes/admin/settings/class-ess-settings-layouts.php:191
-msgid "Layout Orientation"
-msgstr ""
-
-#: includes/admin/settings/class-ess-settings-layouts.php:192
-msgid "This option lets you choose the layout position."
-msgstr ""
-
-#: includes/admin/settings/class-ess-settings-layouts.php:200
-msgid "Left"
-msgstr ""
-
-#: includes/admin/settings/class-ess-settings-layouts.php:201
-msgid "Right"
-msgstr ""
-
-#: includes/admin/settings/class-ess-settings-layouts.php:221
-msgid "Display total shares button"
-msgstr ""
-
-#: includes/admin/settings/class-ess-settings-layouts.php:223
+#: includes/admin/settings/class-ess-settings-layouts.php:190
+#: includes/admin/settings/class-ess-settings-layouts.php:283
 msgid "Allows users to view total shares performed in all social networks."
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:248
+#: includes/admin/settings/class-ess-settings-layouts.php:198
+#: includes/admin/settings/class-ess-settings-layouts.php:291
+msgid "Show All Networks"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:199
+#: includes/admin/settings/class-ess-settings-layouts.php:292
+msgid "Show \"All Networks\" Button"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:203
+#: includes/admin/settings/class-ess-settings-layouts.php:296
+msgid "Allows users to select and share from all available social networks."
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:233
+msgid "Curved Edge"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:243
+msgid "Layout Orientation"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:244
+msgid "This option lets you choose the layout position."
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:252
+msgid "Left"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:253
+msgid "Right"
+msgstr ""
+
+#: includes/admin/settings/class-ess-settings-layouts.php:309
 msgid "Layout Color Options"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:248
+#: includes/admin/settings/class-ess-settings-layouts.php:310
 msgid ""
 "This section lets you customize the background color for share icons, by "
 "default network colors will be used."
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:251
+#: includes/admin/settings/class-ess-settings-layouts.php:316
 msgid "Custom Colors"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:252
+#: includes/admin/settings/class-ess-settings-layouts.php:317
 msgid "Enable custom colors"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:260
+#: includes/admin/settings/class-ess-settings-layouts.php:325
 msgid "Background Color"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:261
+#: includes/admin/settings/class-ess-settings-layouts.php:326
 msgid "The background color for share buttons. Default <code>#557da1</code>."
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:271
+#: includes/admin/settings/class-ess-settings-layouts.php:336
 msgid "Hover Background Color"
 msgstr ""
 
-#: includes/admin/settings/class-ess-settings-layouts.php:272
+#: includes/admin/settings/class-ess-settings-layouts.php:337
 msgid "The hover background color for share buttons. Default <code>#99a7b7</code>."
 msgstr ""
 
@@ -402,6 +416,10 @@ msgstr ""
 
 #: includes/admin/settings/class-ess-settings-network.php:67
 msgid "Username"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "ThemeGrill"
 msgstr ""
 
 #: includes/admin/settings/class-ess-settings-network.php:74
@@ -516,7 +534,7 @@ msgstr ""
 msgid "Save changes to preview API Support to this network"
 msgstr ""
 
-#: includes/admin/views/html-admin-settings.php:33
+#: includes/admin/views/html-admin-settings.php:44
 msgid "Save Changes"
 msgstr ""
 
@@ -558,178 +576,136 @@ msgstr ""
 msgid "Taking a while? Click here to run it now."
 msgstr ""
 
-#: includes/class-ess-frontend-scripts.php:267
+#: includes/class-ess-frontend-scripts.php:297
 msgid "No images found."
 msgstr ""
 
-#: includes/class-ess-install.php:321
+#: includes/class-ess-install.php:339
 msgid "View Easy Social Sharing Settings"
 msgstr ""
 
-#: includes/class-ess-install.php:321
+#: includes/class-ess-install.php:339
 msgid "Settings"
 msgstr ""
 
-#: includes/class-ess-install.php:336
+#: includes/class-ess-install.php:354
 msgid "View Social Sharing Documentation"
 msgstr ""
 
-#: includes/class-ess-install.php:336
+#: includes/class-ess-install.php:354
 msgid "Docs"
 msgstr ""
 
-#: includes/class-ess-install.php:337
+#: includes/class-ess-install.php:355
 msgid "Visit Free Customer Support Forum"
 msgstr ""
 
-#: includes/class-ess-install.php:337
+#: includes/class-ess-install.php:355
 msgid "Free Support"
 msgstr ""
 
-#: includes/class-ess-social-networks.php:87
-#: includes/functions-ess-core.php:152
+#: includes/class-ess-social-networks.php:90
+#: includes/functions-ess-core.php:155
 msgid "Facebook"
 msgstr ""
 
-#: includes/functions-ess-core.php:69
+#: includes/functions-ess-core.php:70
 msgid "Post"
 msgstr ""
 
-#: includes/functions-ess-core.php:70
+#: includes/functions-ess-core.php:71
 msgid "Page"
 msgstr ""
 
-#: includes/functions-ess-core.php:129
+#: includes/functions-ess-core.php:131
 msgid "Inline"
 msgstr ""
 
-#: includes/functions-ess-core.php:130
+#: includes/functions-ess-core.php:132
 msgid "Sidebar"
 msgstr ""
 
-#: includes/functions-ess-core.php:153
+#: includes/functions-ess-core.php:156
 msgid "Twitter"
 msgstr ""
 
-#: includes/functions-ess-core.php:154
+#: includes/functions-ess-core.php:157
 msgid "Google+"
 msgstr ""
 
-#: includes/functions-ess-core.php:155
+#: includes/functions-ess-core.php:158
 msgid "LinkedIn"
 msgstr ""
 
-#: includes/functions-ess-core.php:156
+#: includes/functions-ess-core.php:159
 msgid "Pinterest"
 msgstr ""
 
-#: includes/functions-ess-core.php:157
+#: includes/functions-ess-core.php:160
 msgid "StumbleUpon"
 msgstr ""
 
-#: includes/functions-ess-core.php:158
+#: includes/functions-ess-core.php:161
 msgid "Tumblr"
 msgstr ""
 
-#: includes/functions-ess-core.php:159
+#: includes/functions-ess-core.php:162
 msgid "Blogger"
 msgstr ""
 
-#: includes/functions-ess-core.php:160
+#: includes/functions-ess-core.php:163
 msgid "Myspace"
 msgstr ""
 
-#: includes/functions-ess-core.php:161
+#: includes/functions-ess-core.php:164
 msgid "Delicious"
 msgstr ""
 
-#: includes/functions-ess-core.php:163
+#: includes/functions-ess-core.php:166
 msgid "Yahoo Mail"
 msgstr ""
 
-#: includes/functions-ess-core.php:164
+#: includes/functions-ess-core.php:167
 msgid "Gmail"
 msgstr ""
 
-#: includes/functions-ess-core.php:166
+#: includes/functions-ess-core.php:169
 msgid "Newsvine"
 msgstr ""
 
-#: includes/functions-ess-core.php:169
+#: includes/functions-ess-core.php:172
 msgid "Digg"
 msgstr ""
 
-#: includes/functions-ess-core.php:171
+#: includes/functions-ess-core.php:174
 msgid "FriendFeed"
 msgstr ""
 
-#: includes/functions-ess-core.php:172
+#: includes/functions-ess-core.php:175
 msgid "Buffer"
 msgstr ""
 
-#: includes/functions-ess-core.php:173
+#: includes/functions-ess-core.php:176
 msgid "Reddit"
 msgstr ""
 
-#: includes/functions-ess-core.php:174
+#: includes/functions-ess-core.php:177
 msgid "VKontakte"
-msgstr ""
-
-#: includes/functions-ess-extends.php:27
-msgid "Popup"
-msgstr ""
-
-#: includes/functions-ess-extends.php:28
-msgid "Fly In"
-msgstr ""
-
-#: includes/functions-ess-extends.php:39
-msgid "Popup Layout"
-msgstr ""
-
-#: includes/functions-ess-extends.php:40
-msgid "Fly In Layout"
-msgstr ""
-
-#: includes/functions-ess-extends.php:57 includes/functions-ess-extends.php:142
-msgid "Title"
-msgstr ""
-
-#: includes/functions-ess-extends.php:62 includes/functions-ess-extends.php:147
-#: includes/views/html-view-layout-sidebar.php:67
-msgid "Share This"
-msgstr ""
-
-#: includes/functions-ess-extends.php:68 includes/functions-ess-extends.php:153
-msgid "Message"
-msgstr ""
-
-#: includes/functions-ess-extends.php:71 includes/functions-ess-extends.php:156
-msgid "Share this post with your friends!"
-msgstr ""
-
-#: includes/functions-ess-extends.php:191
-msgid "Bottom Left"
-msgstr ""
-
-#: includes/functions-ess-extends.php:192
-msgid "Bottom Right"
 msgstr ""
 
 #: includes/libraries/wp-background-process.php:422
 msgid "Every %d Minutes"
 msgstr ""
 
-#: includes/views/html-view-layout-sidebar.php:38
+#: includes/views/html-view-layout-flyin.php:97
+#: includes/views/html-view-layout-inline.php:66
+#: includes/views/html-view-layout-popup.php:93
+#: includes/views/html-view-layout-sidebar.php:42
 msgid "Shares"
 msgstr ""
 
-#: includes/views/html-view-tmpl-modal-picker.php:12
+#: includes/views/html-view-tmpl-modal-picker.php:13
 msgid "Pin It on Pinterest"
-msgstr ""
-
-#. Plugin Name of the plugin/theme
-msgid "Easy Social Sharing Pro"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -742,70 +718,56 @@ msgid ""
 "popular social share buttons."
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "ThemeGrill"
-msgstr ""
-
 #. Author URI of the plugin/theme
 msgid "http://themegrill.com"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:73
-msgctxt "enhanced select"
-msgid "One result is available, press enter to select it."
-msgstr ""
-
-#: includes/admin/class-ess-admin-assets.php:74
-msgctxt "enhanced select"
-msgid "%qty% results are available, use up and down arrow keys to navigate."
-msgstr ""
-
-#: includes/admin/class-ess-admin-assets.php:75
+#: includes/admin/class-ess-admin-assets.php:77
 msgctxt "enhanced select"
 msgid "No matches found"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:76
+#: includes/admin/class-ess-admin-assets.php:78
 msgctxt "enhanced select"
 msgid "Loading failed"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:77
+#: includes/admin/class-ess-admin-assets.php:79
 msgctxt "enhanced select"
 msgid "Please enter 1 or more characters"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:78
+#: includes/admin/class-ess-admin-assets.php:80
 msgctxt "enhanced select"
 msgid "Please enter %qty% or more characters"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:79
+#: includes/admin/class-ess-admin-assets.php:81
 msgctxt "enhanced select"
 msgid "Please delete 1 character"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:80
+#: includes/admin/class-ess-admin-assets.php:82
 msgctxt "enhanced select"
 msgid "Please delete %qty% characters"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:81
+#: includes/admin/class-ess-admin-assets.php:83
 msgctxt "enhanced select"
 msgid "You can only select 1 item"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:82
+#: includes/admin/class-ess-admin-assets.php:84
 msgctxt "enhanced select"
 msgid "You can only select %qty% items"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:83
+#: includes/admin/class-ess-admin-assets.php:85
 msgctxt "enhanced select"
 msgid "Loading more results&hellip;"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:84
+#: includes/admin/class-ess-admin-assets.php:86
 msgctxt "enhanced select"
 msgid "Searching&hellip;"
 msgstr ""

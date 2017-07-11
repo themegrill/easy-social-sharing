@@ -55,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="view">
 				<strong>{{ data.formatted_network_name }}</strong>
 				<div class="row-actions">
-					<a class="ess-social-network-edit" href="#"><?php _e( 'Edit', 'woocommerce' ); ?></a> | <a href="#" class="ess-social-network-delete"><?php _e( 'Remove', 'easy-social-sharing' ); ?></a>
+					<a class="ess-social-network-edit" href="#"><?php _e( 'Edit', 'easy-social-sharing' ); ?></a> | <a href="#" class="ess-social-network-delete"><?php _e( 'Remove', 'easy-social-sharing' ); ?></a>
 				</div>
 			</div>
 			<div class="edit">
@@ -67,7 +67,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					?>
 				</select>
 				<div class="row-actions">
-					<a class="ess-social-network-cancel-edit" href="#"><?php _e( 'Cancel changes', 'woocommerce' ); ?></a>
+					<a class="ess-social-network-cancel-edit" href="#"><?php _e( 'Cancel changes', 'easy-social-sharing' ); ?></a>
 				</div>
 			</div>
 		</td>
