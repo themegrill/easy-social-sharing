@@ -62,8 +62,6 @@ function ess_update_130_social_statics() {
 
 	global $wpdb;
 
-	$wpdb->select( 'wordpress_fresh' );
-
 	$network_keys_array = array_keys( $network_list );
 
 	$network_keys = array_map( function ( $val ) {
@@ -112,9 +110,6 @@ function ess_update_130_social_statics() {
 	}
 
 
-	$wpdb->select( 'wordpress' );
-
-
 	$loop_index = 1;
 
 	foreach ( $statistics_data as $single_statistics ) {
@@ -122,7 +117,7 @@ function ess_update_130_social_statics() {
 		$count_number = intval( $single_statistics->latest_count );
 
 		for ( $i = 1; $i <= $count_number; $i ++ ) {
-			
+
 			$statistics_data_single = (array) $single_statistics;
 
 			$statistics_data_single['ip_address'] = $loop_index;
