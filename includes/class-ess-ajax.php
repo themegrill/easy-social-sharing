@@ -121,9 +121,9 @@ class ESS_AJAX {
 		$status = ESS_Social_Networks::update_single_network_count( $network_name, $post_id, $ip_info, $ip_address, $share_location, $page_url, $network_share_count );
 
 		if ( $status ) {
-			wp_send_json_success( array( "total_cout" => $network_share_count, 'network_name' => $network_name ) );
+			wp_send_json_success( array( "total_count" => $network_share_count, 'network_name' => $network_name ) );
 		} else {
-			wp_send_json_error( array( "total_cout" => $network_share_count, 'network_name' => $network_name ) );
+			wp_send_json_error( array( "total_count" => $network_share_count, 'network_name' => $network_name ) );
 		}
 	}
 

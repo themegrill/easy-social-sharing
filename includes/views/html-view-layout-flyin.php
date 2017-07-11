@@ -105,7 +105,7 @@ $social_networks = ess_get_core_supported_social_networks();
 								<span class="ess-social-networks-info-wrapper">
 									<span class="fly-networks socicon ess-icon socicon-<?php echo esc_attr( $network ); ?>" data-tip="<?php echo ess_sanitize_tooltip( $network_desc[ $network ] ); ?>"></span>
 									<?php if ( 'yes' == get_option( 'easy_social_sharing_flyin_enable_share_counts' ) ) : ?>
-										<span class="ess-social-count">0</span>
+										<span class="ess-social-count"></span>
 									<?php endif; ?>
 									<?php if ( 'yes' == get_option( 'easy_social_sharing_flyin_enable_networks_label' ) ) : ?>
 										<span class="ess-text"><?php echo esc_html( $social_networks[ $network ] ); ?></span>

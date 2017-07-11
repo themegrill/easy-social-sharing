@@ -52,7 +52,7 @@ class ESS_Frontend_Scripts {
 	 */
 	public static function get_styles() {
 		return apply_filters( 'easy_social_sharing_enqueue_styles', array(
-			'fontawesome' => array(
+			'fontawesome'                 => array(
 				'src'     => 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css',
 				'deps'    => '',
 				'version' => ESS_VERSION,
@@ -70,6 +70,7 @@ class ESS_Frontend_Scripts {
 
 	/**
 	 * Return protocol relative asset URL.
+	 *
 	 * @param string $path
 	 */
 	private static function get_asset_url( $path ) {
@@ -81,6 +82,7 @@ class ESS_Frontend_Scripts {
 	 *
 	 * @uses   wp_register_script()
 	 * @access private
+	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
@@ -97,6 +99,7 @@ class ESS_Frontend_Scripts {
 	 *
 	 * @uses   wp_enqueue_script()
 	 * @access private
+	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
@@ -115,6 +118,7 @@ class ESS_Frontend_Scripts {
 	 *
 	 * @uses   wp_register_style()
 	 * @access private
+	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
@@ -136,6 +140,7 @@ class ESS_Frontend_Scripts {
 	 *
 	 * @uses   wp_enqueue_style()
 	 * @access private
+	 *
 	 * @param  string   $handle
 	 * @param  string   $path
 	 * @param  string[] $deps
@@ -163,7 +168,11 @@ class ESS_Frontend_Scripts {
 		self::register_script( 'jquery-idletimer', $assets_path . 'js/jquery-idletimer/idle-timer' . $suffix . '.js', array( 'jquery' ), '1.1.0' );
 
 		// Global frontend scripts
-		self::enqueue_script( 'easy-social-sharing', $frontend_script_path . 'easy-social-sharing' . $suffix . '.js', array( 'jquery', 'jquery-tiptip', 'jquery-idletimer' ) );
+		self::enqueue_script( 'easy-social-sharing', $frontend_script_path . 'easy-social-sharing' . $suffix . '.js', array(
+			'jquery',
+			'jquery-tiptip',
+			'jquery-idletimer'
+		) );
 
 		// CSS Styles
 		if ( $enqueue_styles = self::get_styles() ) {
@@ -183,6 +192,7 @@ class ESS_Frontend_Scripts {
 	 *
 	 * @uses   wp_add_inline_style()
 	 * @access private
+	 *
 	 * @param  string $default_color
 	 */
 	private static function create_inline_styles() {
@@ -254,6 +264,7 @@ class ESS_Frontend_Scripts {
 	 * Localize a ESS script once.
 	 * @access private
 	 * @since  2.3.0 this needs less wp_script_is() calls due to https://core.trac.wordpress.org/ticket/28404 being added in WP 4.0.
+	 *
 	 * @param  string $handle
 	 */
 	private static function localize_script( $handle ) {
@@ -273,6 +284,7 @@ class ESS_Frontend_Scripts {
 	 * @return array|bool
 	 */
 	private static function get_script_data( $handle ) {
+
 		switch ( $handle ) {
 			case 'easy-social-sharing' :
 				return array(
@@ -283,6 +295,7 @@ class ESS_Frontend_Scripts {
 					'all_network_shares_count_nonce' => wp_create_nonce( 'all-network-shares-count' ),
 					'total_counts_nonce'             => wp_create_nonce( 'total-counts' ),
 					'i18n_no_img_message'            => esc_attr__( 'No images found.', 'easy-social-sharing' ),
+					'network_data'                   => self::get_ess_registered_networks_data()
 				);
 				break;
 		}
@@ -297,6 +310,23 @@ class ESS_Frontend_Scripts {
 		foreach ( self::$scripts as $handle ) {
 			self::localize_script( $handle );
 		}
+	}
+
+	public static function get_ess_registered_networks_data() {
+
+		global $wpdb;
+
+		$network_data_object = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}ess_social_networks" );
+
+		$network_data = array();
+
+		foreach ( $network_data_object as $network ) {
+
+			$network_data[ $network->network_name ] = $network;
+
+		}
+
+		return ( $network_data );
 	}
 }
 

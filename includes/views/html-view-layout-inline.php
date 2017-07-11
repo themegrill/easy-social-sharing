@@ -50,7 +50,7 @@ $social_networks = ess_get_core_supported_social_networks();
 							<span class="ess-text"><?php echo esc_html( $social_networks[ $network ] ); ?></span>
 						<?php endif; ?>
 						<?php if ( 'yes' == get_option( 'easy_social_sharing_inline_enable_share_counts' ) ) : ?>
-							<span class="ess-social-count">0</span>
+							<span class="ess-social-count"></span>
 						<?php endif; ?>
 					</a>
 				</li>
