@@ -259,9 +259,9 @@ CREATE TABLE {$wpdb->prefix}ess_social_statistics (
   sharing_date datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   post_id bigint(20) NOT NULL,
   ip_info text NOT NULL,
-  ip_address varchar(200) NOT NULL,
-  share_location varchar(50) NOT NULL,
-  share_url text ,
+  ip_address VARCHAR(200) NOT NULL,
+  share_location VARCHAR(50) NOT NULL,
+  share_url text NULL,
   latest_count  bigint(20) NOT NULL,
   PRIMARY KEY (id)
 ) $charset_collate;
