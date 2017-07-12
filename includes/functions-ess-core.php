@@ -288,3 +288,26 @@ function ess_array_to_html_attribute( $attribute_array = array() ) {
 
 	return $attribute_string;
 }
+
+
+/**
+ * Return default networks
+ *
+ *
+ * @return array
+ */
+function ess_get_default_networks() {
+
+
+	return apply_filters(
+		'easy_social_sharing_default_social_networks',
+		array(
+			'facebook',
+			'twitter',
+			'linkedin',
+			'googleplus',
+			'stumbleupon',
+			'pinterest',
+		) );
+
+}
