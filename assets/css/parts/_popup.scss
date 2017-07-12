@@ -40,8 +40,8 @@
 			position: absolute;
 			right: -10px;
 			top: -10px;
-			width: 20px;
-			height: 20px;
+			width: 25px;
+			height: 25px;
 			border: 2px solid #252525;
 			text-align: center;
 			border-radius: 50%;
@@ -50,6 +50,10 @@
 			background: #fff;
 			transition: all 0.35s;
 			cursor: pointer;
+
+			.fa {
+				line-height: 2;
+			}
 
 			&:hover {
 				background: #c92619;

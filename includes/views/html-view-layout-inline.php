@@ -63,7 +63,7 @@ $social_networks = ess_get_core_supported_social_networks();
 				</li>
 			<?php endif; ?>
 			<?php if ( 'yes' == get_option( 'easy_social_sharing_inline_enable_total_shares' ) ) : ?>
-				<li class="ess-total-share ess-social-networks" data-post-id="<?php echo esc_attr( $post_id ); ?>"><div class="ess-total-share-block"><i class="fa fa-share-alt"></i><span class="ess-total-count"></span><span><?php esc_html_e( 'Shares', 'easy-social-sharing' ); ?></span></div></li>
+				<li class="ess-total-share ess-social-networks" data-post-id="<?php echo esc_attr( $post_id ); ?>"><div class="ess-total-share-block"><span class="ess-total-count"></span><span><?php esc_html_e( 'Shares', 'easy-social-sharing' ); ?></span></div></li>
 			<?php endif; ?>
 		</ul>
 	</div>

@@ -8,6 +8,12 @@
 		left: 0;
 		top: 50%;
 
+		.ess-total-share {
+			.ess-total-count {
+				display: block;
+			}
+		}
+
 		.ess-social-network-lists {
 			.ess-social-networks {
 				float: none;
@@ -27,6 +33,14 @@
 					.ess-icon {
 						width: 60px;
 					}
+				}
+
+				.ess-social-count {
+					display: block;
+					width: 100%;
+					line-height: 1;
+					height: 8px;
+					font-size: 12px;
 				}
 			}
 		}

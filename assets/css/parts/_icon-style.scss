@@ -12,9 +12,11 @@
 		font-size: 12px;
 		padding: 5px;
 		max-width: 48px;
+		display: table;
 
-		.ess-total-count {
-			display: block;
+		.ess-total-share-block {
+			display: table-cell;
+			vertical-align: middle;
 		}
 	}
 
@@ -58,14 +60,6 @@
 				top: 0;
 				width: 42px;
 				color: #fff;
-			}
-			
-			.ess-social-count {
-				display: block;
-				width: 100%;
-				line-height: 1;
-				height: 8px;
-				font-size: 12px;
 			}
 			
 			.ess-text,
