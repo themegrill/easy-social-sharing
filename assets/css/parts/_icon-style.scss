@@ -9,7 +9,7 @@
 		list-style-type: none;
 		padding: 0;
 		margin: 0;
-
+		
 		.ess-social-networks {
 			float: left;
 			vertical-align: top;
@@ -26,7 +26,7 @@
 				height: 100%;
 				text-decoration: none;
 			}
-
+			
 			.ess-icon,
 			.ess-text,
 			.ess-social-count,
@@ -47,16 +47,24 @@
 				color: #fff;
 			}
 			
+			.ess-social-count {
+				display: block;
+				width: 100%;
+				line-height: 1;
+				height: 8px;
+				font-size: 12px;
+			}
+			
 			.ess-text,
 			.ess-social-count,
 			.ess-all-networks-button {
 				color: #fff;
 			}
-
+			
 			.ess-all-networks-button {
 				padding: 0 15px;
 			}
-
+			
 			&.ess-all-networks,
 			&.ess-all-networks--popup {
 				.ess-icon {
@@ -64,462 +72,462 @@
 					color: #252525;
 				}
 			}
-
+			
 			/*----------  Background Color Styles  ----------*/
 			&.ess-modelmayhem {
 				background-color: $social-modelmayhem;
 			}
-
+			
 			&.ess-mixcloud {
 				background-color: $social-mixcloud;
 			}
-
+			
 			&.ess-drupal {
 				background-color: $social-drupal;
 			}
-
+			
 			&.ess-swarm {
 				background-color: $social-swarm;
 			}
-
+			
 			&.ess-istock {
 				background-color: $social-istock;
 			}
-
+			
 			&.ess-yammer {
 				background-color: $social-yammer;
 			}
-
+			
 			&.ess-ello {
 				background-color: $social-ello;
 			}
-
+			
 			&.ess-stackoverflow {
 				background-color: $social-stackoverflow;
 			}
-
+			
 			&.ess-persona {
 				background-color: $social-persona;
 			}
-
+			
 			&.ess-triplej {
 				background-color: $social-triplej;
 			}
-
+			
 			&.ess-houzz {
 				background-color: $social-houzz;
 			}
-
+			
 			&.ess-rss {
 				background-color: $social-rss;
 			}
-
+			
 			&.ess-paypal {
 				background-color: $social-paypal;
 			}
-
+			
 			&.ess-odnoklassniki {
 				background-color: $social-odnoklassniki;
 			}
-
+			
 			&.ess-airbnb {
 				background-color: $social-airbnb;
 			}
-
+			
 			&.ess-periscope {
 				background-color: $social-periscope;
 			}
-
+			
 			&.ess-outlook {
 				background-color: $social-outlook;
 			}
-
+			
 			&.ess-coderwall {
 				background-color: $social-coderwall;
 			}
-
+			
 			&.ess-tripadvisor {
 				background-color: $social-tripadvisor;
 			}
-
+			
 			&.ess-appnet {
 				background-color: $social-appnet;
 			}
-
+			
 			&.ess-goodreads {
 				background-color: $social-goodreads;
 			}
-
+			
 			&.ess-tripit {
 				background-color: $social-tripit;
 			}
-
+			
 			&.ess-lanyrd {
 				background-color: $social-lanyrd;
 			}
-
+			
 			&.ess-slideshare {
 				background-color: $social-slideshare;
 			}
-
+			
 			&.ess-buffer {
 				background-color: $social-buffer;
 			}
-
+			
 			&.ess-disqus {
 				background-color: $social-disqus;
 			}
-
+			
 			&.ess-vkontakte {
 				background-color: $social-vkontakte;
 			}
-
+			
 			&.ess-whatsapp {
 				background-color: $social-whatsapp;
 			}
-
+			
 			&.ess-patreon {
 				background-color: $social-patreon;
 			}
-
+			
 			&.ess-storehouse {
 				background-color: $social-storehouse;
 			}
-
+			
 			&.ess-pocket {
 				background-color: $social-pocket;
 			}
-
+			
 			&.ess-mail {
 				background-color: $social-mail;
 			}
-
+			
 			&.ess-gmail {
 				background-color: $social-gmail;
 			}
-
+			
 			&.ess-blogger {
 				background-color: $social-blogger;
 			}
-
+			
 			&.ess-technorati {
 				background-color: $social-technorati;
 			}
-
+			
 			&.ess-reddit {
 				background-color: $social-reddit;
 			}
-
+			
 			&.ess-dribbble {
 				background-color: $social-dribbble;
 			}
-
+			
 			&.ess-stumbleupon {
 				background-color: $social-stumbleupon;
 			}
-
+			
 			&.ess-digg {
 				background-color: $social-digg;
 			}
-
+			
 			&.ess-envato {
 				background-color: $social-envato;
 			}
-
+			
 			&.ess-behance {
 				background-color: $social-behance;
 			}
-
+			
 			&.ess-delicious {
 				background-color: $social-delicious;
 			}
-
+			
 			&.ess-deviantart {
 				background-color: $social-deviantart;
 			}
-
+			
 			&.ess-forrst {
 				background-color: $social-forrst;
 			}
-
+			
 			&.ess-play {
 				background-color: $social-play;
 			}
-
+			
 			&.ess-zerply {
 				background-color: $social-zerply;
 			}
-
+			
 			&.ess-wikipedia {
 				background-color: $social-wikipedia;
 			}
-
+			
 			&.ess-apple {
 				background-color: $social-apple;
 			}
-
+			
 			&.ess-flattr {
 				background-color: $social-flattr;
 			}
-
+			
 			&.ess-github {
 				background-color: $social-github;
 			}
-
+			
 			&.ess-renren {
 				background-color: $social-renren;
 			}
-
+			
 			&.ess-friendfeed {
 				background-color: $social-friendfeed;
 			}
-
+			
 			&.ess-newsvine {
 				background-color: $social-newsvine;
 			}
-
+			
 			&.ess-identica {
 				background-color: $social-identica;
 			}
-
+			
 			&.ess-bebo {
 				background-color: $social-bebo;
 			}
-
+			
 			&.ess-zynga {
 				background-color: $social-zynga;
 			}
-
+			
 			&.ess-steam {
 				background-color: $social-steam;
 			}
-
+			
 			&.ess-xbox {
 				background-color: $social-xbox;
 			}
-
+			
 			&.ess-windows {
 				background-color: $social-windows;
 			}
-
+			
 			&.ess-qq {
 				background-color: $social-qq;
 			}
-
+			
 			&.ess-douban {
 				background-color: $social-douban;
 			}
-
+			
 			&.ess-meetup {
 				background-color: $social-meetup;
 			}
-
+			
 			&.ess-playstation {
 				background-color: $social-playstation;
 			}
-
+			
 			&.ess-android {
 				background-color: $social-android;
 			}
-
+			
 			&.ess-snapchat {
 				background-color: $social-snapchat;
 			}
-
+			
 			&.ess-twitter {
 				background-color: $social-twitter;
 			}
-
+			
 			&.ess-facebook {
 				background-color: $social-facebook;
 			}
-
+			
 			&.ess-googleplus {
 				background-color: $social-googleplus;
 			}
-
+			
 			&.ess-pinterest {
 				background-color: $social-pinterest;
 			}
-
+			
 			&.ess-foursquare {
 				background-color: $social-foursquare;
 			}
-
+			
 			&.ess-yahoo,
 			&.ess-yahoomail {	
 				background-color: $social-skype;
 			}
-
+			
 			&.ess-yelp {
 				background-color: $social-yelp;
 			}
-
+			
 			&.ess-feedburner {
 				background-color: $social-feedburner;
 			}
-
+			
 			&.ess-linkedin {
 				background-color: $social-linkedin;
 			}
-
+			
 			&.ess-viadeo {
 				background-color: $social-viadeo;
 			}
-
+			
 			&.ess-xing {
 				background-color: $social-xing;
 			}
-
+			
 			&.ess-myspace {
 				background-color: $social-myspace;
 			}
-
+			
 			&.ess-soundcloud {
 				background-color: $social-soundcloud;
 			}
-
+			
 			&.ess-spotify {
 				background-color: $social-spotify;
 			}
-
+			
 			&.ess-grooveshark {
 				background-color: $social-grooveshark;
 			}
-
+			
 			&.ess-lastfm {
 				background-color: $social-lastfm;
 			}
-
+			
 			&.ess-youtube {
 				background-color: $social-youtube;
 			}
-
+			
 			&.ess-vimeo {
 				background-color: $social-vimeo;
 			}
-
+			
 			&.ess-dailymotion {
 				background-color: $social-dailymotion;
 			}
-
+			
 			&.ess-vine {
 				background-color: $social-vine;
 			}
-
+			
 			&.ess-flickr {
 				background-color: $social-flickr;
 			}
-
+			
 			&.ess-500px {
 				background-color: $social-500px;
 			}
-
+			
 			&.ess-instagram {
 				background-color: $social-instagram;
 			}
-
+			
 			&.ess-wordpress {
 				background-color: $social-wordpress;
 			}
-
+			
 			&.ess-tumblr {
 				background-color: $social-tumblr;
 			}
-
+			
 			&.ess-twitch {
 				background-color: $social-twitch;
 			}
-
+			
 			&.ess-8tracks {
 				background-color: $social-8tracks;
 			}
-
+			
 			&.ess-amazon {
 				background-color: $social-amazon;
 			}
-
+			
 			&.ess-icq {
 				background-color: $social-icq;
 			}
-
+			
 			&.ess-smugmug {
 				background-color: $social-smugmug;
 			}
-
+			
 			&.ess-ravelry {
 				background-color: $social-ravelry;
 			}
-
+			
 			&.ess-weibo {
 				background-color: $social-weibo;
 			}
-
+			
 			&.ess-baidu {
 				background-color: $social-baidu;
 			}
-
+			
 			&.ess-angellist {
 				background-color: $social-angellist;
 			}
-
+			
 			&.ess-ebay {
 				background-color: $social-ebay;
 			}
-
+			
 			&.ess-imdb {
 				background-color: $social-imdb;
 			}
-
+			
 			&.ess-stayfriends {
 				background-color: $social-stayfriends;
 			}
-
+			
 			&.ess-residentadvisor {
 				background-color: $social-residentadvisor;
 			}
-
+			
 			&.ess-google {
 				background-color: $social-google;
 			}
-
+			
 			&.ess-yandex {
 				background-color: $social-yandex;
 			}
-
+			
 			&.ess-sharethis {
 				background-color: $social-sharethis;
 			}
-
+			
 			&.ess-bandcamp {
 				background-color: $social-bandcamp;
 			}
-
+			
 			&.ess-itunes {
 				background-color: $social-itunes;
 			}
-
+			
 			&.ess-deezer {
 				background-color: $social-deezer;
 			}
-
+			
 			&.ess-medium {
 				background-color: $social-medium;
 			}
-
+			
 			&.ess-telegra {
 				background-color: #0088cc;
 			}
-
+			
 			&.ess-openid {
 				background-color: $social-openid;
 			}
-
+			
 			&.ess-amplement {
 				background-color: $social-amplement;
 			}
 		}
-
+		
 	}
 }
 
