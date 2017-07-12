@@ -35,7 +35,6 @@ class ESS_AJAX {
 		$ajax_events = array(
 			'update_single_share'          => true,
 			'get_all_network_shares_count' => true,
-			'get_total_counts'             => true,
 			'rated'                        => false,
 			'social_networks_save_changes' => false,
 		);
@@ -84,21 +83,22 @@ class ESS_AJAX {
 			$page_url = '' != $page_url ? $page_url : get_permalink();
 		}
 
-		$supported_networks = ess_get_core_supported_social_networks();
+		$supported_networks      = ess_get_core_supported_social_networks();
 		$all_network_share_count = array();
-		$client_ip_object = self::get_client_ip_object();
-		$ip_address = isset( $client_ip_object->ip ) ? trim( $client_ip_object->ip ) : null;
+		$client_ip_object        = self::get_client_ip_object();
+		$ip_address              = isset( $client_ip_object->ip ) ? trim( $client_ip_object->ip ) : null;
+
+		$cache_option = ess_handle_cache();
 
 		foreach ( $supported_networks as $network_name => $network_label ) {
 			$network_statistics = ESS_Social_Networks::_get_network_statistics( $network_name, $page_url );
-			$last_share_time = isset( $network_statistics['sharing_date'] ) ? $network_statistics['sharing_date'] : null;
-
+			$last_share_time    = isset( $network_statistics['sharing_date'] ) ? $network_statistics['sharing_date'] : null;
 			if ( ! in_array( $network_name, ess_get_share_networks_with_api_support() ) ) {
 				$all_network_share_count[ $network_name ] = ( ESS_Social_Networks::get_network_count_for_non_api_support( $network_name, $page_url, $ip_address ) );
-			} elseif ( ess_check_cached_counts( $last_share_time ) && in_array( $network_name, ess_get_share_networks_with_api_support() ) ) {
+			} elseif ( ess_check_cached_counts( $cache_option ) && in_array( $network_name, ess_get_share_networks_with_api_support() ) ) {
 				$all_network_share_count[ $network_name ] = isset( $network_statistics['latest_count'] ) ? $network_statistics['latest_count'] : 0;
 			} else {
-				$share_counts_received = ess_get_shares_number( $network_name, $page_url, $post_id );
+				$share_counts_received                    = ess_get_shares_number( $network_name, $page_url, $post_id );
 				$all_network_share_count[ $network_name ] = $share_counts_received === false ? 0 : $share_counts_received;
 			}
 		}
@@ -108,12 +108,12 @@ class ESS_AJAX {
 
 	public static function update_and_get_share_count( $network_name, $post_id, $page_url, $share_location, $is_ajax_request = false ) {
 		$client_ip_object = self::get_client_ip_object();
-		$ip_address = isset( $client_ip_object->ip ) ? trim( $client_ip_object->ip ) : null;
-		$ip_info = wp_json_encode( $client_ip_object );
+		$ip_address       = isset( $client_ip_object->ip ) ? trim( $client_ip_object->ip ) : null;
+		$ip_info          = wp_json_encode( $client_ip_object );
 
 		if ( in_array( $network_name, ess_get_share_networks_with_api_support() ) ) {
 			$share_counts_received = ess_get_shares_number( $network_name, $page_url, $post_id );
-			$network_share_count = $share_counts_received === false ? 0 : $share_counts_received;
+			$network_share_count   = $share_counts_received === false ? 0 : $share_counts_received;
 		} else {
 			$network_share_count = ( ESS_Social_Networks::get_network_count_for_non_api_support( $network_name, $page_url, $ip_address ) );
 		}
@@ -128,7 +128,7 @@ class ESS_AJAX {
 	}
 
 	public static function get_client_ip_object() {
-		$url = "http://ipinfo.io/json";
+		$url      = "http://ipinfo.io/json";
 		$response = wp_remote_get( $url );
 
 		if ( is_wp_error( $response ) || 200 != wp_remote_retrieve_response_code( $response ) ) {
@@ -140,92 +140,6 @@ class ESS_AJAX {
 		return json_decode( $body );
 	}
 
-	/**
-	 * Get shares count for specified networks.
-	 */
-	public static function get_shares_count( $network = '', $min_count = 0, $post_id = '', $page_url = '', $is_ajax_request = true, $click_update = false ) {
-		ob_start();
-
-		if ( $is_ajax_request ) {
-			check_ajax_referer( 'shares-count', 'security' );
-
-			$post_id   = intval( $_POST['post_id'] );
-			$min_count = intval( $_POST['min_count'] );
-			$network   = ess_clean( $_POST['network'] );
-			$page_url  = ess_clean( $_POST['page_url'] );
-		} else {
-			$post_id  = '' != $post_id ? $post_id : get_the_ID();
-			$page_url = '' != $page_url ? $page_url : get_permalink();
-		}
-
-		$share_counts_array = ( $social_shares = get_post_meta( $post_id, '_ess_social_shares_' . $network, true ) ) ? $social_shares : array();
-
-		if ( ess_check_cached_counts( $post_id, $network, $click_update ) ) {
-			$share_counts = (int) $share_counts_array['counts'];
-		} else {
-			$share_counts_received = ess_get_shares_number( $network, $page_url, $post_id );
-
-			if ( in_array( $share_counts_received, array( false, 0 ) ) ) {
-				$share_counts                            = isset( $share_counts_array['counts'] ) ? (int) $share_counts_array['counts'] : 0;
-				$share_counts_temp_array['force_update'] = true;
-
-				if ( $click_update && ! in_array( $network, ess_get_share_networks_with_api_support() ) ) {
-					$share_counts ++;
-				}
-			} else {
-				$share_counts                            = (int) $share_counts_received;
-				$share_counts_temp_array['force_update'] = false;
-			}
-
-			if ( $click_update && in_array( $network, ess_get_share_networks_with_api_support() ) ) {
-				$share_counts_temp_array['force_update'] = true;
-			}
-
-			$share_counts_temp_array['counts']   = (int) $share_counts;
-			$share_counts_temp_array['last_upd'] = date( 'Y-m-d H:i:s' );
-
-			update_post_meta( $post_id, '_ess_social_shares_' . $network, $share_counts_temp_array );
-		}
-
-		$share_counts_output = '';
-
-		if ( $share_counts >= $min_count ) {
-			$share_counts_output = esc_html( ess_format_compact_number( (int) $share_counts, $network ) );
-		}
-
-		if ( ! $is_ajax_request ) {
-			return $share_counts_output;
-		} else {
-			die( $share_counts_output );
-		}
-	}
-
-	/**
-	 * Get total counts for all listed networks.
-	 */
-	public static function get_total_counts() {
-		ob_start();
-
-		check_ajax_referer( 'total-counts', 'security' );
-
-		$post_id  = intval( $_POST['post_id'] );
-		$page_url = ess_clean( $_POST['page_url'] );
-
-		if ( ! $post_id ) {
-			die();
-		}
-
-		$total_shares     = 0;
-		$allowed_networks = ESS_Social_Networks::get_network_names();
-
-		foreach ( $allowed_networks as $network ) {
-			$total_shares += self::get_shares_count( $network, 0, $post_id, $page_url, false );
-		}
-
-		$total_shares = ess_format_compact_number( (int) $total_shares );
-
-		wp_send_json_success( array( 'totals' => $total_shares ) );
-	}
 
 	/**
 	 * Triggered when clicking the rating footer.
