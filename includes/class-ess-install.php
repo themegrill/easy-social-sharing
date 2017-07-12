@@ -47,7 +47,10 @@ class ESS_Install {
 		add_action( 'init', array( __CLASS__, 'check_version' ), 5 );
 		add_action( 'init', array( __CLASS__, 'init_background_updater' ), 5 );
 		add_action( 'admin_init', array( __CLASS__, 'install_actions' ) );
-		add_action( 'in_plugin_update_message-easy-social-sharing/easy-social-sharing.php', array( __CLASS__, 'in_plugin_update_message' ) );
+		add_action( 'in_plugin_update_message-easy-social-sharing/easy-social-sharing.php', array(
+			__CLASS__,
+			'in_plugin_update_message'
+		) );
 		add_filter( 'plugin_action_links_' . ESS_PLUGIN_BASENAME, array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
 	}
@@ -107,6 +110,7 @@ class ESS_Install {
 
 		self::create_options();
 		self::create_tables();
+		self::add_default_networks();
 
 		// Queue upgrades wizard
 		$current_ess_version = get_option( 'easy_social_sharing_version', null );
@@ -179,6 +183,7 @@ class ESS_Install {
 
 	/**
 	 * Update DB version to current.
+	 *
 	 * @param string $version
 	 */
 	public static function update_db_version( $version = null ) {
@@ -276,6 +281,7 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
   UNIQUE KEY network_name (network_name(64))
 ) $charset_collate;
 		";
+
 		return $tables;
 	}
 
@@ -299,8 +305,10 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 
 	/**
 	 * Parse update notice from readme file
+	 *
 	 * @param  string $content
 	 * @param  string $new_version
+	 *
 	 * @return string
 	 */
 	private static function parse_update_notice( $content, $new_version ) {
@@ -331,7 +339,9 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 
 	/**
 	 * Display action links in the Plugins list table.
+	 *
 	 * @param  array $actions
+	 *
 	 * @return array
 	 */
 	public static function plugin_action_links( $actions ) {
@@ -344,8 +354,10 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 
 	/**
 	 * Display row meta in the Plugins list table.
-	 * @param  array $plugin_meta
+	 *
+	 * @param  array  $plugin_meta
 	 * @param  string $plugin_file
+	 *
 	 * @return array
 	 */
 	public static function plugin_row_meta( $plugin_meta, $plugin_file ) {
@@ -359,6 +371,42 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 		}
 
 		return (array) $plugin_meta;
+	}
+
+
+	public static function add_default_networks() {
+
+		global $wpdb;
+
+		$all_network_data = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM  {$wpdb->prefix} . ess_social_networks WHERE network_id > %d", 0 ) );
+
+		if ( count( $all_network_data ) > 0 ) {
+
+			return;
+		}
+
+		$default_networks = ess_get_default_networks();
+
+		$api_supported_networks = ess_get_share_networks_with_api_support();
+
+		foreach ( $default_networks as $network_index => $network ) {
+
+			$is_api_support = in_array( $network, $api_supported_networks ) ? 1 : 0;
+
+			$network_data = array(
+
+				'network_name'   => $network,
+				'network_desc'   => ucwords( $network ),
+				'network_order'  => ( $network_index + 1 ),
+				'network_count'  => 0,
+				'is_api_support' => $is_api_support
+
+			);
+			
+			$wpdb->insert( $wpdb->prefix . 'ess_social_networks', $network_data );
+		}
+
+
 	}
 }
 
