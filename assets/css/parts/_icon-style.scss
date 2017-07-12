@@ -11,12 +11,21 @@
 		text-align: center;
 		font-size: 12px;
 		padding: 5px;
-		max-width: 48px;
+		max-width: 47px;
 		display: table;
 
 		.ess-total-share-block {
 			display: table-cell;
 			vertical-align: middle;
+
+			span {
+				display: block;
+			}
+		}
+
+		&::before {
+			content: '';
+			display: none;
 		}
 	}
 
