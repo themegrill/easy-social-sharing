@@ -110,7 +110,7 @@ class ESS_Install {
 
 		self::create_options();
 		self::create_tables();
-		self::add_default_networks();
+		self::create_networks();
 
 		// Queue upgrades wizard
 		$current_ess_version = get_option( 'easy_social_sharing_version', null );
@@ -373,40 +373,33 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 		return (array) $plugin_meta;
 	}
 
-
-	public static function add_default_networks() {
-
+	/**
+	 * Create default networks
+	 */
+	public static function create_networks() {
 		global $wpdb;
 
 		$all_network_data = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM  {$wpdb->prefix} . ess_social_networks WHERE network_id > %d", 0 ) );
 
 		if ( count( $all_network_data ) > 0 ) {
-
 			return;
 		}
 
-		$default_networks = ess_get_default_networks();
-
+		$default_networks       = ess_get_default_networks();
 		$api_supported_networks = ess_get_share_networks_with_api_support();
 
 		foreach ( $default_networks as $network_index => $network ) {
-
 			$is_api_support = in_array( $network, $api_supported_networks ) ? 1 : 0;
-
-			$network_data = array(
-
+			$network_data   = array(
 				'network_name'   => $network,
 				'network_desc'   => ucwords( $network ),
 				'network_order'  => ( $network_index + 1 ),
 				'network_count'  => 0,
-				'is_api_support' => $is_api_support
-
+				'is_api_support' => $is_api_support,
 			);
-			
+
 			$wpdb->insert( $wpdb->prefix . 'ess_social_networks', $network_data );
 		}
-
-
 	}
 }
 
