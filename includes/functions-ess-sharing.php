@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Cached share networks counts.
  *
- * @param  int $post_id
+ * @param  int    $post_id
  * @param  string $network
  * @param  string $last_share_time
  * @param  string $last_share_ip
@@ -29,7 +29,7 @@ function ess_check_cached_counts( $last_share_time = null ) {
 	$expiration = 1;
 
 	$is_cached = false;
-	if ( $last_share_time == null ) {
+	if ( $last_share_time == null || $last_share_time == - 1 ) {
 
 		return $is_cached;
 	}
@@ -43,12 +43,33 @@ function ess_check_cached_counts( $last_share_time = null ) {
 	return $is_cached;
 }
 
+function ess_handle_cache() {
+
+	$option = get_option( 'ess-social-network-cache-date', - 1 );
+
+	if ( $option === - 1 ) {
+
+		update_option( 'ess-social-network-cache-date', date( 'Y-m-d H:i:s' ) );
+
+	} else {
+
+		if ( ! ess_check_cached_counts( $option ) ) {
+
+			update_option( 'ess-social-network-cache-date', date( 'Y-m-d H:i:s' ) );
+
+
+		}
+	}
+
+	return $option;
+}
+
 /**
  * Social share networks with Link.
  *
  * @param  string $network
  * @param  string $media_url
- * @param  int $i
+ * @param  int    $i
  * @param  string $post_link
  * @param  string $post_title
  *
@@ -165,7 +186,7 @@ function ess_share_link( $network, $media_url = '', $i = 0, $post_link = '', $po
  * Get shares number.
  */
 function ess_get_shares_number( $social_network, $url, $post_id = '' ) {
-	$result  = false;
+	$result = false;
 
 	$raw_url = rawurlencode( $url );
 

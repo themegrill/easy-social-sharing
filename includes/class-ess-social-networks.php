@@ -250,6 +250,7 @@ class ESS_Social_Networks {
 
 	}
 
+
 	/**
 	 * Get social network count.
 	 * @since  1.2.0
