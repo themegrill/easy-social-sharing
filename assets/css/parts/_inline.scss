@@ -20,6 +20,17 @@
 				}
 			}
 
+			.ess-total-share-block {
+				padding: 0 5px;
+
+				.fa {
+					padding-right: 5px;
+				}
+				.ess-share-text {
+					display: none;
+				}
+			}
+
 			/*----------  Icons Style  ----------*/
 			&.ess-rounded-icon {
 				.ess-social-network-lists {
