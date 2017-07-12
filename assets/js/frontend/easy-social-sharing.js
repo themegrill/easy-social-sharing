@@ -94,12 +94,20 @@ jQuery(document).ready(function ( $ ) {
 	}
 
 	function setInlineNetwork ( response ) {
+		var total_share = 0;
+
 		$.each($('#ess-wrap-inline-networks').find('ul.ess-social-network-lists').find('li'), function () {
 			var network_name = $(this).find('a').attr('data-social-name');
+
+
 			if ( typeof response[ network_name ] !== 'undefined' ) {
+				total_share += parseInt(response[ network_name ], 0);
 				$(this).find('.ess-social-count').html(get_network_data(network_name, formatNumber(response[ network_name ])));
 			}
 		});
+
+		$('.ess-inline-networks-container').find('.ess-total-share').find('.ess-total-count').html(formatNumber(total_share));
+
 	}
 
 	function setSidebarNetwork ( response ) {
@@ -419,7 +427,7 @@ jQuery(document).ready(function ( $ ) {
 	};
 }(jQuery));
 function get_network_data ( network_name, total_count ) {
-	var network_data = easy_social_sharing_params.network_data;
+ 	var network_data = easy_social_sharing_params.network_data;
 	if ( network_data[ network_name ] !== undefined && network_data[ network_name ] !== 'undefined' ) {
 		total_count = typeof total_count === 'string' ? parseInt(total_count, 0) : total_count;
 		var network_count_number = typeof network_data[ network_name ].network_count === 'string' ? parseInt(network_data[ network_name ].network_count, 0) : network_data[ network_name ].network_count;
