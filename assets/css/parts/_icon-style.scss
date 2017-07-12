@@ -4,7 +4,20 @@
 
 #ess-main-wrapper {
 	/*----------  Default Styles  ----------*/
-	
+	.ess-total-share {
+		background: #252525;
+		height: 42px;
+		color: #fff;
+		text-align: center;
+		font-size: 12px;
+		padding: 5px;
+		max-width: 48px;
+
+		.ess-total-count {
+			display: block;
+		}
+	}
+
 	.ess-social-network-lists {
 		list-style-type: none;
 		padding: 0;
