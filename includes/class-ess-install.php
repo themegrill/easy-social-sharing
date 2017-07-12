@@ -379,7 +379,7 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 	public static function create_networks() {
 		global $wpdb;
 
-		$all_network_data = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM  {$wpdb->prefix} . ess_social_networks WHERE network_id > %d", 0 ) );
+		$all_network_data = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM  {$wpdb->prefix}ess_social_networks WHERE network_id > %d", 0 ) );
 
 		if ( count( $all_network_data ) > 0 ) {
 			return;
