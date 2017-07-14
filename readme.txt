@@ -26,13 +26,16 @@ Check the docs at https://docs.themegrill.com/easy-social-sharing/
 ### Features And Options:
 * Simple, Clean and Beautiful Buttons
 * Responsive Design
+* Backend Live Preview
+* Caching for instant load
 * Multiple Button Designs
 * 18 Popular Social Network Buttons
 * Social Share Count
 * Ajax count update
 * Floating Social Buttons
 * Inline Social Buttons
-* Rectangular and Circular Design
+* 7 Design Layouts
+* 4 Icons Layouts
 * Easy Dashboard Settings
 
 == Installation ==
@@ -53,10 +56,14 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 
 == Screenshots ==
 
-1. Available Social Buttons
-2. Social Share with Count
-3. General Option
-4. Layout Option
+1. General
+2. Social Networks
+3. Inline Layout
+4. Floating Sidebar Layout
+5. All Networks
+6. Sidebar Layout Frontend
+7. Inline Layout Frontend
+8. Inline Layout 2 Frontend
 
 1. Easy Social Sharing.
 
