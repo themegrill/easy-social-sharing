@@ -235,7 +235,6 @@ function ess_get_core_supported_social_networks_config() {
 	$all_network_configuration['vkontakte']['hoverBackgroundColor']   = "#92AAC4";
 
 	return $all_network_configuration;
-
 }
 
 /**
@@ -267,13 +266,10 @@ function ess_help_tip( $tip, $allow_html = false ) {
 
 /**
  * Return html attribute from array.
- *
  * @param  array
- *
  * @return string
  */
 function ess_array_to_html_attribute( $attribute_array = array() ) {
-
 	$attribute_string = ' ';
 
 	if ( count( $attribute_array ) > 1 ) {
@@ -289,25 +285,17 @@ function ess_array_to_html_attribute( $attribute_array = array() ) {
 	return $attribute_string;
 }
 
-
 /**
- * Return default networks
- *
- *
+ * Return default networks.
  * @return array
  */
 function ess_get_default_networks() {
-
-
-	return apply_filters(
-		'easy_social_sharing_default_social_networks',
-		array(
-			'facebook',
-			'twitter',
-			'linkedin',
-			'googleplus',
-			'stumbleupon',
-			'pinterest',
-		) );
-
+	return apply_filters( 'easy_social_sharing_default_social_networks', array(
+		'facebook',
+		'twitter',
+		'linkedin',
+		'googleplus',
+		'stumbleupon',
+		'pinterest',
+	) );
 }
