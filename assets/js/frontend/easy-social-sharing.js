@@ -70,7 +70,7 @@ jQuery(document).ready(function ( $ ) {
 		$.each($('.ess-popup-share-wrapper').find('ul.ess-available-networks').find('li'), function () {
 			var network_name = $(this).find('a').attr('data-social-name');
 			if ( typeof response[ network_name ] !== 'undefined' ) {
-				$(this).find('.ess-social-count').html(get_network_data(network_name, formatNumber(response[ network_name ])));
+				$(this).find('.ess-social-count').html(get_network_data(network_name, (response[ network_name ])));
 			}
 		});
 	}
@@ -79,7 +79,7 @@ jQuery(document).ready(function ( $ ) {
 		$.each($('.ess-popup-block-wrapper').find('ul.ess-choosen-networks').find('li'), function () {
 			var network_name = $(this).find('a').attr('data-social-name');
 			if ( typeof response[ network_name ] !== 'undefined' ) {
-				$(this).find('.ess-social-count').html(get_network_data(network_name, formatNumber(response[ network_name ])));
+				$(this).find('.ess-social-count').html(get_network_data(network_name, (response[ network_name ])));
 			}
 		});
 	}
@@ -88,7 +88,7 @@ jQuery(document).ready(function ( $ ) {
 		$.each($('.ess-fly-share-wrapper').find('ul.ess-clear').find('li'), function () {
 			var network_name = $(this).find('a').attr('data-social-name');
 			if ( typeof response[ network_name ] !== 'undefined' ) {
-				$(this).find('.ess-social-count').html(get_network_data(network_name, formatNumber(response[ network_name ])));
+				$(this).find('.ess-social-count').html(get_network_data(network_name, (response[ network_name ])));
 			}
 		});
 	}
@@ -102,7 +102,7 @@ jQuery(document).ready(function ( $ ) {
 
 			if ( typeof response[ network_name ] !== 'undefined' ) {
 				total_share += parseInt(response[ network_name ], 0);
-				$(this).find('.ess-social-count').html(get_network_data(network_name, formatNumber(response[ network_name ])));
+				$(this).find('.ess-social-count').html(get_network_data(network_name, (response[ network_name ])));
 			}
 		});
 
@@ -116,32 +116,10 @@ jQuery(document).ready(function ( $ ) {
 			var network_name = $(this).find('a').attr('data-social-name');
 			if ( typeof response[ network_name ] !== 'undefined' ) {
 				total_share += parseInt(response[ network_name ], 0);
-				$(this).find('.ess-social-count').html(get_network_data(network_name, formatNumber(response[ network_name ])));
+				$(this).find('.ess-social-count').html(get_network_data(network_name, (response[ network_name ])));
 			}
 		});
 		$('.ess-sidebar-icon-count-wrapper').find('.ess-total-share').find('.ess-total-count').html(formatNumber(total_share));
-	}
-
-	function formatNumber ( value ) {
-		value = parseInt(value, 0);
-		var suffixes = [
-			'',
-			'K',
-			'M',
-			'B',
-			'T'
-		];
-
-		if ( 1000 > value ) {
-			return value;
-		}
-		var suffixNum = Math.floor(('' + value).length / 3);
-		var shortValue = suffixNum !== 0 ? value / Math.pow(1000, suffixNum) : value;
-		shortValue = parseFloat(shortValue.toPrecision(2));
-		if ( shortValue % 1 !== 0 ) {
-			shortValue.toFixed(1);
-		}
-		return shortValue + suffixes[ suffixNum ];
 	}
 
 	// Pop-Up Modal
@@ -436,8 +414,51 @@ function get_network_data ( network_name, total_count ) {
 		total_count = typeof total_count === 'string' ? parseInt(total_count, 0) : total_count;
 		var network_count_number = typeof network_data[ network_name ].network_count === 'string' ? parseInt(network_data[ network_name ].network_count, 0) : network_data[ network_name ].network_count;
 		if ( network_count_number < total_count ) {
-			return total_count;
+			return formatNumber(total_count);
 		}
 	}
 	return '';
+}
+function formatNumber ( value ) {
+	value = parseInt(value, 0);
+	var suffixes = [
+		'',
+		'K',
+		'M',
+		'B',
+		'T'
+	];
+	if ( 1000 > value ) {
+
+		return value;
+
+	} else if ( 1000000 > value ) {
+
+		value = parseFloat((value / 1000).toFixed(2), 2);
+
+		return value + suffixes[ 1 ];
+
+	} else if ( 1000000000 > value ) {
+
+		value = parseFloat((value / 1000000).toFixed(2), 2);
+
+		return value + suffixes[ 2 ];
+
+	} else if ( 1000000000 > value ) {
+
+		value = parseFloat((value / 1000000000).toFixed(2), 2);
+
+		return value + suffixes[ 3 ];
+
+	} else if ( 1000000000000 > value ) {
+
+		value = parseFloat((value / 1000000000).toFixed(2), 2);
+
+		return value + suffixes[ 4 ];
+
+	}
+	value = parseFloat((value / 1000000000).toFixed(2), 2);
+
+	return value + suffixes[ 4 ];
+
 }
