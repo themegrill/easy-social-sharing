@@ -120,7 +120,7 @@ class ESS_Admin_Settings {
 	 * Handles the display of the main Social Sharing settings page in admin.
 	 */
 	public static function output() {
-		global $current_section, $current_tab,$ess_preview_class,$default_preview_class;
+		global $current_section, $current_tab;
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
@@ -138,13 +138,6 @@ class ESS_Admin_Settings {
 		// Get current tab/section
 		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( $_GET['tab'] );
 		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( $_REQUEST['section'] );
-
-		$ess_preview_class = array(
-			'inline'  => 'ess-no-network-label ess-inline-top',
-			'sidebar' => 'ess-sidebar-enable ess-no-total-shares',
-			'popup'   => 'ess-popup-layout-wrapper ess-social-visible',
-			'flyin'   => 'ess-fly-layout-wrapper ess-social-visible',
-		);
 
 		// Save settings if data has been posted
 		if ( ! empty( $_POST ) ) {
