@@ -131,7 +131,7 @@ jQuery(document).ready(function ( $ ) {
 			'B',
 			'T'
 		];
-		
+
 		if ( 1000 > value ) {
 			return value;
 		}
