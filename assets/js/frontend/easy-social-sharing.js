@@ -131,6 +131,10 @@ jQuery(document).ready(function ( $ ) {
 			'B',
 			'T'
 		];
+		
+		if ( 1000 > value ) {
+			return value;
+		}
 		var suffixNum = Math.floor(('' + value).length / 3);
 		var shortValue = suffixNum !== 0 ? value / Math.pow(1000, suffixNum) : value;
 		shortValue = parseFloat(shortValue.toPrecision(2));
@@ -364,7 +368,7 @@ jQuery(document).ready(function ( $ ) {
 	}
 });
 (function ( $ ) {
-	$.fn.textTooltip = function ( ) {
+	$.fn.textTooltip = function () {
 		'use strict';
 		return this.each(function () {
 			var $this = this;
@@ -413,13 +417,13 @@ jQuery(document).ready(function ( $ ) {
 				getToolTipPositionLeft: function ( e ) {
 					return e.pageX;
 				},
-				getToolTipMinHeight: function ( ) {
+				getToolTipMinHeight: function () {
 					return '400';
 				},
-				getToolTipMinWidth: function ( ) {
+				getToolTipMinWidth: function () {
 					return '400';
 				},
-				getToolTipArrowPosition: function ( ) {
+				getToolTipArrowPosition: function () {
 				}
 			};
 			toolTip.init();
@@ -427,7 +431,7 @@ jQuery(document).ready(function ( $ ) {
 	};
 }(jQuery));
 function get_network_data ( network_name, total_count ) {
- 	var network_data = easy_social_sharing_params.network_data;
+	var network_data = easy_social_sharing_params.network_data;
 	if ( network_data[ network_name ] !== undefined && network_data[ network_name ] !== 'undefined' ) {
 		total_count = typeof total_count === 'string' ? parseInt(total_count, 0) : total_count;
 		var network_count_number = typeof network_data[ network_name ].network_count === 'string' ? parseInt(network_data[ network_name ].network_count, 0) : network_data[ network_name ].network_count;
