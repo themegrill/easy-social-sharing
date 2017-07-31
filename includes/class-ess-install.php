@@ -47,10 +47,7 @@ class ESS_Install {
 		add_action( 'init', array( __CLASS__, 'check_version' ), 5 );
 		add_action( 'init', array( __CLASS__, 'init_background_updater' ), 5 );
 		add_action( 'admin_init', array( __CLASS__, 'install_actions' ) );
-		add_action( 'in_plugin_update_message-easy-social-sharing/easy-social-sharing.php', array(
-			__CLASS__,
-			'in_plugin_update_message'
-		) );
+		add_action( 'in_plugin_update_message-easy-social-sharing/easy-social-sharing.php', array( __CLASS__, 'in_plugin_update_message' ) );
 		add_filter( 'plugin_action_links_' . ESS_PLUGIN_BASENAME, array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
 	}

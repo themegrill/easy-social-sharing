@@ -57,10 +57,9 @@ function ess_update_120_db_version() {
 }
 
 function ess_update_130_social_statics() {
+	global $wpdb;
 
 	$network_list = ess_get_core_supported_social_networks();
-
-	global $wpdb;
 
 	$network_keys_array = array_keys( $network_list );
 
@@ -74,7 +73,7 @@ function ess_update_130_social_statics() {
 	$meta_data_object = $wpdb->get_results( sprintf( "
 
 		SELECT * FROM " . $wpdb->postmeta . "
-		
+
 		WHERE meta_key IN (%s)", $query_string ) );
 
 
