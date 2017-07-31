@@ -35,9 +35,7 @@ $ess_live_preview_classes = isset( $ess_live_preview_class[ $current_section ] )
 			do_action( 'easy_social_sharing_sections_' . $current_tab );
 			self::show_messages();
 		?>
-		<?php if ( 'layouts' !== $current_tab ) : ?>
-			<?php do_action( 'easy_social_sharing_settings_' . $current_tab ); ?>
-		<?php else : ?>
+		<?php if ( 'layouts' === $current_tab && '' !== $current_section ) : ?>
 			<div class="ess-form-wrapper">
 				<div class="ess-form-inner">
 					<?php do_action( 'easy_social_sharing_settings_' . $current_tab ); ?>
@@ -60,6 +58,8 @@ $ess_live_preview_classes = isset( $ess_live_preview_class[ $current_section ] )
 					</div>
 				</div>
 			</div>
+		<?php else: ?>
+			<?php do_action( 'easy_social_sharing_settings_' . $current_tab ); ?>
 		<?php endif; ?>
 		<p class="submit">
 			<?php if ( ! isset( $GLOBALS['hide_save_button'] ) ) : ?>
