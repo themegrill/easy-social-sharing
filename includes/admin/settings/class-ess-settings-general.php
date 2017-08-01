@@ -74,8 +74,8 @@ class ESS_Settings_General extends ESS_Settings_Page {
 				'desc_tip' => true,
 				'options'  => array(
 					'all'        => __( 'Display on all screens', 'easy-social-sharing' ),
-					'all_except' => __( 'Display on all screens, except For&hellip;', 'easy-social-sharing' ),
-					'specific'   => __( 'Display on Specific Screens', 'easy-social-sharing' )
+					'all_except' => __( 'Display on all screens, except for&hellip;', 'easy-social-sharing' ),
+					'specific'   => __( 'Display on specific screens', 'easy-social-sharing' )
 				)
 			),
 
