@@ -55,10 +55,7 @@ class ESS_Settings_General extends ESS_Settings_Page {
 				'type'     => 'multiselect',
 				'class'    => 'ess-enhanced-select',
 				'css'      => 'width: 450px;',
-				'default'  => array(
-					'inline',
-					'sidebar'
-				),
+				'default'  => array( 'inline', 'sidebar' ),
 				'desc_tip' => true,
 				'options'  => ess_get_allowed_screen_locations(),
 				'custom_attributes' => array(
@@ -76,9 +73,9 @@ class ESS_Settings_General extends ESS_Settings_Page {
 				'css'      => 'min-width: 350px;',
 				'desc_tip' => true,
 				'options'  => array(
-					'all'        => __( 'Enable to All Screens', 'easy-social-sharing' ),
-					'all_except' => __( 'Enable to All Screens, Except For&hellip;', 'easy-social-sharing' ),
-					'specific'   => __( 'Enable to Specific Screens', 'easy-social-sharing' )
+					'all'        => __( 'Display on all screens', 'easy-social-sharing' ),
+					'all_except' => __( 'Display on all screens, except For&hellip;', 'easy-social-sharing' ),
+					'specific'   => __( 'Display on Specific Screens', 'easy-social-sharing' )
 				)
 			),
 
