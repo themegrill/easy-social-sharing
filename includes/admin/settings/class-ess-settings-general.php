@@ -80,7 +80,7 @@ class ESS_Settings_General extends ESS_Settings_Page {
 			),
 
 			array(
-				'title'   => __( 'Allow All Screens, Except For&hellip;', 'easy-social-sharing' ),
+				'title'   => __( 'Display On All Screens, Except For&hellip;', 'easy-social-sharing' ),
 				'desc'    => '',
 				'id'      => 'easy_social_sharing_all_except_screens',
 				'css'     => 'min-width: 350px;',
@@ -89,7 +89,7 @@ class ESS_Settings_General extends ESS_Settings_Page {
 			),
 
 			array(
-				'title'   => __( 'Allow Specific Screens', 'easy-social-sharing' ),
+				'title'   => __( 'Display On Specific Screens', 'easy-social-sharing' ),
 				'desc'    => '',
 				'id'      => 'easy_social_sharing_specific_allowed_screens',
 				'css'     => 'min-width: 350px;',
