@@ -527,13 +527,12 @@ img.help_tip {
 
 #tiptip_holder {
 	display: none;
+	z-index: 8675309;
 	position: absolute;
 	top: 0;
+	/*rtl:ignore*/
 	left: 0;
-	z-index: 9999999;
-}
 
-#tiptip_holder {
 	&.tip_top {
 		padding-bottom: 5px;
 
@@ -578,13 +577,13 @@ img.help_tip {
 #tiptip_content,
 .ess_error_tip {
 	color: #fff;
-	font-size: .8em;
+	font-size: 0.8em;
 	max-width: 150px;
 	background: #333;
 	text-align: center;
 	border-radius: 3px;
-	padding: .618em 1em;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+	padding: 0.618em 1em;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 
 	code {
 		padding: 1px;
@@ -602,6 +601,13 @@ img.help_tip {
 	width: 0;
 }
 
+/*rtl:raw:
+#tiptip_arrow {
+	right: 50%;
+	margin-right: -6px;
+}
+*/
+
 .ess_error_tip {
 	max-width: 20em;
 	line-height: 1.8em;
@@ -611,8 +617,8 @@ img.help_tip {
 	margin: 1.5em 1px 0 -1em;
 	z-index: 9999999;
 
-	&:after {
-		content: "";
+	&::after {
+		content: '';
 		display: block;
 		border: 8px solid #d82223;
 		border-right-color: transparent;
@@ -639,10 +645,15 @@ img.help_tip {
 	vertical-align: middle;
 	width: 16px;
 
-	&:after {
-		@include icon_dashicons( "\f223" );
+	&::after {
+		@include icon_dashicons( '\f223' );
 		cursor: help;
 	}
+}
+
+h2 .easy-social-sharing-help-tip {
+	margin-top: -5px;
+	margin-left: 0.25em;
 }
 
 /**

@@ -96,7 +96,6 @@ module.exports = function( grunt ){
 			}
 		},
 
-
 		// Generate all RTL .css files
 		rtlcss: {
 			generate: {
