@@ -31,7 +31,8 @@ module.exports = function( grunt ){
 			},
 			all: [
 				'<%= dirs.css %>/*.scss',
-				'<%= dirs.css %>/**/*.scss'
+				'<%= dirs.css %>/**/*.scss',
+				'!<%= dirs.css %>/select2.scss'
 			]
 		},
 
