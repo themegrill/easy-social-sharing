@@ -98,6 +98,14 @@ class ESS_Install {
 			return;
 		}
 
+		// Check if we are not already running this routine.
+		if ( 'yes' === get_transient( 'ess_installing' ) ) {
+			return;
+		}
+
+		// If we made it till here nothing is running yet, lets set the transient now.
+		set_transient( 'ess_installing', 'yes', MINUTE_IN_SECONDS * 10 );
+
 		if ( ! defined( 'ESS_INSTALLING' ) ) {
 			define( 'ESS_INSTALLING', true );
 		}
@@ -127,6 +135,8 @@ class ESS_Install {
 		}
 
 		self::update_ess_version();
+
+		delete_transient( 'ess_installing' );
 
 		// Flush rules after install
 		do_action( 'easy_social_sharing_flush_rewrite_rules' );
