@@ -54,14 +54,14 @@ class ESS_AJAX {
 	public static function update_single_share() {
 
 		check_ajax_referer( 'update-share', 'security' );
+	
+		$post_id = isset( $_POST['post_id'] ) ? intval( $_POST['post_id'] ) : '';
 
-		$post_id = intval( $_POST['post_id'] );
+		$network = isset( $_POST['network'] ) ? ess_clean( $_POST['network'] ) : '';
 
-		$network = ess_clean( $_POST['network'] );
+		$page_url = isset( $_POST['page_url'] ) ? ess_clean( $_POST['page_url'] ) : '';
 
-		$page_url = ess_clean( $_POST['page_url'] );
-
-		$location = ess_clean( $_POST['location'] );
+		$location = isset( $_POST['location'] ) ? ess_clean( $_POST['location'] ) : '';
 
 		$share_counts = self::update_and_get_share_count( $network, $post_id, $page_url, $location, false );
 

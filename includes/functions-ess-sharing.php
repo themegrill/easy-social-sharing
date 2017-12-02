@@ -234,17 +234,15 @@ function ess_get_shares_number( $social_network, $url, $post_id = '' ) {
 			}
 
 			if ( 'googleplus' === $social_network ) {
-
-
 				preg_match( '/window.__SSR = {c:(.*),a:\'/', $theme_response, $matches );
 
-				if ( is_array( $matches ) ) {
+				if ( is_array( $matches ) && isset( $matches[1] ) ) {
 					$result = (float) $matches[1];
 				}
 			} else if ( 'vkontakte' === $social_network ) {
 				preg_match( '/VK.Share.count\(1, ([0-9]+)\);/', $theme_response, $matches );
 
-				if ( is_array( $matches ) ) {
+				if ( is_array( $matches ) && isset( $matches[1]) ) {
 					$result = (int) $matches[1];
 				}
 			} else {
