@@ -30,7 +30,7 @@ class ESS_Meta_Box_Location_Data {
 			<p class="form-field">
 
 				<?php $checked = get_post_meta( $post->ID,'enable_disable_ess', true );?>
-				<input type="checkbox" value="yes" id="enable_disable_ess" name="enable_disable_ess" <?php checked( $checked, "yes", true );?>><?php _e( 'Enable Easy Social Sharing', 'easy-social-sharing' ) ?>
+				<input type="checkbox" value="yes" id="enable_disable_ess" name="enable_disable_ess" <?php checked( $checked, "yes", true ); ?>><?php _e( 'Disable Easy Social Sharing', 'easy-social-sharing' ) ?>
 
 				<label for="location_disabled"><?php _e( 'Disable Locations', 'easy-social-sharing' ) ?></label>
 				<span class="description side"><?php _e( 'Select locations to disable on this screen.', 'easy-social-sharing' ); ?></span>
