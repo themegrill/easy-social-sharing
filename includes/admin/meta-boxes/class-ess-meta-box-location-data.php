@@ -29,7 +29,9 @@ class ESS_Meta_Box_Location_Data {
 		<ul class="location_data">
 			<p class="form-field">
 
-				<input type="checkbox" value="yes" name="enable_disable_ess"><?php _e( 'Enable Easy Social Sharing', 'easy-social-sharing' ) ?>
+				<?php $checked = get_post_meta( $post->ID,'enable_disable_ess', true );?>
+				<input type="checkbox" value="yes" id="enable_disable_ess" name="enable_disable_ess" <?php checked( $checked, "yes", true );?>><?php _e( 'Enable Easy Social Sharing', 'easy-social-sharing' ) ?>
+
 				<label for="location_disabled"><?php _e( 'Disable Locations', 'easy-social-sharing' ) ?></label>
 				<span class="description side"><?php _e( 'Select locations to disable on this screen.', 'easy-social-sharing' ); ?></span>
 				<select id="location_disabled" name="location_disabled[]" class="ess-enhanced-select" multiple="multiple" style="width:50%" data-placeholder="<?php esc_attr_e( 'No locations', 'easy-social-sharing' ); ?>">
@@ -54,8 +56,7 @@ class ESS_Meta_Box_Location_Data {
 	 */
 	public static function save( $post_id ) {
 		// Update meta
-
-		echo "<pre>"; print_r($_POST); echo "</pre>"; die;
 		update_post_meta( $post_id, '_ess_location_disabled', isset( $_POST['location_disabled'] ) ? array_map( 'ess_clean', $_POST['location_disabled'] ) : array() );
+		update_post_meta( $post_id, 'enable_disable_ess', isset( $_POST['enable_disable_ess'] ) ? $_POST['enable_disable_ess'] : '');
 	}
 }
