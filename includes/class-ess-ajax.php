@@ -78,7 +78,7 @@ class ESS_AJAX {
 			check_ajax_referer( 'all-network-shares-count', 'security' );
 
 			$page_url = ess_clean( $_POST['page_url'] );
-			$post_id  = isset($_POST['post_id']) ? intval( $_POST['post_id'] ) : '';
+			$post_id  = isset($_POST['post_id']) ? intval( $_POST['post_id'] ) : $post_id;
 		} else {
 			$page_url = '' != $page_url ? $page_url : get_permalink();
 		}
