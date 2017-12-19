@@ -278,7 +278,7 @@
 						changes[ network_id ] = {};
 						changes[ network_id ][ attribute ] = value;
 					}
-				
+
 					model.logChanges( changes );
 				},
 				updateModelOnSort: function( event ) {
