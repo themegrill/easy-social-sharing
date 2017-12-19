@@ -7,7 +7,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+global $post;
+
 $post_id = is_front_page() && ! is_page() ? '-1' : get_the_ID();
+
+if ( 'yes' !== get_post_meta($post->ID, 'enable_disable_ess', true) ) {
+	return;
+}
 
 $counter = 'yes' == get_option( 'easy_social_sharing_inline_enable_share_counts' ) ? 'ess-display-counts' : 'ess-no-display-counts';
 

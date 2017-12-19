@@ -42,7 +42,7 @@ $ess_live_preview_classes = isset( $ess_live_preview_class[ $current_section ] )
 				</div>
 				<div id="ess-main-wrapper" class="ess-setting-preview">
 					<h3 class="ess-setting-preview__title"><?php esc_html_e( 'Live Preview', 'easy-social-sharing' ); ?></h3>
-					<p class="ess-setting-preview__subtitle"><?php esc_html_e( 'See how the social icon will look like.' ); ?></p>
+					<p class="ess-setting-preview__subtitle"><?php esc_html_e( 'See how the social icon will look like.', 'easy-social-sharing' ); ?></p>
 					<div id="ess-wrap-<?php echo $current_section !== '' ? $current_section : 'unknown'; ?>-networks"
 					     class="ess-preview-icon-container ess-<?php echo $current_section !== '' ? $current_section : 'unknown'; ?>-networks-container ess-clear <?php echo $ess_live_preview_classes; ?>">
 						<ul class="ess-social-network-lists">
