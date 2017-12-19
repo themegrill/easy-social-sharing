@@ -41,6 +41,7 @@ class ESS_Admin_Assets {
 		// Register admin styles
 		wp_register_style( 'easy-social-sharing-menu', ESS()->plugin_url() . '/assets/css/menu.css', array(), ESS_VERSION );
 		wp_register_style( 'easy-social-sharing-admin', ESS()->plugin_url() . '/assets/css/admin.css', array(), ESS_VERSION );
+
 		wp_register_style( 'jquery-ui-style', '//code.jquery.com/ui/' . $jquery_version . '/themes/smoothness/jquery-ui.css', array(), $jquery_version );
 
 		// Add RTL support for admin styles
@@ -67,6 +68,7 @@ class ESS_Admin_Assets {
 		$suffix    = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		// Register Scripts
+		wp_register_script( 'metabox-js', ESS()->plugin_url() . '/assets/js/admin/metabox' . $suffix . '.js', array( 'jquery' ), '3.5.4' );
 		wp_register_script( 'easy-social-sharing-admin', ESS()->plugin_url() . '/assets/js/admin/admin' . $suffix . '.js', array( 'jquery', 'jquery-blockui', 'jquery-ui-sortable', 'jquery-ui-widget', 'jquery-ui-core', 'jquery-tiptip' ), ESS_VERSION );
 		wp_register_script( 'jquery-blockui', ESS()->plugin_url() . '/assets/js/jquery-blockui/jquery.blockUI' . $suffix . '.js', array( 'jquery' ), '2.70', true );
 		wp_register_script( 'jquery-tiptip', ESS()->plugin_url() . '/assets/js/jquery-tiptip/jquery.tipTip' . $suffix . '.js', array( 'jquery' ), ESS_VERSION, true );
@@ -104,6 +106,7 @@ class ESS_Admin_Assets {
 		// Meta boxes
 		if ( in_array( $screen_id, ess_get_allowed_screen_types() ) ) {
 			wp_enqueue_script( 'ess-enhanced-select' );
+			wp_enqueue_script( 'metabox-js' );
 		}
 	}
 }
