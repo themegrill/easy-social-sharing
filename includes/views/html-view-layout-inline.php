@@ -7,11 +7,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$post_id = is_front_page() && ! is_page() ? '-1' : get_the_ID();
-
 global $post;
 
-if( get_post_meta($post->ID, 'enable_disable_ess', true) == 'yes'){
+$post_id = is_front_page() && ! is_page() ? '-1' : get_the_ID();
+
+if ( 'yes' !== get_post_meta($post->ID, 'enable_disable_ess', true) ) {
 	return;
 }
 

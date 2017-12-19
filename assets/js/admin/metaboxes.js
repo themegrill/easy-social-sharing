@@ -1,6 +1,4 @@
-
-jQuery(document).ready(function() {
-    
+jQuery(document).ready(function() {   
     if ( jQuery( '#enable_disable_ess' ).is(':checked') ) {
             jQuery( '.ess_metabox_description' ).hide();
         }
@@ -12,5 +10,5 @@ jQuery(document).ready(function() {
         else{
             jQuery( '.ess_metabox_description' ).show();
         }
-    } );
+    });
 });

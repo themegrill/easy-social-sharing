@@ -59,6 +59,6 @@ class ESS_Meta_Box_Location_Data {
 	public static function save( $post_id ) {
 		// Update meta
 		update_post_meta( $post_id, '_ess_location_disabled', isset( $_POST['location_disabled'] ) ? array_map( 'ess_clean', $_POST['location_disabled'] ) : array() );
-		update_post_meta( $post_id, 'enable_disable_ess', isset( $_POST['enable_disable_ess'] ) ? $_POST['enable_disable_ess'] : '');
+		update_post_meta( $post_id, 'enable_disable_ess', isset( $_POST['enable_disable_ess'] ) ? $_POST['enable_disable_ess'] : '' );
 	}
 }

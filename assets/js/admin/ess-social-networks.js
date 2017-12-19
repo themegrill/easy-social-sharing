@@ -123,7 +123,6 @@
 
 					view.initRows();
 				},
-
 				renderRow: function( rowData ) {
 					var view = this;
 					view.$el.append( view.rowTemplate( rowData ) );
@@ -186,6 +185,7 @@
 						} );
 
 					$( '.ess-social-network-blank-state' ).closest( 'tr' ).remove();
+
 					newRow.network_order = 1 + _.max(
 						_.pluck( networks, 'network_order' ),
 						function ( val ) {
@@ -278,7 +278,7 @@
 						changes[ network_id ] = {};
 						changes[ network_id ][ attribute ] = value;
 					}
-					
+				
 					model.logChanges( changes );
 				},
 				updateModelOnSort: function( event ) {
