@@ -65,7 +65,7 @@ class ESS_Settings_Network extends ESS_Settings_Page {
 				'type'        => 'text',
 				'css'         => 'min-width:350px;',
 				'placeholder' => __( 'Username', 'easy-social-sharing' ),
-				'default'     => __( 'ThemeGrill', 'easy-social-sharing' ),
+				'default'     => '',
 				'autoload'    => false,
 				'desc_tip'    => true,
 			),
