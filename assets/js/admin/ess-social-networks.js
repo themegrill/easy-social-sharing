@@ -269,6 +269,8 @@
 					var model      = event.data.view.model,
 						$target    = $( event.target ),
 						network_id = $target.closest( 'tr' ).data( 'id' ),
+						socialClass = $target.closest( 'tr' ).find( '.ess-social-network-name option:selected' ).val(),
+						iconHolder = $target.closest( 'tr' ).find( '.socicon' ),
 						attribute  = $target.data( 'attribute' ),
 						value      = $target.val(),
 						networks   = _.indexBy( model.get( 'networks' ), 'network_id' ),
@@ -278,6 +280,10 @@
 						changes[ network_id ] = {};
 						changes[ network_id ][ attribute ] = value;
 					}
+					iconHolder.removeClass (function (index, className) {
+					    return (className.match (/(^|\s)socicon-\S+/g) || []).join(' ');
+					});
+					iconHolder.addClass( 'socicon-' + socialClass );
 
 					model.logChanges( changes );
 				},
