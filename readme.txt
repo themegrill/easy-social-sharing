@@ -3,7 +3,7 @@ Contributors: ThemeGrill, shivapoudel
 Tags: social share, social media, sharing, brands, social sharing, social network, social media, social icon, social icons, social profile, social share counter, count, social share button, social share count
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -68,6 +68,12 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 1. Easy Social Sharing.
 
 == Changelog ==
+
+= 1.3.1 - xx/03/2018 =
+* Feature - Disable Individual Post Sharing Option
+* Fix - Undefined offset and indexe errors
+* Fix - Change social icon on onChange event
+* Fix - Remove the default Twitter username
 
 = 1.3.0 - 12/07/2017 =
 * Tweak - Mobile bottom share UI.
