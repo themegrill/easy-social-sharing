@@ -69,7 +69,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 
 == Changelog ==
 
-= 1.3.1 - xx/03/2018 =
+= 1.3.1 - 23/03/2018 =
 * Feature - Disable Individual Post Sharing Option
 * Fix - Undefined offset and indexe errors
 * Fix - Change social icon on onChange event
