@@ -5,7 +5,7 @@ jQuery(document).ready(function ( $ ) {
 		// Remove any lingering tooltips
 		$('#tiptip_holder').removeAttr('style');
 		$('#tiptip_arrow').removeAttr('style');
-		$('.socicon').tipTip({
+		$('.inline-networks.socicon').tipTip({
 			'attribute': 'data-tip',
 			'fadeIn': 50,
 			'fadeOut': 50,
