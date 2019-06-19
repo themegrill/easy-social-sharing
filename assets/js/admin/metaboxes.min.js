@@ -1,0 +1,1 @@
+jQuery(document).ready(function(){jQuery("#disable_ess").is(":checked")&&jQuery(".ess_metabox_description").hide(),jQuery("#disable_ess").on("change",function(){jQuery("#disable_ess").is(":checked")?jQuery(".ess_metabox_description").hide():jQuery(".ess_metabox_description").show()})});
