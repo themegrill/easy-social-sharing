@@ -69,6 +69,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 
 == Changelog ==
 
+= TBD =
+* Fix - Tiptip display class selector
+
 = 1.3.1 - 23/03/2018 =
 * Feature - Disable Individual Post Sharing Option
 * Fix - Undefined offset and indexe errors
