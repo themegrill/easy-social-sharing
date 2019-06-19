@@ -1,17 +1,17 @@
-# Copyright (C) 2017 ThemeGrill
+# Copyright (C) 2019 ThemeGrill
 # This file is distributed under the same license as the Easy Social Sharing package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Social Sharing 1.3.0\n"
+"Project-Id-Version: Easy Social Sharing 1.3.1\n"
 "Report-Msgid-Bugs-To: themegrill@gmail.com\n"
-"POT-Creation-Date: 2017-12-19 06:37:18+00:00\n"
+"POT-Creation-Date: 2019-06-19 11:11:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
-"X-Generator: grunt-wp-i18n1.0.1\n"
+"X-Generator: grunt-wp-i18n1.0.2\n"
 
 #: easy-social-sharing.php:69 easy-social-sharing.php:77
 #: includes/admin/class-ess-admin-notices.php:107
@@ -422,10 +422,6 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "ThemeGrill"
-msgstr ""
-
 #: includes/admin/settings/class-ess-settings-network.php:74
 msgid "Facebook App ID"
 msgstr ""
@@ -708,7 +704,7 @@ msgstr ""
 
 #: includes/views/html-view-layout-flyin.php:102
 #: includes/views/html-view-layout-inline.php:72
-#: includes/views/html-view-layout-popup.php:98
+#: includes/views/html-view-layout-popup.php:99
 #: includes/views/html-view-layout-sidebar.php:48
 msgid "Shares"
 msgstr ""
@@ -727,56 +723,60 @@ msgid ""
 "popular social share buttons."
 msgstr ""
 
+#. Author of the plugin/theme
+msgid "ThemeGrill"
+msgstr ""
+
 #. Author URI of the plugin/theme
 msgid "https://themegrill.com"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:79
+#: includes/admin/class-ess-admin-assets.php:78
 msgctxt "enhanced select"
 msgid "No matches found"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:80
+#: includes/admin/class-ess-admin-assets.php:79
 msgctxt "enhanced select"
 msgid "Loading failed"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:81
+#: includes/admin/class-ess-admin-assets.php:80
 msgctxt "enhanced select"
 msgid "Please enter 1 or more characters"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:82
+#: includes/admin/class-ess-admin-assets.php:81
 msgctxt "enhanced select"
 msgid "Please enter %qty% or more characters"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:83
+#: includes/admin/class-ess-admin-assets.php:82
 msgctxt "enhanced select"
 msgid "Please delete 1 character"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:84
+#: includes/admin/class-ess-admin-assets.php:83
 msgctxt "enhanced select"
 msgid "Please delete %qty% characters"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:85
+#: includes/admin/class-ess-admin-assets.php:84
 msgctxt "enhanced select"
 msgid "You can only select 1 item"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:86
+#: includes/admin/class-ess-admin-assets.php:85
 msgctxt "enhanced select"
 msgid "You can only select %qty% items"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:87
+#: includes/admin/class-ess-admin-assets.php:86
 msgctxt "enhanced select"
 msgid "Loading more results&hellip;"
 msgstr ""
 
-#: includes/admin/class-ess-admin-assets.php:88
+#: includes/admin/class-ess-admin-assets.php:87
 msgctxt "enhanced select"
 msgid "Searching&hellip;"
 msgstr ""
