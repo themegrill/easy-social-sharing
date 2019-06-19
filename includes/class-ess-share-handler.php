@@ -24,6 +24,22 @@ class ESS_Share_Handler {
 	public function __construct() {
 		add_action( 'init', array( $this, 'load_templates' ) );
 		add_action( 'wp_footer', array( $this, 'load_modal_tmpl' ) );
+		add_shortcode( 'ess_inline_network', array( $this, 'inline_network_shortcode' ) );
+	}
+
+	public function inline_network_shortcode()
+	{
+		ob_start();
+
+		$network_desc     = ESS_Social_Networks::get_network_desc();
+		$network_count    = ESS_Social_Networks::get_network_count();
+		$allowed_networks = ESS_Social_Networks::get_allowed_networks();
+
+		if ( $allowed_networks ) {
+			include( 'views/html-view-layout-inline.php' );
+		}
+
+		return ob_get_clean();
 	}
 
 	/**
