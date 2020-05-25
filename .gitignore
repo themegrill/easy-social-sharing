@@ -9,6 +9,7 @@ project.properties
 
 # Grunt
 /node_modules/
+/vendor/
 
 # Sass
 .sass-cache/
