@@ -68,6 +68,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 1. Easy Social Sharing.
 
 == Changelog ==
+= TBD =
+* Fix - PHP deprecated notice: Array and string offset access syntax with curly braces is deprecated
+
 = 1.3.2 - 24/04/2019 =
 * Add - Shortcode for inline layout.
 * Fix - Tiptip display class selector
