@@ -21,8 +21,14 @@ jQuery(document).ready(function ( $ ) {
 		if ( window.focus ) {
 			new_window.focus();
 		}
+		addEvent( $(this).data('social-name') );
 		return false;
 	});
+	// Add custom javascript events which can then hook into Google Analytics and others
+	function addEvent ( network ) {
+		var event = new Event('ess_share');
+		document.dispatchEvent(event, { network });
+	}
 	// Update single shares
 	$(document.body).on('click', '.ess-social-share', function () {
 		var $this_el = $(this);
