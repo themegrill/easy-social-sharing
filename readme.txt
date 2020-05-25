@@ -2,8 +2,8 @@
 Contributors: ThemeGrill, shivapoudel
 Tags: social share, social media, sharing, brands, social sharing, social network, social media, social icon, social icons, social profile, social share counter, count, social share button, social share count
 Requires at least: 4.0
-Tested up to: 5.2.2
-Stable tag: 1.3.2
+Tested up to: 5.4
+Stable tag: 1.3.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -68,7 +68,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 1. Easy Social Sharing.
 
 == Changelog ==
-= TBD =
+= 1.3.3 - 25/05/2020 =
 * Fix - PHP deprecated notice: Array and string offset access syntax with curly braces is deprecated
 
 = 1.3.2 - 24/04/2019 =
