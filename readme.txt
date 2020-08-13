@@ -68,6 +68,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 1. Easy Social Sharing.
 
 == Changelog ==
+= TBD =
+* Fix - PHP notice of undefined variable class when displayed the social sharing via shortcode
+
 = 1.3.3 - 25/05/2020 =
 * Fix - PHP deprecated notice: Array and string offset access syntax with curly braces is deprecated
 
