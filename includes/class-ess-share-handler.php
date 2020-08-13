@@ -27,10 +27,15 @@ class ESS_Share_Handler {
 		add_shortcode( 'ess_inline_network', array( $this, 'inline_network_shortcode' ) );
 	}
 
-	public function inline_network_shortcode()
-	{
+	/**
+	 * Output inline shortcode layout.
+	 *
+	 * @return false|string
+	 */
+	public function inline_network_shortcode() {
 		ob_start();
 
+		$class            = 'ess-inline-shortcode';
 		$network_desc     = ESS_Social_Networks::get_network_desc();
 		$network_count    = ESS_Social_Networks::get_network_count();
 		$allowed_networks = ESS_Social_Networks::get_allowed_networks();
