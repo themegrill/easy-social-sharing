@@ -57,8 +57,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 == Screenshots ==
 
 1. General
-2. Layout options
+2. Layout Options
 3. Inline Layout
+4. Sidebar Layout
 2. Social Networks
 4. Floating Sidebar Layout
 5. All Networks
