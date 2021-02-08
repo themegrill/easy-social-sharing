@@ -60,12 +60,6 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 2. Layout Options
 3. Inline Layout
 4. Sidebar Layout
-2. Social Networks
-4. Floating Sidebar Layout
-5. All Networks
-6. Sidebar Layout Frontend
-7. Inline Layout Frontend
-8. Inline Layout 2 Frontend
 
 1. Easy Social Sharing.
 
