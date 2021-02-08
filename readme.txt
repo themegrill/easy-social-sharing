@@ -66,7 +66,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 == Changelog ==
 = TBD =
 * Fix   - PHP notice of undefined variable class when displayed the social sharing via shortcode.
-* Tweak - Modify screenshot, banner and icon images on wp.org plugin page.
+* Tweak - Modify screenshot, banner and icon images on wp.org plugin page to resolve trademark issues.
 
 = 1.3.3 - 25/05/2020 =
 * Fix - PHP deprecated notice: Array and string offset access syntax with curly braces is deprecated
