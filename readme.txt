@@ -1,7 +1,7 @@
 === Easy Social Sharing ===
 Contributors: ThemeGrill, shivapoudel
 Tags: social share, social media, sharing, brands, social sharing, social network, social media, social icon, social icons, social profile, social share counter, count, social share button, social share count
-Requires at least: 4.0
+Requires at least: 4.7
 Tested up to: 5.4
 Stable tag: 1.3.3
 License: GPLv3
