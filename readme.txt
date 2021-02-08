@@ -57,19 +57,16 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 == Screenshots ==
 
 1. General
-2. Social Networks
+2. Layout Options
 3. Inline Layout
-4. Floating Sidebar Layout
-5. All Networks
-6. Sidebar Layout Frontend
-7. Inline Layout Frontend
-8. Inline Layout 2 Frontend
+4. Sidebar Layout
 
 1. Easy Social Sharing.
 
 == Changelog ==
 = TBD =
-* Fix - PHP notice of undefined variable class when displayed the social sharing via shortcode
+* Fix   - PHP notice of undefined variable class when displayed the social sharing via shortcode.
+* Tweak - Modify screenshot, banner and icon images on wp.org plugin page to resolve trademark issues.
 
 = 1.3.3 - 25/05/2020 =
 * Fix - PHP deprecated notice: Array and string offset access syntax with curly braces is deprecated
