@@ -2,7 +2,7 @@
 Contributors: ThemeGrill, shivapoudel
 Tags: social share, social media, sharing, brands, social sharing, social network, social media, social icon, social icons, social profile, social share counter, count, social share button, social share count
 Requires at least: 4.7
-Tested up to: 5.6
+Tested up to: 5.6.2
 Stable tag: 1.3.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
