@@ -51,7 +51,6 @@ class ESS_Admin_Settings {
 			$settings[] = include( 'settings/class-ess-settings-general.php' );
 			$settings[] = include( 'settings/class-ess-settings-network.php' );
 			$settings[] = include( 'settings/class-ess-settings-layouts.php' );
- 			// $settings[] = include( 'settings/class-ess-settings-analytics.php' );
 
 			self::$settings = apply_filters( 'easy_social_sharing_get_settings_pages', $settings );
 		}

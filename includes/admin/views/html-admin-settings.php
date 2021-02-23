@@ -18,9 +18,7 @@ $ess_live_preview_network = array( 'facebook', 'twitter', 'googleplus' );
 $ess_live_preview_classes = isset( $ess_live_preview_class[ $current_section ] ) ? $ess_live_preview_class[ $current_section ] : '';
 ?>
 <div class="wrap easy-social-sharing">
-	<?php if ( 'analytics' != $current_tab ) : ?>
 	<form method="<?php echo esc_attr( apply_filters( 'easy_social_sharing_settings_form_method_tab_' . $current_tab, 'post' ) ); ?>" id="mainform" action="" enctype="multipart/form-data">
-	<?php endif; ?>
 		<nav class="nav-tab-wrapper ess-nav-tab-wrapper">
 			<?php
 				foreach ( $tabs as $name => $label ) {
@@ -67,7 +65,5 @@ $ess_live_preview_classes = isset( $ess_live_preview_class[ $current_section ] )
 			<?php endif; ?>
 			<?php wp_nonce_field( 'easy-social-sharing-settings' ); ?>
 		</p>
-	<?php if ( 'analytics' != $current_tab ) : ?>
 	</form>
-	<?php endif; ?>
 </div>

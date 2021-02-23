@@ -41,7 +41,7 @@ class ESS_Admin_Assets {
 		// Register admin styles
 		wp_register_style( 'easy-social-sharing-menu', ESS()->plugin_url() . '/assets/css/menu.css', array(), ESS_VERSION );
 		wp_register_style( 'easy-social-sharing-admin', ESS()->plugin_url() . '/assets/css/admin.css', array(), ESS_VERSION );
-		wp_register_style( 'jquery-ui-style', '//code.jquery.com/ui/' . $jquery_version . '/themes/smoothness/jquery-ui.css', array(), $jquery_version );
+		wp_register_style( 'jquery-ui-style', ESS()->plugin_url() . '/assets/css/jquery-ui/jquery-ui.min.css', array(), ESS_VERSION );
 
 		// Add RTL support for admin styles
 		wp_style_add_data( 'easy-social-sharing-menu', 'rtl', 'replace' );

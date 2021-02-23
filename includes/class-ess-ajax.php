@@ -54,7 +54,7 @@ class ESS_AJAX {
 	public static function update_single_share() {
 
 		check_ajax_referer( 'update-share', 'security' );
-	
+
 		$post_id = isset( $_POST['post_id'] ) ? intval( $_POST['post_id'] ) : '';
 
 		$network = isset( $_POST['network'] ) ? ess_clean( $_POST['network'] ) : '';
@@ -174,7 +174,7 @@ class ESS_AJAX {
 
 		global $wpdb;
 
-		$changes = $_POST['changes'];
+		$changes = ! empty( $_POST ) ? ess_clean( $_POST['changes'] ) : die( esc_html__( 'No data', 'easy-social-sharing' ) );
 
 		foreach ( $changes as $network_id => $data ) {
 			if ( isset( $data['deleted'] ) ) {
