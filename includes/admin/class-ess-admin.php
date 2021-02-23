@@ -46,18 +46,18 @@ class ESS_Admin {
 	 * Includes any classes we need within admin.
 	 */
 	public function includes() {
-		include_once( 'functions-ess-admin.php' );
-		include_once( 'functions-ess-meta-box.php' );
-		include_once( 'class-ess-admin-notices.php' );
-		include_once( 'class-ess-admin-assets.php' );
-		include_once( 'class-ess-admin-meta-boxes.php' );
+		include_once 'functions-ess-admin.php';
+		include_once 'functions-ess-meta-box.php';
+		include_once 'class-ess-admin-notices.php';
+		include_once 'class-ess-admin-assets.php';
+		include_once 'class-ess-admin-meta-boxes.php';
 	}
 
 	/**
 	 * Add plugin settings menu item.
 	 */
 	public function settings_menu() {
-		add_options_page( __( 'Easy Social Sharing Settings', 'easy-social-sharing' ),  __( 'Easy Social Sharing', 'easy-social-sharing' ) , 'manage_options', 'easy-social-sharing', array( $this, 'settings_page' ) );
+		add_options_page( esc_html__( 'Easy Social Sharing Settings', 'easy-social-sharing' ), esc_html__( 'Easy Social Sharing', 'easy-social-sharing' ), 'manage_options', 'easy-social-sharing', array( $this, 'settings_page' ) );
 	}
 
 	/**
@@ -77,17 +77,20 @@ class ESS_Admin {
 
 			// Check for autorization code.
 			if ( ! get_option( 'easy_social_sharing_facebook_access_token' ) && $client_id && $client_secret ) {
-				$request = wp_remote_post( 'https://graph.facebook.com/v2.4/oauth/access_token', array(
-					'method'  => 'POST',
-					'timeout' => 30,
-					'body'    => array (
-						'client_id'     => $client_id,
-						'client_secret' => $client_secret,
-						'grant_type'    => 'client_credentials'
+				$request = wp_remote_post(
+					'https://graph.facebook.com/v2.4/oauth/access_token',
+					array(
+						'method'  => 'POST',
+						'timeout' => 30,
+						'body'    => array(
+							'client_id'     => $client_id,
+							'client_secret' => $client_secret,
+							'grant_type'    => 'client_credentials',
+						),
 					)
-				) );
+				);
 
-				if ( ! is_wp_error( $request ) && wp_remote_retrieve_response_code( $request ) == 200 ) {
+				if ( ! is_wp_error( $request ) && wp_remote_retrieve_response_code( $request ) === 200 ) {
 					$response = json_decode( wp_remote_retrieve_body( $request ) );
 
 					// Update facebook access token.
@@ -105,7 +108,7 @@ class ESS_Admin {
 	 * Error shown if the facebook token is missing.
 	 */
 	public function access_token_error() {
-		echo '<div class="error"><p>' . __( 'Facebook Access Token Error: Please ensure your facebook credentials are correct.', 'easy-social-sharing' ) . '</p></div>';
+		echo '<div class="error"><p>' . esc_html__( 'Facebook Access Token Error: Please ensure your facebook credentials are correct.', 'easy-social-sharing' ) . '</p></div>';
 	}
 
 	/**
@@ -121,18 +124,25 @@ class ESS_Admin {
 		$ess_pages      = ess_get_screen_ids();
 
 		// Check to make sure we're on a Social Sharing admin page
-		if ( isset( $current_screen->id ) && apply_filters( 'easy_social_sharing_display_admin_footer_text', in_array( $current_screen->id, $ess_pages ) ) ) {
+		if ( isset( $current_screen->id ) && apply_filters( 'easy_social_sharing_display_admin_footer_text', in_array( $current_screen->id, $ess_pages, true ) ) ) {
 			// Change the footer text
 			if ( ! get_option( 'easy_social_sharing_admin_footer_text_rated' ) ) {
-				$footer_text = sprintf( __( 'If you like <strong>Easy Social Sharing</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thanks in advance!', 'easy-social-sharing' ), '<a href="https://wordpress.org/support/view/plugin-reviews/easy-social-sharing?filter=5#postform" target="_blank" class="ess-rating-link" data-rated="' . esc_attr__( 'Thanks :)', 'easy-social-sharing' ) . '">', '</a>' );
-				ess_enqueue_js( "
+				$footer_text = sprintf(
+					/* translators: 1: ESS review link 2: Closing anchor tag */
+					__( 'If you like <strong>Easy Social Sharing</strong> please leave us a %1$s&#9733;&#9733;&#9733;&#9733;&#9733;%2$s rating. A huge thanks in advance!', 'easy-social-sharing' ),
+					'<a href="https://wordpress.org/support/view/plugin-reviews/easy-social-sharing?filter=5#postform" target="_blank" class="ess-rating-link" data-rated="' . esc_attr__( 'Thanks :)', 'easy-social-sharing' ) . '">',
+					'</a>'
+				);
+				ess_enqueue_js(
+					"
 					jQuery( 'a.ess-rating-link' ).click( function() {
 						jQuery.post( '" . ESS()->ajax_url() . "', { action: 'easy_social_sharing_rated' } );
 						jQuery( this ).parent().text( jQuery( this ).data( 'rated' ) );
 					});
-				" );
+				"
+				);
 			} else {
-				$footer_text = __( 'Thank you for sharing with Easy Social Sharing.', 'easy-social-sharing' );
+				$footer_text = esc_html__( 'Thank you for sharing with Easy Social Sharing.', 'easy-social-sharing' );
 			}
 		}
 

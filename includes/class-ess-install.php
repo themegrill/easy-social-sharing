@@ -56,7 +56,7 @@ class ESS_Install {
 	 * Init background updates.
 	 */
 	public static function init_background_updater() {
-		include_once( 'class-ess-background-updater.php' );
+		include_once 'class-ess-background-updater.php';
 		self::$background_updater = new ESS_Background_Updater();
 	}
 
@@ -78,11 +78,11 @@ class ESS_Install {
 	 * This function is hooked into admin_init to affect admin only.
 	 */
 	public static function install_actions() {
-		if ( ! empty( $_GET['do_update_easy_social_sharing'] ) ) {
+		if ( ! empty( $_GET['do_update_easy_social_sharing'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			self::update();
 			ESS_Admin_Notices::add_notice( 'update' );
 		}
-		if ( ! empty( $_GET['force_update_easy_social_sharing'] ) ) {
+		if ( ! empty( $_GET['force_update_easy_social_sharing'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			do_action( 'wp_ess_updater_cron' );
 			wp_safe_redirect( admin_url( 'options-general.php?page=easy-social-sharing' ) );
 		}
@@ -111,7 +111,7 @@ class ESS_Install {
 		}
 
 		// Ensure needed classes are loaded
-		include_once( 'admin/class-ess-admin-notices.php' );
+		include_once 'admin/class-ess-admin-notices.php';
 
 		self::create_options();
 		self::create_tables();
@@ -154,7 +154,6 @@ class ESS_Install {
 			AND b.option_name = CONCAT( '_transient_timeout_', SUBSTRING( a.option_name, 12 ) )
 			AND b.option_value < %d";
 		$wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_transient_' ) . '%', $wpdb->esc_like( '_transient_timeout_' ) . '%', time() ) );
-
 		// Trigger action
 		do_action( 'easy_social_sharing_installed' );
 	}
@@ -205,7 +204,7 @@ class ESS_Install {
 	 */
 	private static function create_options() {
 		// Include settings so that we can run through defaults
-		include_once( 'admin/class-ess-admin-settings.php' );
+		include_once 'admin/class-ess-admin-settings.php';
 
 		$settings = ESS_Admin_Settings::get_settings_pages();
 
@@ -238,7 +237,7 @@ class ESS_Install {
 
 		$wpdb->hide_errors();
 
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
 		dbDelta( self::get_schema() );
 	}
@@ -297,8 +296,9 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 	 */
 	public static function in_plugin_update_message( $args ) {
 		$transient_name = 'ess_upgrade_notice_' . $args['Version'];
+		$upgrade_notice = get_transient( $transient_name );
 
-		if ( false === ( $upgrade_notice = get_transient( $transient_name ) ) ) {
+		if ( false === $upgrade_notice ) {
 			$response = wp_safe_remote_get( 'https://plugins.svn.wordpress.org/social-sharing/trunk/readme.txt' );
 
 			if ( ! is_wp_error( $response ) && ! empty( $response['body'] ) ) {
@@ -321,7 +321,7 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 	private static function parse_update_notice( $content, $new_version ) {
 		// Output Upgrade Notice.
 		$matches        = null;
-		$regexp         = '~==\s*Upgrade Notice\s*==\s*=\s*(.*)\s*=(.*)(=\s*' . preg_quote( ESS_VERSION ) . '\s*=|$)~Uis';
+		$regexp         = '~==\s*Upgrade Notice\s*==\s*=\s*(.*)\s*=(.*)(=\s*' . preg_quote( ESS_VERSION ) . '\s*=|$)~Uis'; // phpcs:ignore WordPress.PHP.PregQuoteDelimiter.Missing
 		$upgrade_notice = '';
 
 		if ( preg_match( $regexp, $content, $matches ) ) {
@@ -368,7 +368,7 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 	 * @return array
 	 */
 	public static function plugin_row_meta( $plugin_meta, $plugin_file ) {
-		if ( $plugin_file == ESS_PLUGIN_BASENAME ) {
+		if ( ESS_PLUGIN_BASENAME === $plugin_file ) {
 			$new_plugin_meta = array(
 				'docs'    => '<a href="' . esc_url( apply_filters( 'easy_social_sharing_docs_url', 'http://docs.themegrill.com/easy-social-sharing/' ) ) . '" title="' . esc_attr( __( 'View Social Sharing Documentation', 'easy-social-sharing' ) ) . '">' . __( 'Docs', 'easy-social-sharing' ) . '</a>',
 				'support' => '<a href="' . esc_url( apply_filters( 'easy_social_sharing_support_url', 'http://themegrill.com/support-forum/' ) ) . '" title="' . esc_attr( __( 'Visit Free Customer Support Forum', 'easy-social-sharing' ) ) . '">' . __( 'Free Support', 'easy-social-sharing' ) . '</a>',
@@ -396,7 +396,7 @@ CREATE TABLE {$wpdb->prefix}ess_social_networks (
 		$api_supported_networks = ess_get_share_networks_with_api_support();
 
 		foreach ( $default_networks as $network_index => $network ) {
-			$is_api_support = in_array( $network, $api_supported_networks ) ? 1 : 0;
+			$is_api_support = in_array( $network, $api_supported_networks, true ) ? 1 : 0;
 			$network_data   = array(
 				'network_name'   => $network,
 				'network_desc'   => ucwords( $network ),

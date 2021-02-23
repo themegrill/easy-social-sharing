@@ -28,8 +28,8 @@ class ESS_Autoloader {
 	 * Class Constructor Method.
 	 */
 	public function __construct() {
-		if ( function_exists( "__autoload" ) ) {
-			spl_autoload_register( "__autoload" );
+		if ( function_exists( '__autoload' ) ) {
+			spl_autoload_register( '__autoload' );
 		}
 
 		spl_autoload_register( array( $this, 'autoload' ) );
@@ -43,8 +43,8 @@ class ESS_Autoloader {
 	 * @return string
 	 */
 	private function get_file_name_from_class( $class ) {
-        return 'class-' . str_replace( '_', '-', $class ) . '.php';
-    }
+		return 'class-' . str_replace( '_', '-', $class ) . '.php';
+	}
 
 	/**
 	 * Include a class file.
@@ -53,7 +53,7 @@ class ESS_Autoloader {
 	 */
 	private function load_file( $path ) {
 		if ( $path && is_readable( $path ) ) {
-			include_once( $path );
+			include_once $path;
 			return true;
 		}
 		return false;

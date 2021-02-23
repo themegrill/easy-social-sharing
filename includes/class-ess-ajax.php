@@ -72,6 +72,10 @@ class ESS_AJAX {
 
 	/**
 	 * Get all shares count for all networks.
+	 *
+	 * @param string $page_url
+	 * @param bool $is_ajax_request
+	 * @param int $post_id
 	 */
 	public static function get_all_network_shares_count( $page_url = '', $is_ajax_request = true, $post_id = - 1 ) {
 		if ( $is_ajax_request ) {
@@ -80,7 +84,7 @@ class ESS_AJAX {
 			$page_url = ess_clean( $_POST['page_url'] );
 			$post_id  = isset( $_POST['post_id'] ) ? intval( $_POST['post_id'] ) : $post_id;
 		} else {
-			$page_url = '' != $page_url ? $page_url : get_permalink();
+			$page_url = '' !== $page_url ? $page_url : get_permalink();
 		}
 
 		$supported_networks      = ess_get_core_supported_social_networks();
@@ -93,27 +97,34 @@ class ESS_AJAX {
 		foreach ( $supported_networks as $network_name => $network_label ) {
 			$network_statistics = ESS_Social_Networks::_get_network_statistics( $network_name, $page_url );
 			$last_share_time    = isset( $network_statistics['sharing_date'] ) ? $network_statistics['sharing_date'] : null;
-			if ( ! in_array( $network_name, ess_get_share_networks_with_api_support() ) ) {
+			if ( ! in_array( $network_name, ess_get_share_networks_with_api_support(), true ) ) {
 				$all_network_share_count[ $network_name ] = ( ESS_Social_Networks::get_network_count_for_non_api_support( $network_name, $page_url, $ip_address ) );
-			} elseif ( ess_check_cached_counts( $cache_option ) && in_array( $network_name, ess_get_share_networks_with_api_support() ) ) {
+			} elseif ( ess_check_cached_counts( $cache_option ) && in_array( $network_name, ess_get_share_networks_with_api_support(), true ) ) {
 				$all_network_share_count[ $network_name ] = isset( $network_statistics['latest_count'] ) ? $network_statistics['latest_count'] : 0;
 			} else {
 				$share_counts_received                    = ess_get_shares_number( $network_name, $page_url, $post_id );
-				$all_network_share_count[ $network_name ] = $share_counts_received === false ? 0 : $share_counts_received;
+				$all_network_share_count[ $network_name ] = false === $share_counts_received ? 0 : $share_counts_received;
 			}
 		}
 
 		wp_send_json( $all_network_share_count );
 	}
 
+	/**
+	 * @param $network_name
+	 * @param $post_id
+	 * @param $page_url
+	 * @param $share_location
+	 * @param false $is_ajax_request
+	 */
 	public static function update_and_get_share_count( $network_name, $post_id, $page_url, $share_location, $is_ajax_request = false ) {
 		$client_ip_object = self::get_client_ip_object();
 		$ip_address       = isset( $client_ip_object->ip ) ? trim( $client_ip_object->ip ) : null;
 		$ip_info          = wp_json_encode( $client_ip_object );
 
-		if ( in_array( $network_name, ess_get_share_networks_with_api_support() ) ) {
+		if ( in_array( $network_name, ess_get_share_networks_with_api_support(), true ) ) {
 			$share_counts_received = ess_get_shares_number( $network_name, $page_url, $post_id );
-			$network_share_count   = $share_counts_received === false ? 0 : $share_counts_received;
+			$network_share_count   = false === $share_counts_received ? 0 : $share_counts_received;
 		} else {
 			$network_share_count = ( ESS_Social_Networks::get_network_count_for_non_api_support( $network_name, $page_url, $ip_address ) );
 		}
@@ -121,17 +132,30 @@ class ESS_AJAX {
 		$status = ESS_Social_Networks::update_single_network_count( $network_name, $post_id, $ip_info, $ip_address, $share_location, $page_url, $network_share_count );
 
 		if ( $status ) {
-			wp_send_json_success( array( "total_count" => $network_share_count, 'network_name' => $network_name ) );
+			wp_send_json_success(
+				array(
+					'total_count'  => $network_share_count,
+					'network_name' => $network_name,
+				)
+			);
 		} else {
-			wp_send_json_error( array( "total_count" => $network_share_count, 'network_name' => $network_name ) );
+			wp_send_json_error(
+				array(
+					'total_count'  => $network_share_count,
+					'network_name' => $network_name,
+				)
+			);
 		}
 	}
 
+	/**
+	 * @return mixed|stdClass
+	 */
 	public static function get_client_ip_object() {
-		$url      = "http://ipinfo.io/json";
+		$url      = 'http://ipinfo.io/json';
 		$response = wp_remote_get( $url );
 
-		if ( is_wp_error( $response ) || 200 != wp_remote_retrieve_response_code( $response ) ) {
+		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 			return new stdClass();
 		}
 
@@ -174,7 +198,11 @@ class ESS_AJAX {
 
 		global $wpdb;
 
-		$changes = ! empty( $_POST ) ? ess_clean( $_POST['changes'] ) : die( esc_html__( 'No data', 'easy-social-sharing' ) );
+		if ( empty( $_POST['changes'] ) ) {
+			die( esc_html__( 'No data', 'easy-social-sharing' ) );
+		}
+
+		$changes = ess_clean( $_POST['changes'] );
 
 		foreach ( $changes as $network_id => $data ) {
 			if ( isset( $data['deleted'] ) ) {
@@ -188,21 +216,24 @@ class ESS_AJAX {
 			}
 
 			// If network name already exists, no need to update database.
-			if ( isset( $data['network_name'] ) && in_array( $data['network_name'], ESS_Social_Networks::get_network_names() ) ) {
+			if ( isset( $data['network_name'] ) && in_array( $data['network_name'], ESS_Social_Networks::get_network_names(), true ) ) {
 				continue;
 			}
 
-			$network_data = array_intersect_key( $data, array(
-				'network_id'     => 1,
-				'network_name'   => 1,
-				'network_desc'   => 1,
-				'network_order'  => 1,
-				'network_count'  => 1,
-				'is_api_support' => 1
-			) );
+			$network_data = array_intersect_key(
+				$data,
+				array(
+					'network_id'     => 1,
+					'network_name'   => 1,
+					'network_desc'   => 1,
+					'network_order'  => 1,
+					'network_count'  => 1,
+					'is_api_support' => 1,
+				)
+			);
 
 			if ( isset( $data['newRow'] ) ) {
-				// Hurrah, shiny and new!
+				// Hurrah, shiny and new!.
 				$network_id = ESS_Social_Networks::_insert_network( $network_data );
 			} else {
 				// Updating an existing network..
@@ -217,9 +248,11 @@ class ESS_AJAX {
 			}
 		}
 
-		wp_send_json_success( array(
-			'social_networks' => ESS_Social_Networks::get_networks()
-		) );
+		wp_send_json_success(
+			array(
+				'social_networks' => ESS_Social_Networks::get_networks(),
+			)
+		);
 	}
 }
 

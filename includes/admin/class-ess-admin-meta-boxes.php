@@ -32,7 +32,7 @@ class ESS_Admin_Meta_Boxes {
 	 *
 	 * @var array
 	 */
-	public static $meta_box_errors  = array();
+	public static $meta_box_errors = array();
 
 	/**
 	 * Hook in tabs.
@@ -117,7 +117,7 @@ class ESS_Admin_Meta_Boxes {
 		}
 
 		// Check the post being saved == the $post_id to prevent triggering this call for other save_post events
-		if ( empty( $_POST['post_ID'] ) || $_POST['post_ID'] != $post_id ) {
+		if ( empty( $_POST['post_ID'] ) || $_POST['post_ID'] != $post_id ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 			return;
 		}
 

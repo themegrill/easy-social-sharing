@@ -17,11 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Cached share networks counts.
  *
- * @param  int    $post_id
- * @param  string $network
- * @param  string $last_share_time
- * @param  string $last_share_ip
- *
+ * @param string $last_share_time
  * @return bool
  */
 function ess_check_cached_counts( $last_share_time = null ) {
@@ -29,7 +25,7 @@ function ess_check_cached_counts( $last_share_time = null ) {
 	$expiration = 1;
 
 	$is_cached = false;
-	if ( $last_share_time == null || $last_share_time == - 1 ) {
+	if ( null === $last_share_time || - 1 === $last_share_time ) {
 
 		return $is_cached;
 	}
@@ -43,11 +39,14 @@ function ess_check_cached_counts( $last_share_time = null ) {
 	return $is_cached;
 }
 
+/**
+ * @return false|int|mixed|void
+ */
 function ess_handle_cache() {
 
 	$option = get_option( 'ess-social-network-cache-date', - 1 );
 
-	if ( $option === - 1 ) {
+	if ( - 1 === $option ) {
 
 		update_option( 'ess-social-network-cache-date', date( 'Y-m-d H:i:s' ) );
 
@@ -56,7 +55,6 @@ function ess_handle_cache() {
 		if ( ! ess_check_cached_counts( $option ) ) {
 
 			update_option( 'ess-social-network-cache-date', date( 'Y-m-d H:i:s' ) );
-
 
 		}
 	}
@@ -105,76 +103,76 @@ function ess_share_link( $network, $media_url = '', $i = 0, $post_link = '', $po
 	$twitter_username = get_option( 'easy_social_sharing_twitter_username' );
 
 	switch ( $network ) {
-		case 'facebook' :
+		case 'facebook':
 			$link = sprintf( 'http://www.facebook.com/sharer.php?u=%1$s&t=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'twitter' :
+		case 'twitter':
 			$link = sprintf( 'http://twitter.com/share?text=%2$s&url=%1$s&via=%3$s', esc_attr( $permalink ), esc_attr( $title ), ! empty( $twitter_username ) ? esc_attr( $twitter_username ) : get_bloginfo( 'name' ) );
 			break;
-		case 'googleplus' :
+		case 'googleplus':
 			$link = sprintf( 'https://plus.google.com/share?url=%1$s&t=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'pinterest' :
+		case 'pinterest':
 			$link = $media_url ? sprintf( 'http://www.pinterest.com/pin/create/button/?url=%1$s&media=%2$s&description=%3$s', esc_attr( $permalink ), esc_attr( urlencode( $media_url ) ), esc_attr( $title ) ) : '#';
 			break;
-		case 'stumbleupon' :
+		case 'stumbleupon':
 			$link = sprintf( 'http://www.stumbleupon.com/badge?url=%1$s&title=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'tumblr' :
+		case 'tumblr':
 			$link = sprintf( 'https://www.tumblr.com/share?v=3&u=%1$s&t=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'blogger' :
+		case 'blogger':
 			$link = sprintf( 'https://www.blogger.com/blog_this.pyra?t&u=%1$s&n=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'myspace' :
+		case 'myspace':
 			$link = sprintf( 'https://myspace.com/post?u=%1$s', esc_attr( $permalink ) );
 			break;
-		case 'delicious' :
+		case 'delicious':
 			$link = sprintf( 'https://delicious.com/post?url=%1$s&title=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'amazon' :
+		case 'amazon':
 			$link = sprintf( 'http://www.amazon.com/gp/wishlist/static-add?u=%1$s&t=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'printfriendly' :
+		case 'printfriendly':
 			$link = sprintf( 'http://www.printfriendly.com/print?url=%1$s&title=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'yahoomail' :
+		case 'yahoomail':
 			$link = sprintf( 'http://compose.mail.yahoo.com/?body=%1$s', esc_attr( $permalink ) );
 			break;
-		case 'gmail' :
+		case 'gmail':
 			$link = sprintf( 'https://mail.google.com/mail/u/0/?view=cm&fs=1&su=%2$s&body=%1$s&ui=2&tf=1', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'aol' :
+		case 'aol':
 			$link = sprintf( 'http://webmail.aol.com/Mail/ComposeMessage.aspx?subject=%2$s&body=%1$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'newsvine' :
+		case 'newsvine':
 			$link = sprintf( 'http://www.newsvine.com/_tools/seed&save?u=%1$s&h=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'hackernews' :
+		case 'hackernews':
 			$link = sprintf( 'https://news.ycombinator.com/submitlink?u=%1$s&t=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'evernote' :
+		case 'evernote':
 			$link = sprintf( 'http://www.evernote.com/clip.action?url=%1$s&title=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'digg' :
+		case 'digg':
 			$link = sprintf( 'http://digg.com/submit?url=%1$s&title=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'livejournal' :
+		case 'livejournal':
 			$link = sprintf( 'http://www.livejournal.com/update.bml?subject=%2$s&event=%1$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'friendfeed' :
+		case 'friendfeed':
 			$link = sprintf( 'http://friendfeed.com/?url=%1$s&title=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'buffer' :
+		case 'buffer':
 			$link = sprintf( 'https://bufferapp.com/add?url=%1$s&title=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'reddit' :
+		case 'reddit':
 			$link = sprintf( 'http://www.reddit.com/submit?url=%1$s&title=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
-		case 'vkontakte' :
+		case 'vkontakte':
 			$link = sprintf( 'http://vk.com/share.php?url=%1$s', esc_attr( $permalink ) );
 			break;
-		case 'linkedin' :
+		case 'linkedin':
 			$link = sprintf( 'http://www.linkedin.com/shareArticle?mini=true&url=%1$s&title=%2$s', esc_attr( $permalink ), esc_attr( $title ) );
 			break;
 	}
@@ -184,40 +182,45 @@ function ess_share_link( $network, $media_url = '', $i = 0, $post_link = '', $po
 
 /**
  * Get shares number.
+ * @param $social_network
+ * @param $url
+ * @param string $post_id
+ * @return false|float|int
  */
 function ess_get_shares_number( $social_network, $url, $post_id = '' ) {
 	$result = false;
 
 	$raw_url = rawurlencode( $url );
 
-	if ( in_array( $social_network, ess_get_share_networks_with_api_support() ) ) {
+	if ( in_array( $social_network, ess_get_share_networks_with_api_support(), true ) ) {
 		$request_url = '';
 
 		switch ( $social_network ) {
-			case 'facebook' :
-				if ( $facebook_access_tokens = get_option( 'easy_social_sharing_facebook_access_token' ) ) {
+			case 'facebook':
+				$facebook_access_tokens = get_option( 'easy_social_sharing_facebook_access_token' );
+				if ( $facebook_access_tokens ) {
 					$request_url = sprintf( 'https://graph.facebook.com/v2.4/?access_token=%1$s&id=', esc_attr( $facebook_access_tokens ) );
 				}
 				break;
-			case 'linkedin' :
+			case 'linkedin':
 				$request_url = 'http://www.linkedin.com/countserv/count/share?format=json&url=';
 				break;
-			case 'pinterest' :
+			case 'pinterest':
 				$request_url = 'http://widgets.pinterest.com/v1/urls/count.json?url=';
 				break;
-			case 'googleplus' :
+			case 'googleplus':
 				$request_url = 'https://plusone.google.com/_/+1/fastbutton?url=';
 				break;
-			case 'stumbleupon' :
+			case 'stumbleupon':
 				$request_url = 'http://www.stumbleupon.com/services/1.01/badge.getinfo?url=';
 				break;
-			case 'vkontakte' :
+			case 'vkontakte':
 				$request_url = 'https://vk.com/share.php?act=count&index=1&format=json&url=';
 				break;
-			case 'reddit' :
+			case 'reddit':
 				$request_url = 'http://www.reddit.com/api/info.json?url=';
 				break;
-			case 'buffer' :
+			case 'buffer':
 				$request_url = 'https://api.bufferapp.com/1/links/shares.json?url=';
 				break;
 		}
@@ -226,7 +229,7 @@ function ess_get_shares_number( $social_network, $url, $post_id = '' ) {
 
 		$theme_request = wp_remote_get( $request_url, array( 'timeout' => 30 ) );
 
-		if ( ! is_wp_error( $theme_request ) && wp_remote_retrieve_response_code( $theme_request ) == 200 ) {
+		if ( ! is_wp_error( $theme_request ) && wp_remote_retrieve_response_code( $theme_request ) === 200 ) {
 			$theme_response = wp_remote_retrieve_body( $theme_request );
 
 			if ( 'pinterest' === $social_network ) {
@@ -239,10 +242,10 @@ function ess_get_shares_number( $social_network, $url, $post_id = '' ) {
 				if ( is_array( $matches ) && isset( $matches[1] ) ) {
 					$result = (float) $matches[1];
 				}
-			} else if ( 'vkontakte' === $social_network ) {
+			} elseif ( 'vkontakte' === $social_network ) {
 				preg_match( '/VK.Share.count\(1, ([0-9]+)\);/', $theme_response, $matches );
 
-				if ( is_array( $matches ) && isset( $matches[1]) ) {
+				if ( is_array( $matches ) && isset( $matches[1] ) ) {
 					$result = (int) $matches[1];
 				}
 			} else {
@@ -250,20 +253,20 @@ function ess_get_shares_number( $social_network, $url, $post_id = '' ) {
 			}
 
 			switch ( $social_network ) {
-				case 'buffer' :
+				case 'buffer':
 					$result = isset( $count_object->shares ) ? (int) $count_object->shares : false;
 
 					break;
-				case 'facebook' :
+				case 'facebook':
 					$result = isset( $count_object->share->share_count ) ? (int) $count_object->share->share_count : false;
 
 					break;
-				case 'linkedin' :
-				case 'pinterest' :
+				case 'linkedin':
+				case 'pinterest':
 					$result = $count_object->count;
 
 					break;
-				case 'stumbleupon' :
+				case 'stumbleupon':
 					$result = isset( $count_object->result->views ) ? (int) $count_object->result->views : false;
 
 					if ( false === $result && isset( $count_object->success ) && true === $count_object->success ) {
@@ -271,7 +274,7 @@ function ess_get_shares_number( $social_network, $url, $post_id = '' ) {
 					}
 
 					break;
-				case 'reddit' :
+				case 'reddit':
 					$score = 0;
 
 					if ( isset( $count_object->data->children ) ) {
@@ -283,7 +286,7 @@ function ess_get_shares_number( $social_network, $url, $post_id = '' ) {
 					$result = $score;
 
 					break;
-				case 'facebook' :
+				case 'facebook':
 					$result = $count_object->share->share_count;
 
 					break;

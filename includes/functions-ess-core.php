@@ -15,8 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Include core functions (available in both admin and frontend).
-include( 'functions-ess-sharing.php' );
-include( 'functions-ess-formatting.php' );
+require 'functions-ess-sharing.php';
+require 'functions-ess-formatting.php';
 
 /**
  * Queue some JavaScript code to be output in the footer.
@@ -52,7 +52,7 @@ function ess_print_js() {
 		 *
 		 * @param string $js JavaScript code.
 		 */
-		echo apply_filters( 'easy_social_sharing_queued_js', $js );
+		echo apply_filters( 'easy_social_sharing_queued_js', $js ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		unset( $ess_queued_js );
 	}
@@ -65,11 +65,21 @@ function ess_print_js() {
 function ess_get_screen_types() {
 	global $wp_post_types;
 
-	$post_types   = get_post_types( array( 'public' => true, 'show_in_menu' => true, '_builtin' => false ), 'names' );
-	$screen_types = apply_filters( 'easy_social_sharing_screens_types', array(
-		'post' => __( 'Posts', 'easy-social-sharing' ),
-		'page' => __( 'Pages', 'easy-social-sharing' )
-	) );
+	$post_types   = get_post_types(
+		array(
+			'public'       => true,
+			'show_in_menu' => true,
+			'_builtin'     => false,
+		),
+		'names'
+	);
+	$screen_types = apply_filters(
+		'easy_social_sharing_screens_types',
+		array(
+			'post' => __( 'Posts', 'easy-social-sharing' ),
+			'page' => __( 'Pages', 'easy-social-sharing' ),
+		)
+	);
 
 	// Fetch Public Custom Post Types.
 	foreach ( $post_types as $post_type ) {
@@ -127,10 +137,13 @@ function ess_get_allowed_screen_types() {
  * @return array
  */
 function ess_get_allowed_screen_locations() {
-	return (array) apply_filters( 'easy_social_sharing_allowed_screen_locations', array(
-		'inline'  => __( 'Inline', 'easy-social-sharing' ),
-		'sidebar' => __( 'Sidebar', 'easy-social-sharing' )
-	) );
+	return (array) apply_filters(
+		'easy_social_sharing_allowed_screen_locations',
+		array(
+			'inline'  => __( 'Inline', 'easy-social-sharing' ),
+			'sidebar' => __( 'Sidebar', 'easy-social-sharing' ),
+		)
+	);
 }
 
 /**
@@ -151,26 +164,29 @@ function ess_post_content_has_shortcode( $tag = '' ) {
  * @return array
  */
 function ess_get_core_supported_social_networks() {
-	return apply_filters( 'easy_social_sharing_core_supported_social_networks', array(
-		'facebook'    => __( 'Facebook', 'easy-social-sharing' ),
-		'twitter'     => __( 'Twitter', 'easy-social-sharing' ),
-		'googleplus'  => __( 'Google+', 'easy-social-sharing' ),
-		'linkedin'    => __( 'LinkedIn', 'easy-social-sharing' ),
-		'pinterest'   => __( 'Pinterest', 'easy-social-sharing' ),
-		'stumbleupon' => __( 'StumbleUpon', 'easy-social-sharing' ),
-		'tumblr'      => __( 'Tumblr', 'easy-social-sharing' ),
-		'blogger'     => __( 'Blogger', 'easy-social-sharing' ),
-		'myspace'     => __( 'Myspace', 'easy-social-sharing' ),
-		'delicious'   => __( 'Delicious', 'easy-social-sharing' ),
-		'yahoomail'   => __( 'Yahoo Mail', 'easy-social-sharing' ),
-		'gmail'       => __( 'Gmail', 'easy-social-sharing' ),
-		'newsvine'    => __( 'Newsvine', 'easy-social-sharing' ),
-		'digg'        => __( 'Digg', 'easy-social-sharing' ),
-		'friendfeed'  => __( 'FriendFeed', 'easy-social-sharing' ),
-		'buffer'      => __( 'Buffer', 'easy-social-sharing' ),
-		'reddit'      => __( 'Reddit', 'easy-social-sharing' ),
-		'vkontakte'   => __( 'VKontakte', 'easy-social-sharing' ),
-	) );
+	return apply_filters(
+		'easy_social_sharing_core_supported_social_networks',
+		array(
+			'facebook'    => __( 'Facebook', 'easy-social-sharing' ),
+			'twitter'     => __( 'Twitter', 'easy-social-sharing' ),
+			'googleplus'  => __( 'Google+', 'easy-social-sharing' ),
+			'linkedin'    => __( 'LinkedIn', 'easy-social-sharing' ),
+			'pinterest'   => __( 'Pinterest', 'easy-social-sharing' ),
+			'stumbleupon' => __( 'StumbleUpon', 'easy-social-sharing' ),
+			'tumblr'      => __( 'Tumblr', 'easy-social-sharing' ),
+			'blogger'     => __( 'Blogger', 'easy-social-sharing' ),
+			'myspace'     => __( 'Myspace', 'easy-social-sharing' ),
+			'delicious'   => __( 'Delicious', 'easy-social-sharing' ),
+			'yahoomail'   => __( 'Yahoo Mail', 'easy-social-sharing' ),
+			'gmail'       => __( 'Gmail', 'easy-social-sharing' ),
+			'newsvine'    => __( 'Newsvine', 'easy-social-sharing' ),
+			'digg'        => __( 'Digg', 'easy-social-sharing' ),
+			'friendfeed'  => __( 'FriendFeed', 'easy-social-sharing' ),
+			'buffer'      => __( 'Buffer', 'easy-social-sharing' ),
+			'reddit'      => __( 'Reddit', 'easy-social-sharing' ),
+			'vkontakte'   => __( 'VKontakte', 'easy-social-sharing' ),
+		)
+	);
 }
 
 /**
@@ -183,51 +199,51 @@ function ess_get_core_supported_social_networks_config() {
 
 	foreach ( $all_networks as $network_key => $network_value ) {
 		$all_network_configuration[ $network_key ] = array(
-			"label"                => $network_value,
-			"data"                 => "",
-			"backgroundColor"      => "",
-			"hoverBackgroundColor" => "",
-			"hoverBorderWidth"     => 1,
-			"hoverBorderColor"     => "lightgrey",
+			'label'                => $network_value,
+			'data'                 => '',
+			'backgroundColor'      => '',
+			'hoverBackgroundColor' => '',
+			'hoverBorderWidth'     => 1,
+			'hoverBorderColor'     => 'lightgrey',
 		);
 	}
 
-	$all_network_configuration['facebook']['backgroundColor']         = "#2F72CD";
-	$all_network_configuration['facebook']['hoverBackgroundColor']    = "#4E84C0";
-	$all_network_configuration['twitter']['backgroundColor']          = "#50C6F8";
-	$all_network_configuration['twitter']['hoverBackgroundColor']     = "#4DA7DE";
-	$all_network_configuration['googleplus']['backgroundColor']       = "#F55F46";
-	$all_network_configuration['googleplus']['hoverBackgroundColor']  = "#DD4B39";
-	$all_network_configuration['linkedin']['backgroundColor']         = "#129FE4";
-	$all_network_configuration['linkedin']['hoverBackgroundColor']    = "#3371B7";
-	$all_network_configuration['pinterest']['backgroundColor']        = "#EC661C";
-	$all_network_configuration['pinterest']['hoverBackgroundColor']   = "#C92619";
-	$all_network_configuration['stumbleupon']['backgroundColor']      = "#EA4B24";
-	$all_network_configuration['stumbleupon']['hoverBackgroundColor'] = "#E64011";
-	$all_network_configuration['tumblr']['backgroundColor']           = "#444343";
-	$all_network_configuration['tumblr']['hoverBackgroundColor']      = "#45556C";
-	$all_network_configuration['blogger']['backgroundColor']          = "#EC661C";
-	$all_network_configuration['blogger']['hoverBackgroundColor']     = "#ef651a";
-	$all_network_configuration['myspace']['backgroundColor']          = "#323232";
-	$all_network_configuration['myspace']['hoverBackgroundColor']     = "#323232";
-	$all_network_configuration['delicious']['backgroundColor']        = "#444343";
-	$all_network_configuration['delicious']['hoverBackgroundColor']   = "#020202";
-	$all_network_configuration['yahoomail']['backgroundColor']        = "#511295";
-	$all_network_configuration['yahoomail']['hoverBackgroundColor']   = "#3D0975";
-	$all_network_configuration['gmail']['backgroundColor']            = "#DD4B39";
-	$all_network_configuration['gmail']['hoverBackgroundColor']       = "#BF3222";
-	$all_network_configuration['newsvine']['backgroundColor']         = "#075B2F";
-	$all_network_configuration['newsvine']['hoverBackgroundColor']    = "#075B2F";
-	$all_network_configuration['digg']['backgroundColor']             = "#1D1D1B";
-	$all_network_configuration['digg']['hoverBackgroundColor']        = "#1D1D1B";
-	$all_network_configuration['friendfeed']['backgroundColor']       = "#2F72C4";
-	$all_network_configuration['friendfeed']['hoverBackgroundColor']  = "#2F72C4";
-	$all_network_configuration['buffer']['backgroundColor']           = "#333333";
-	$all_network_configuration['buffer']['hoverBackgroundColor']      = "#000000";
-	$all_network_configuration['reddit']['backgroundColor']           = "#FF4500";
-	$all_network_configuration['reddit']['hoverBackgroundColor']      = "#E74A1E";
-	$all_network_configuration['vkontakte']['backgroundColor']        = "#4C75A3";
-	$all_network_configuration['vkontakte']['hoverBackgroundColor']   = "#92AAC4";
+	$all_network_configuration['facebook']['backgroundColor']         = '#2F72CD';
+	$all_network_configuration['facebook']['hoverBackgroundColor']    = '#4E84C0';
+	$all_network_configuration['twitter']['backgroundColor']          = '#50C6F8';
+	$all_network_configuration['twitter']['hoverBackgroundColor']     = '#4DA7DE';
+	$all_network_configuration['googleplus']['backgroundColor']       = '#F55F46';
+	$all_network_configuration['googleplus']['hoverBackgroundColor']  = '#DD4B39';
+	$all_network_configuration['linkedin']['backgroundColor']         = '#129FE4';
+	$all_network_configuration['linkedin']['hoverBackgroundColor']    = '#3371B7';
+	$all_network_configuration['pinterest']['backgroundColor']        = '#EC661C';
+	$all_network_configuration['pinterest']['hoverBackgroundColor']   = '#C92619';
+	$all_network_configuration['stumbleupon']['backgroundColor']      = '#EA4B24';
+	$all_network_configuration['stumbleupon']['hoverBackgroundColor'] = '#E64011';
+	$all_network_configuration['tumblr']['backgroundColor']           = '#444343';
+	$all_network_configuration['tumblr']['hoverBackgroundColor']      = '#45556C';
+	$all_network_configuration['blogger']['backgroundColor']          = '#EC661C';
+	$all_network_configuration['blogger']['hoverBackgroundColor']     = '#ef651a';
+	$all_network_configuration['myspace']['backgroundColor']          = '#323232';
+	$all_network_configuration['myspace']['hoverBackgroundColor']     = '#323232';
+	$all_network_configuration['delicious']['backgroundColor']        = '#444343';
+	$all_network_configuration['delicious']['hoverBackgroundColor']   = '#020202';
+	$all_network_configuration['yahoomail']['backgroundColor']        = '#511295';
+	$all_network_configuration['yahoomail']['hoverBackgroundColor']   = '#3D0975';
+	$all_network_configuration['gmail']['backgroundColor']            = '#DD4B39';
+	$all_network_configuration['gmail']['hoverBackgroundColor']       = '#BF3222';
+	$all_network_configuration['newsvine']['backgroundColor']         = '#075B2F';
+	$all_network_configuration['newsvine']['hoverBackgroundColor']    = '#075B2F';
+	$all_network_configuration['digg']['backgroundColor']             = '#1D1D1B';
+	$all_network_configuration['digg']['hoverBackgroundColor']        = '#1D1D1B';
+	$all_network_configuration['friendfeed']['backgroundColor']       = '#2F72C4';
+	$all_network_configuration['friendfeed']['hoverBackgroundColor']  = '#2F72C4';
+	$all_network_configuration['buffer']['backgroundColor']           = '#333333';
+	$all_network_configuration['buffer']['hoverBackgroundColor']      = '#000000';
+	$all_network_configuration['reddit']['backgroundColor']           = '#FF4500';
+	$all_network_configuration['reddit']['hoverBackgroundColor']      = '#E74A1E';
+	$all_network_configuration['vkontakte']['backgroundColor']        = '#4C75A3';
+	$all_network_configuration['vkontakte']['hoverBackgroundColor']   = '#92AAC4';
 
 	return $all_network_configuration;
 }
@@ -285,12 +301,15 @@ function ess_array_to_html_attribute( $attribute_array = array() ) {
  * @return array
  */
 function ess_get_default_networks() {
-	return apply_filters( 'easy_social_sharing_default_social_networks', array(
-		'facebook',
-		'twitter',
-		'linkedin',
-		'googleplus',
-		'stumbleupon',
-		'pinterest',
-	) );
+	return apply_filters(
+		'easy_social_sharing_default_social_networks',
+		array(
+			'facebook',
+			'twitter',
+			'linkedin',
+			'googleplus',
+			'stumbleupon',
+			'pinterest',
+		)
+	);
 }
