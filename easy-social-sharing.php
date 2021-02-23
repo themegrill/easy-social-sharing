@@ -6,8 +6,8 @@
  * Version: 1.3.4
  * Author: ThemeGrill
  * Author URI: https://themegrill.com
- * Requires at least: 4.0
- * Tested up to: 4.8
+ * Requires at least: 4.7
+ * Tested up to: 5.6.2
  *
  * Text Domain: easy-social-sharing
  * Domain Path: /languages/
