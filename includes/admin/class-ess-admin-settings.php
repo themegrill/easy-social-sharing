@@ -597,8 +597,12 @@ class ESS_Admin_Settings {
 	 *
 	 * @return bool
 	 */
-	public static function save_fields( $options ) {
-		if ( empty( $_POST ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	public static function save_fields( $options, $data = null ) {
+		if ( is_null( $data ) ) {
+				$data = $_POST; // phpcs:ignore WordPress.Security.NonceVerification
+		}
+
+		if ( empty( $data ) ) {
 			return false;
 		}
 
@@ -616,11 +620,11 @@ class ESS_Admin_Settings {
 				parse_str( $option['id'], $option_name_array );
 				$option_name  = current( array_keys( $option_name_array ) );
 				$setting_name = key( $option_name_array[ $option_name ] );
-				$raw_value    = isset( $_POST[ $option_name ][ $setting_name ] ) ? wp_unslash( $_POST[ $option_name ][ $setting_name ] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$raw_value    = isset( $data[ $option_name ][ $setting_name ] ) ? wp_unslash( $data[ $option_name ][ $setting_name ] ) : null;
 			} else {
 				$option_name  = $option['id'];
 				$setting_name = '';
-				$raw_value    = isset( $_POST[ $option['id'] ] ) ? wp_unslash( $_POST[ $option['id'] ] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$raw_value    = isset( $data[ $option['id'] ] ) ? wp_unslash( $data[ $option['id'] ] ) : null;
 			}
 
 			// Format the value based on option type.
