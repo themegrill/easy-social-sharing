@@ -30,7 +30,7 @@ class ESS_Admin_Settings {
 	 *
 	 * @var array
 	 */
-	private static $errors   = array();
+	private static $errors = array();
 
 	/**
 	 * Update messages.
@@ -565,7 +565,7 @@ class ESS_Admin_Settings {
 			$description  = $value['desc'];
 			$tooltip_html = $value['desc_tip'];
 		} elseif ( ! empty( $value['desc'] ) ) {
-			$description  = $value['desc'];
+			$description = $value['desc'];
 		}
 
 		if ( $description && in_array( $value['type'], array( 'textarea', 'radio' ), true ) ) {
