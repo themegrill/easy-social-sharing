@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <h2>
-	<?php _e( 'Social Networks', 'easy-social-sharing' ); ?>
+	<?php esc_html_e( 'Social Networks', 'easy-social-sharing' ); ?>
 	<?php echo ess_help_tip( __( 'The following social networks enable your users to spread their experience with an effective word-of-mouth advertising.', 'easy-social-sharing' ) ); ?>
 </h2>
 
@@ -15,11 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<thead>
 		<tr>
 			<th class="ess-social-network-sort"><?php echo ess_help_tip( __( 'Drag and drop to re-order your custom networks. This is the order in which they will be displayed on the frontend.', 'easy-social-sharing' ) ); ?></th>
-			<th class="ess-social-network-icon"><?php _e( 'Icon', 'easy-social-sharing' ); ?></th>
-			<th class="ess-social-network-name"><?php _e( 'Name', 'easy-social-sharing' ); ?></th>
-			<th class="ess-social-network-description"><?php _e( 'Description', 'easy-social-sharing' ); ?></th>
-			<th class="ess-social-network-min-count"><?php _e( 'Minimum Count', 'easy-social-sharing' ); ?></th>
-			<th class="ess-social-network-api-support"><?php _e( 'API Support', 'easy-social-sharing' ); ?></th>
+			<th class="ess-social-network-icon"><?php esc_html_e( 'Icon', 'easy-social-sharing' ); ?></th>
+			<th class="ess-social-network-name"><?php esc_html_e( 'Name', 'easy-social-sharing' ); ?></th>
+			<th class="ess-social-network-description"><?php esc_html_e( 'Description', 'easy-social-sharing' ); ?></th>
+			<th class="ess-social-network-min-count"><?php esc_html_e( 'Minimum Count', 'easy-social-sharing' ); ?></th>
+			<th class="ess-social-network-api-support"><?php esc_html_e( 'API Support', 'easy-social-sharing' ); ?></th>
 		</tr>
 	</thead>
 	<tfoot>
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <script type="text/html" id="tmpl-ess-social-network-row-blank">
 	<tr>
 		<td class="ess-social-network-blank-state" colspan="6">
-			<p><?php _e( 'No Social Networks have been created.', 'easy-social-sharing' ); ?></p>
+			<p><?php esc_html_e( 'No Social Networks have been created.', 'easy-social-sharing' ); ?></p>
 		</td>
 	</tr>
 </script>
@@ -55,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="view">
 				<strong>{{ data.formatted_network_name }}</strong>
 				<div class="row-actions">
-					<a class="ess-social-network-edit" href="#"><?php _e( 'Edit', 'easy-social-sharing' ); ?></a> | <a href="#" class="ess-social-network-delete"><?php _e( 'Remove', 'easy-social-sharing' ); ?></a>
+					<a class="ess-social-network-edit" href="#"><?php esc_html_e( 'Edit', 'easy-social-sharing' ); ?></a> | <a href="#" class="ess-social-network-delete"><?php esc_html_e( 'Remove', 'easy-social-sharing' ); ?></a>
 				</div>
 			</div>
 			<div class="edit">
@@ -67,7 +67,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					?>
 				</select>
 				<div class="row-actions">
-					<a class="ess-social-network-cancel-edit" href="#"><?php _e( 'Cancel changes', 'easy-social-sharing' ); ?></a>
+					<a class="ess-social-network-cancel-edit" href="#"><?php esc_html_e( 'Cancel changes', 'easy-social-sharing' ); ?></a>
 				</div>
 			</div>
 		</td>
