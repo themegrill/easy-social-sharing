@@ -46,6 +46,8 @@ if ( ! class_exists( 'ESS_Settings_Page' ) ) :
 
 		/**
 		 * Add this page to settings
+		 * @param $pages
+		 * @return mixed
 		 */
 		public function add_settings_page( $pages ) {
 			$pages[ $this->id ] = $this->label;

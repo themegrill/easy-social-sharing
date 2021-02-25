@@ -138,23 +138,25 @@ class ESS_Admin_Settings {
 		// Include settings pages
 		self::get_settings_pages();
 
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 		// Get current tab/section
-		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( $_GET['tab'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( $_REQUEST['section'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( $_GET['tab'] );
+		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( $_REQUEST['section'] );
 
 		// Save settings if data has been posted
-		if ( ! empty( $_POST ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( ! empty( $_POST ) ) {
 			self::save();
 		}
 
 		// Add any posted messages
-		if ( ! empty( $_GET['ess_error'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			self::add_error( stripslashes( $_GET['ess_error'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! empty( $_GET['ess_error'] ) ) {
+			self::add_error( stripslashes( $_GET['ess_error'] ) );
 		}
 
-		if ( ! empty( $_GET['ess_message'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			self::add_message( stripslashes( $_GET['ess_error'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! empty( $_GET['ess_message'] ) ) {
+			self::add_message( stripslashes( $_GET['ess_error'] ) );
 		}
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 
 		// Get tabs for the settings page
 		$tabs = apply_filters( 'easy_social_sharing_settings_tabs_array', array() );
@@ -253,7 +255,6 @@ class ESS_Admin_Settings {
 			$field_description = self::get_field_description( $value );
 			$description       = $field_description['description'];
 			$tooltip_html      = $field_description['tooltip_html'];
-
 
 			// Switch based on type
 			switch ( $value['type'] ) {
@@ -398,7 +399,7 @@ class ESS_Admin_Settings {
 					break;
 
 				// Radio inputs
-				case 'radio' :
+				case 'radio':
 					$option_value = self::get_option( $value['id'], $value['default'] );
 					?>
 					<tr valign="top">
@@ -447,7 +448,7 @@ class ESS_Admin_Settings {
 					if ( ! isset( $value['show_if_checked'] ) ) {
 						$value['show_if_checked'] = false;
 					}
-					if ( 'yes' === $value['hide_if_checked'] || 'yes' == $value['show_if_checked'] ) {
+					if ( 'yes' === $value['hide_if_checked'] || 'yes' === $value['show_if_checked'] ) {
 						$visbility_class[] = 'hidden_option';
 					}
 					if ( 'option' === $value['hide_if_checked'] ) {
@@ -599,7 +600,7 @@ class ESS_Admin_Settings {
 	 */
 	public static function save_fields( $options, $data = null ) {
 		if ( is_null( $data ) ) {
-				$data = $_POST; // phpcs:ignore WordPress.Security.NonceVerification
+			$data = $_POST; // phpcs:ignore WordPress.Security.NonceVerification
 		}
 
 		if ( empty( $data ) ) {

@@ -34,12 +34,14 @@ class ESS_Admin {
 	 * @return bool
 	 */
 	private function is_network_options_settings_page() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.PHP.StrictComparisons.LooseComparison
 		return isset( $_GET['page'] )
 			&& 'easy-social-sharing' == $_GET['page']
 			&& isset( $_GET['tab'] )
 			&& 'network' == $_GET['tab']
 			&& isset( $_GET['section'] )
 			&& 'options' == $_GET['section'];
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.PHP.StrictComparisons.LooseComparison
 	}
 
 	/**

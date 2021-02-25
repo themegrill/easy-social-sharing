@@ -43,7 +43,7 @@ class ESS_Meta_Box_Location_Data {
 
 						if ( $locations ) {
 							foreach ( $locations as $location_id => $location_name ) {
-								echo '<option value="' . esc_attr( $location_id ) . '"' . selected( in_array( $location_id, $location_ids, true ), true, false ) . '>' . esc_html( $location_name ) . '</option>';
+								echo '<option value="' . esc_attr( $location_id ) . '" ' . selected( in_array( $location_id, $location_ids, true ), true, false ) . ' >' . esc_html( $location_name ) . '</option>';
 							}
 						}
 						?>
@@ -61,10 +61,10 @@ class ESS_Meta_Box_Location_Data {
 	 */
 	public static function save( $post_id ) {
 
-		$disable_ess = isset( $_POST['disable_ess'] ) ? sanitize_text_field( $_POST['disable_ess'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$disable_ess = isset( $_POST['disable_ess'] ) ? sanitize_text_field( $_POST['disable_ess'] ) : ''; // phpcs:ignore -- nonce validation is not required here.
 
 		// Update meta
-		update_post_meta( $post_id, '_ess_location_disabled', isset( $_POST['location_disabled'] ) ? array_map( 'ess_clean', $_POST['location_disabled'] ) : array() ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		update_post_meta( $post_id, '_ess_location_disabled', isset( $_POST['location_disabled'] ) ? array_map( 'ess_clean', $_POST['location_disabled'] ) : array() ); // phpcs:ignore -- nonce validation is not required here.
 		update_post_meta( $post_id, 'disable_ess', $disable_ess );
 	}
 }
