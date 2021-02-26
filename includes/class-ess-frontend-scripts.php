@@ -51,21 +51,24 @@ class ESS_Frontend_Scripts {
 	 * @return array
 	 */
 	public static function get_styles() {
-		return apply_filters( 'easy_social_sharing_enqueue_styles', array(
-			'fontawesome'                 => array(
-				'src'     => 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css',
-				'deps'    => '',
-				'version' => ESS_VERSION,
-				'media'   => 'all'
-			),
-			'easy-social-sharing-general' => array(
-				'src'     => self::get_asset_url( 'assets/css/easy-social-sharing.css' ),
-				'deps'    => '',
-				'version' => ESS_VERSION,
-				'media'   => 'all',
-				'has_rtl' => true,
+		return apply_filters(
+			'easy_social_sharing_enqueue_styles',
+			array(
+				'fontawesome'                 => array(
+					'src'     => self::get_asset_url( 'assets/css/font-awesome.min.css' ),
+					'deps'    => '',
+					'version' => ESS_VERSION,
+					'media'   => 'all',
+				),
+				'easy-social-sharing-general' => array(
+					'src'     => self::get_asset_url( 'assets/css/easy-social-sharing.css' ),
+					'deps'    => '',
+					'version' => ESS_VERSION,
+					'media'   => 'all',
+					'has_rtl' => true,
+				),
 			)
-		) );
+		);
 	}
 
 	/**
@@ -107,7 +110,7 @@ class ESS_Frontend_Scripts {
 	 * @param  boolean  $in_footer
 	 */
 	private static function enqueue_script( $handle, $path = '', $deps = array( 'jquery' ), $version = ESS_VERSION, $in_footer = true ) {
-		if ( ! in_array( $handle, self::$scripts ) && $path ) {
+		if ( ! in_array( $handle, self::$scripts, true ) && $path ) {
 			self::register_script( $handle, $path, $deps, $version, $in_footer );
 		}
 		wp_enqueue_script( $handle );
@@ -149,7 +152,7 @@ class ESS_Frontend_Scripts {
 	 * @param  boolean  $has_rtl
 	 */
 	private static function enqueue_style( $handle, $path = '', $deps = array(), $version = ESS_VERSION, $media = 'all', $has_rtl = false ) {
-		if ( ! in_array( $handle, self::$styles ) && $path ) {
+		if ( ! in_array( $handle, self::$styles, true ) && $path ) {
 			self::register_style( $handle, $path, $deps, $version, $media, $has_rtl );
 		}
 		wp_enqueue_style( $handle );
@@ -168,21 +171,26 @@ class ESS_Frontend_Scripts {
 		self::register_script( 'jquery-idletimer', $assets_path . 'js/jquery-idletimer/idle-timer' . $suffix . '.js', array( 'jquery' ), '1.1.0' );
 
 		// Global frontend scripts
-		self::enqueue_script( 'easy-social-sharing', $frontend_script_path . 'easy-social-sharing' . $suffix . '.js', array(
-			'jquery',
-			'jquery-tiptip',
-			'jquery-idletimer'
-		) );
+		self::enqueue_script(
+			'easy-social-sharing',
+			$frontend_script_path . 'easy-social-sharing' . $suffix . '.js',
+			array(
+				'jquery',
+				'jquery-tiptip',
+				'jquery-idletimer',
+			)
+		);
 
 		// CSS Styles
-		if ( $enqueue_styles = self::get_styles() ) {
+		$enqueue_styles = self::get_styles();
+		if ( $enqueue_styles ) {
 			foreach ( $enqueue_styles as $handle => $args ) {
 				self::enqueue_style( $handle, $args['src'], $args['deps'], $args['version'], $args['media'] );
 			}
 		}
 
 		// Inline Styles
-		if ( 'yes' == get_option( 'easy_social_sharing_custom_colors_enabled' ) ) {
+		if ( 'yes' === get_option( 'easy_social_sharing_custom_colors_enabled' ) ) {
 			self::create_inline_styles();
 		}
 	}
@@ -192,8 +200,6 @@ class ESS_Frontend_Scripts {
 	 *
 	 * @uses   wp_add_inline_style()
 	 * @access private
-	 *
-	 * @param  string $default_color
 	 */
 	private static function create_inline_styles() {
 		$bg       = get_option( 'easy_social_sharing_background_color' );
@@ -268,7 +274,8 @@ class ESS_Frontend_Scripts {
 	 * @param  string $handle
 	 */
 	private static function localize_script( $handle ) {
-		if ( ! in_array( $handle, self::$wp_localize_scripts ) && wp_script_is( $handle ) && ( $data = self::get_script_data( $handle ) ) ) {
+		$data = self::get_script_data( $handle );
+		if ( ! in_array( $handle, self::$wp_localize_scripts, true ) && wp_script_is( $handle ) && ( $data ) ) {
 			$name                        = str_replace( '-', '_', $handle ) . '_params';
 			self::$wp_localize_scripts[] = $handle;
 			wp_localize_script( $handle, $name, apply_filters( $name, $data ) );
@@ -286,7 +293,7 @@ class ESS_Frontend_Scripts {
 	private static function get_script_data( $handle ) {
 
 		switch ( $handle ) {
-			case 'easy-social-sharing' :
+			case 'easy-social-sharing':
 				return array(
 					'ajax_url'                       => ESS()->ajax_url(),
 					'page_url'                       => is_singular( get_post_types() ) ? get_permalink() : '',
@@ -295,7 +302,7 @@ class ESS_Frontend_Scripts {
 					'all_network_shares_count_nonce' => wp_create_nonce( 'all-network-shares-count' ),
 					'total_counts_nonce'             => wp_create_nonce( 'total-counts' ),
 					'i18n_no_img_message'            => esc_attr__( 'No images found.', 'easy-social-sharing' ),
-					'network_data'                   => self::get_ess_registered_networks_data()
+					'network_data'                   => self::get_ess_registered_networks_data(),
 				);
 				break;
 		}
@@ -312,6 +319,9 @@ class ESS_Frontend_Scripts {
 		}
 	}
 
+	/**
+	 * @return array
+	 */
 	public static function get_ess_registered_networks_data() {
 
 		global $wpdb;

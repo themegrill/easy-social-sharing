@@ -6,8 +6,8 @@
  * Version: 1.3.4
  * Author: ThemeGrill
  * Author URI: https://themegrill.com
- * Requires at least: 4.0
- * Tested up to: 4.8
+ * Requires at least: 4.7
+ * Tested up to: 5.6.2
  *
  * Text Domain: easy-social-sharing
  * Domain Path: /languages/
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'EasySocialSharing' ) ) :
 
 	/**
-	 * Main EasySocialSharing Class.
+	 * Main Class EasySocialSharing
 	 *
 	 * @class   EasySocialSharing
 	 * @version 1.2.0
@@ -126,9 +126,9 @@ if ( ! class_exists( 'EasySocialSharing' ) ) :
 		 */
 		private function is_request( $type ) {
 			switch ( $type ) {
-				case 'admin' :
+				case 'admin':
 					return is_admin();
-				case 'frontend' :
+				case 'frontend':
 					return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
 			}
 		}
@@ -149,13 +149,13 @@ if ( ! class_exists( 'EasySocialSharing' ) ) :
 		 * Includes the required core files used in admin and on the frontend.
 		 */
 		private function includes() {
-			include_once( 'includes/functions-ess-core.php' );
-			include_once( 'includes/class-ess-autoloader.php' );
-			include_once( 'includes/class-ess-install.php' );
-			include_once( 'includes/class-ess-ajax.php' );
+			include_once 'includes/functions-ess-core.php';
+			include_once 'includes/class-ess-autoloader.php';
+			include_once 'includes/class-ess-install.php';
+			include_once 'includes/class-ess-ajax.php';
 
 			if ( $this->is_request( 'admin' ) ) {
-				include_once( 'includes/admin/class-ess-admin.php' );
+				include_once 'includes/admin/class-ess-admin.php';
 			}
 
 			if ( $this->is_request( 'frontend' ) && ! $this->is_mobile() ) {
@@ -167,9 +167,9 @@ if ( ! class_exists( 'EasySocialSharing' ) ) :
 		 * Include required frontend files.
 		 */
 		public function frontend_includes() {
-			include_once( 'includes/class-ess-frontend-scripts.php' );  // Frontend Scripts
-			include_once( 'includes/class-ess-social-networks.php' );   // Social Networks class
-			include_once( 'includes/class-ess-share-handler.php' );     // Social Share Handler class
+			include_once 'includes/class-ess-frontend-scripts.php';  // Frontend Scripts
+			include_once 'includes/class-ess-social-networks.php';   // Social Networks class
+			include_once 'includes/class-ess-share-handler.php';     // Social Share Handler class
 		}
 
 		/**

@@ -188,10 +188,10 @@ class ESS_Social_Networks {
 		$network_id = absint( $network_id );
 
 		$wpdb->update(
-			$wpdb->prefix . "ess_social_networks",
+			$wpdb->prefix . 'ess_social_networks',
 			self::prepare_network_data( $network_data ),
 			array(
-				'network_id' => $network_id
+				'network_id' => $network_id,
 			)
 		);
 	}
@@ -226,7 +226,7 @@ class ESS_Social_Networks {
 	public static function _update_network_api_support( $network_id, $network_name ) {
 		global $wpdb;
 
-		$is_api_support = in_array( $network_name, ess_get_share_networks_with_api_support() );
+		$is_api_support = in_array( $network_name, ess_get_share_networks_with_api_support(), true );
 		$wpdb->update( $wpdb->prefix . 'ess_social_networks', array( 'is_api_support' => $is_api_support ), array( 'network_id' => $network_id ) );
 	}
 
@@ -253,15 +253,18 @@ class ESS_Social_Networks {
 
 	/**
 	 * Get social network count.
-	 * @since  1.2.0
+	 *
+	 * @param $network_name
+	 * @param $page_url
+	 * @param $ip_address
 	 * @return array
+	 * @since  1.2.0
 	 */
 	public static function get_network_count_for_non_api_support( $network_name, $page_url, $ip_address ) {
 
 		global $wpdb;
 
-
-		$is_migrated = get_option( 'ess-data-migrated', false ) == "1" ? true : false;
+		$is_migrated = '1' === get_option( 'ess-data-migrated', false );
 
 		$total_count = 0;
 
@@ -269,17 +272,23 @@ class ESS_Social_Networks {
 
 		$migrated_query = '';
 
-		if ( $is_migrated ) {
+		if ( (bool) $is_migrated ) {
 
-			$network_data_migrated = $wpdb->get_results( $wpdb->prepare( "
+			$network_data_migrated = $wpdb->get_results(
+				$wpdb->prepare(
+					"
 
 SELECT
     latest_count
 FROM
     {$wpdb->prefix}ess_social_statistics
 where ip_info =%s and share_url=%s and network_name=%s
-order by id desc limit 1", $migrated_string, $page_url, $network_name ) );
-
+order by id desc limit 1",
+					$migrated_string,
+					$page_url,
+					$network_name
+				)
+			);
 
 			if ( isset( $network_data_migrated[0] ) ) {
 
@@ -288,32 +297,53 @@ order by id desc limit 1", $migrated_string, $page_url, $network_name ) );
 			}
 		}
 
-
-		$network_data = $wpdb->get_results( $wpdb->prepare( "
+		$network_data = $wpdb->get_results(
+			$wpdb->prepare(
+				"
 
 SELECT network_name  FROM {$wpdb->prefix}ess_social_statistics {$migrated_query} GROUP BY network_name,share_url,ip_address  HAVING
 
- network_name=%s and share_url=%s  AND  ip_address=%s   ;", $network_name, $page_url, $ip_address ) );
+ network_name=%s and share_url=%s  AND  ip_address=%s   ;",
+				$network_name,
+				$page_url,
+				$ip_address
+			)
+		);
 
-
-		//echo  $wpdb->last_query;exit;
 		return ( count( $network_data ) + ( (int) $total_count ) );
-
 
 	}
 
+	/**
+	 * @param $network_name
+	 * @param $post_id
+	 * @param $ip_info
+	 * @param $ip_address
+	 * @param $share_location
+	 * @param $share_url
+	 * @param $latest_cout
+	 * @return bool|int
+	 */
 	public static function update_single_network_count( $network_name, $post_id, $ip_info, $ip_address, $share_location, $share_url, $latest_cout ) {
 
 		global $wpdb;
 
-		$status = $wpdb->query( $wpdb->prepare(
-			"INSERT INTO  {$wpdb->prefix}ess_social_statistics
+		$status = $wpdb->query(
+			$wpdb->prepare(
+				"INSERT INTO  {$wpdb->prefix}ess_social_statistics
 (network_name,sharing_date,post_id,ip_info,ip_address,share_location,share_url,latest_count)
- 						VALUES(%s,CURRENT_TIMESTAMP ,%d,%s,%s,%s,%s,%d);", $network_name, $post_id, $ip_info, $ip_address, $share_location, $share_url, $latest_cout )
+ 						VALUES(%s,CURRENT_TIMESTAMP ,%d,%s,%s,%s,%s,%d);",
+				$network_name,
+				$post_id,
+				$ip_info,
+				$ip_address,
+				$share_location,
+				$share_url,
+				$latest_cout
+			)
 		);
 
 		return $status;
-
 
 	}
 

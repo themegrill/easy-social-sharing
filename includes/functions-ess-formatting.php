@@ -36,17 +36,22 @@ function ess_clean( $var ) {
  * @return string
  */
 function ess_sanitize_tooltip( $var ) {
-	return htmlspecialchars( wp_kses( html_entity_decode( $var ), array(
-		'br'     => array(),
-		'em'     => array(),
-		'strong' => array(),
-		'small'  => array(),
-		'span'   => array(),
-		'ul'     => array(),
-		'li'     => array(),
-		'ol'     => array(),
-		'p'      => array(),
-	) ) );
+	return htmlspecialchars(
+		wp_kses(
+			html_entity_decode( $var ),
+			array(
+				'br'     => array(),
+				'em'     => array(),
+				'strong' => array(),
+				'small'  => array(),
+				'span'   => array(),
+				'ul'     => array(),
+				'li'     => array(),
+				'ol'     => array(),
+				'p'      => array(),
+			)
+		)
+	);
 }
 
 /**
@@ -58,15 +63,15 @@ function ess_sanitize_tooltip( $var ) {
 function ess_format_compact_number( $full_number, $network = '' ) {
 	$prefix = '';
 
-	if ( 10000 == $full_number && 'googleplus' == $network ) {
+	if ( 10000 === $full_number && 'googleplus' === $network ) {
 		$prefix = '&gt';
 	}
 
 	if ( 1000000 <= $full_number ) {
-		$full_number = floor( $full_number / 100000 ) / 10;
+		$full_number  = floor( $full_number / 100000 ) / 10;
 		$full_number .= esc_html_x( 'Mil', 'shortcut for the Million', 'easy-social-sharing' );
 	} elseif ( 1000 < $full_number ) {
-		$full_number = floor( $full_number / 100 ) / 10;
+		$full_number  = floor( $full_number / 100 ) / 10;
 		$full_number .= esc_html_x( 'k', 'shortcut for the Thousands, i.e. 4k instead of 4000', 'easy-social-sharing' );
 	}
 
@@ -105,8 +110,8 @@ if ( ! function_exists( 'ess_rgb_from_hex' ) ) {
 	/**
 	 * Hex darker/lighter/contrast functions for colours.
 	 *
-	 * @param  mixed $color
-	 * @return string
+	 * @param $color
+	 * @return array
 	 */
 	function ess_rgb_from_hex( $color ) {
 		$color = str_replace( '#', '', $color );
@@ -114,9 +119,9 @@ if ( ! function_exists( 'ess_rgb_from_hex' ) ) {
 		$color = preg_replace( '~^(.)(.)(.)$~', '$1$1$2$2$3$3', $color );
 
 		$rgb      = array();
-		$rgb['R'] = hexdec( $color[0].$color[1] );
-		$rgb['G'] = hexdec( $color[2].$color[3] );
-		$rgb['B'] = hexdec( $color[4].$color[5] );
+		$rgb['R'] = hexdec( $color[0] . $color[1] );
+		$rgb['G'] = hexdec( $color[2] . $color[3] );
+		$rgb['B'] = hexdec( $color[4] . $color[5] );
 
 		return $rgb;
 	}
@@ -142,7 +147,7 @@ if ( ! function_exists( 'ess_hex_darker' ) ) {
 
 			$new_hex_component = dechex( $new_decimal );
 			if ( strlen( $new_hex_component ) < 2 ) {
-				$new_hex_component = "0" . $new_hex_component;
+				$new_hex_component = '0' . $new_hex_component;
 			}
 			$color .= $new_hex_component;
 		}
@@ -172,7 +177,7 @@ if ( ! function_exists( 'ess_hex_lighter' ) ) {
 
 			$new_hex_component = dechex( $new_decimal );
 			if ( strlen( $new_hex_component ) < 2 ) {
-				$new_hex_component = "0" . $new_hex_component;
+				$new_hex_component = '0' . $new_hex_component;
 			}
 			$color .= $new_hex_component;
 		}
@@ -217,7 +222,7 @@ if ( ! function_exists( 'ess_format_hex' ) ) {
 
 		$hex = trim( str_replace( '#', '', $hex ) );
 
-		if ( strlen( $hex ) == 3 ) {
+		if ( 3 === strlen( $hex ) ) {
 			$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
 		}
 

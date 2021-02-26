@@ -30,7 +30,7 @@ class ESS_Admin_Settings {
 	 *
 	 * @var array
 	 */
-	private static $errors   = array();
+	private static $errors = array();
 
 	/**
 	 * Update messages.
@@ -46,12 +46,11 @@ class ESS_Admin_Settings {
 		if ( empty( self::$settings ) ) {
 			$settings = array();
 
-			include_once( 'settings/class-ess-settings-page.php' );
+			include_once 'settings/class-ess-settings-page.php';
 
-			$settings[] = include( 'settings/class-ess-settings-general.php' );
-			$settings[] = include( 'settings/class-ess-settings-network.php' );
-			$settings[] = include( 'settings/class-ess-settings-layouts.php' );
- 			// $settings[] = include( 'settings/class-ess-settings-analytics.php' );
+			$settings[] = include 'settings/class-ess-settings-general.php';
+			$settings[] = include 'settings/class-ess-settings-network.php';
+			$settings[] = include 'settings/class-ess-settings-layouts.php';
 
 			self::$settings = apply_filters( 'easy_social_sharing_get_settings_pages', $settings );
 		}
@@ -66,7 +65,7 @@ class ESS_Admin_Settings {
 		global $current_tab;
 
 		if ( empty( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'easy-social-sharing-settings' ) ) {
-			die( __( 'Action failed. Please refresh the page and retry.', 'easy-social-sharing' ) );
+			die( esc_html__( 'Action failed. Please refresh the page and retry.', 'easy-social-sharing' ) );
 		}
 
 		// Trigger actions
@@ -74,7 +73,7 @@ class ESS_Admin_Settings {
 		do_action( 'easy_social_sharing_update_options_' . $current_tab );
 		do_action( 'easy_social_sharing_update_options' );
 
-		self::add_message( __( 'Your settings have been saved.', 'easy-social-sharing' ) );
+		self::add_message( esc_html__( 'Your settings have been saved.', 'easy-social-sharing' ) );
 
 		// Flush rules
 		wp_schedule_single_event( time(), 'easy_social_sharing_flush_rewrite_rules' );
@@ -103,13 +102,13 @@ class ESS_Admin_Settings {
 	 * @return string
 	 */
 	public static function show_messages() {
-		if ( sizeof( self::$errors ) > 0 ) {
+		if ( count( self::$errors ) > 0 ) {
 			foreach ( self::$errors as $error ) {
-				echo '<div id="message" class="error inline"><p><strong>' . esc_html( $error ) . '</strong></p></div>';
+				echo '<div id="message" class="error inline is-dismissible"><p><strong>' . esc_html( $error ) . '</strong></p></div>';
 			}
-		} elseif ( sizeof( self::$messages ) > 0 ) {
+		} elseif ( count( self::$messages ) > 0 ) {
 			foreach ( self::$messages as $message ) {
-				echo '<div id="message" class="updated inline"><p><strong>' . esc_html( $message ) . '</strong></p></div>';
+				echo '<div id="message" class="updated inline is-dismissible"><p><strong>' . esc_html( $message ) . '</strong></p></div>';
 			}
 		}
 	}
@@ -128,13 +127,18 @@ class ESS_Admin_Settings {
 
 		wp_enqueue_script( 'easy-social-sharing-settings', ESS()->plugin_url() . '/assets/js/admin/settings' . $suffix . '.js', array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'iris', 'select2' ), ESS_VERSION, true );
 
-		wp_localize_script( 'easy-social-sharing-settings', 'easy_social_sharing_settings_params', array(
-			'i18n_nav_warning' => __( 'The changes you made will be lost if you navigate away from this page.', 'easy-social-sharing' )
-		) );
+		wp_localize_script(
+			'easy-social-sharing-settings',
+			'easy_social_sharing_settings_params',
+			array(
+				'i18n_nav_warning' => esc_html__( 'The changes you made will be lost if you navigate away from this page.', 'easy-social-sharing' ),
+			)
+		);
 
 		// Include settings pages
 		self::get_settings_pages();
 
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 		// Get current tab/section
 		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( $_GET['tab'] );
 		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( $_REQUEST['section'] );
@@ -152,6 +156,7 @@ class ESS_Admin_Settings {
 		if ( ! empty( $_GET['ess_message'] ) ) {
 			self::add_message( stripslashes( $_GET['ess_error'] ) );
 		}
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
 
 		// Get tabs for the settings page
 		$tabs = apply_filters( 'easy_social_sharing_settings_tabs_array', array() );
@@ -163,8 +168,9 @@ class ESS_Admin_Settings {
 	 * Get a setting from the settings API.
 	 *
 	 * @param  mixed $option_name
+	 * @param string $default
 	 * @return string
-	 */
+	*/
 	public static function get_option( $option_name, $default = '' ) {
 		// Array value
 		if ( strstr( $option_name, '[' ) ) {
@@ -185,7 +191,7 @@ class ESS_Admin_Settings {
 				$option_value = null;
 			}
 
-		// Single value
+			// Single value.
 		} else {
 			$option_value = get_option( $option_name, null );
 		}
@@ -196,7 +202,7 @@ class ESS_Admin_Settings {
 			$option_value = stripslashes( $option_value );
 		}
 
-		return $option_value === null ? $default : $option_value;
+		return ( null === $option_value ) ? $default : $option_value;
 	}
 
 	/**
@@ -247,7 +253,8 @@ class ESS_Admin_Settings {
 
 			// Description handling
 			$field_description = self::get_field_description( $value );
-			extract( $field_description );
+			$description       = $field_description['description'];
+			$tooltip_html      = $field_description['tooltip_html'];
 
 			// Switch based on type
 			switch ( $value['type'] ) {
@@ -258,9 +265,9 @@ class ESS_Admin_Settings {
 						echo '<h2>' . esc_html( $value['title'] ) . '</h2>';
 					}
 					if ( ! empty( $value['desc'] ) ) {
-						echo wpautop( wptexturize( wp_kses_post( $value['desc'] ) ) );
+						echo wp_kses_post( wpautop( wptexturize( $value['desc'] ) ) );
 					}
-					echo '<table class="form-table">'. "\n\n";
+					echo ' <table class="form-table"> ' . "\n\n";
 					if ( ! empty( $value['id'] ) ) {
 						do_action( 'easy_social_sharing_settings_' . sanitize_title( $value['id'] ) );
 					}
@@ -281,28 +288,27 @@ class ESS_Admin_Settings {
 				case 'text':
 				case 'email':
 				case 'number':
-				case 'color' :
-				case 'password' :
-
+				case 'color':
+				case 'password':
 					$type         = $value['type'];
 					$option_value = self::get_option( $value['id'], $value['default'] );
 
-					if ( $value['type'] == 'color' ) {
-						$type = 'text';
+					if ( 'color' === $value['type'] ) {
+						$type            = 'text';
 						$value['class'] .= 'colorpick';
-						$description .= '<div id="colorPickerDiv_' . esc_attr( $value['id'] ) . '" class="colorpickdiv" style="z-index: 100;background:#eee;border:1px solid #ccc;position:absolute;display:none;"></div>';
+						$description    .= '<div id="colorPickerDiv_' . esc_attr( $value['id'] ) . '" class="colorpickdiv" style="z-index: 100;background:#eee;border:1px solid #ccc;position:absolute;display:none;"></div>';
 					}
 
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
 							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?></label>
-							<?php echo $tooltip_html; ?>
+							<?php echo wp_kses_post( $tooltip_html ); ?>
 						</th>
-						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
+						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 							<?php
-								if ( 'color' == $value['type'] ) {
-									echo '<span class="colorpickpreview" style="background: ' . esc_attr( $option_value ) . ';"></span>';
-								}
+							if ( 'color' === $value['type'] ) {
+								echo '<span class="colorpickpreview" style="background: ' . esc_attr( $option_value ) . ';"></span>';
+							}
 							?>
 							<input
 								name="<?php echo esc_attr( $value['id'] ); ?>"
@@ -312,24 +318,24 @@ class ESS_Admin_Settings {
 								value="<?php echo esc_attr( $option_value ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
 								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
-								<?php echo implode( ' ', $custom_attributes ); ?>
-								/> <?php echo $description; ?>
+								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								/> <?php echo $description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						</td>
-					</tr><?php
+					</tr>
+					<?php
 					break;
 
 				// Textarea
 				case 'textarea':
-
 					$option_value = self::get_option( $value['id'], $value['default'] );
-
-					?><tr valign="top">
+					?>
+					<tr valign="top">
 						<th scope="row" class="titledesc">
 							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?></label>
-							<?php echo $tooltip_html; ?>
+							<?php echo wp_kses_post( $tooltip_html ); ?>
 						</th>
-						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
-							<?php echo $description; ?>
+						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+							<?php echo $description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 							<textarea
 								name="<?php echo esc_attr( $value['id'] ); ?>"
@@ -337,97 +343,102 @@ class ESS_Admin_Settings {
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
 								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
-								<?php echo implode( ' ', $custom_attributes ); ?>
-								><?php echo esc_textarea( $option_value );  ?></textarea>
+								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								><?php echo esc_textarea( $option_value ); ?></textarea>
 						</td>
-					</tr><?php
+					</tr>
+					<?php
 					break;
 
 				// Select boxes
-				case 'select' :
-				case 'multiselect' :
-
+				case 'select':
+				case 'multiselect':
 					$option_value = self::get_option( $value['id'], $value['default'] );
-
-					?><tr valign="top">
+					?>
+					<tr valign="top">
 						<th scope="row" class="titledesc">
 							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?></label>
-							<?php echo $tooltip_html; ?>
+							<?php echo wp_kses_post( $tooltip_html ); ?>
 						</th>
-						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
+						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 							<select
-								name="<?php echo esc_attr( $value['id'] ); ?><?php if ( $value['type'] == 'multiselect' ) {echo '[]';} ?>"
+								name="<?php echo esc_attr( $value['id'] ); ?><?php if ( 'multiselect' === $value['type'] ) { echo '[]'; } // phpcs:ignore Generic.ControlStructures.InlineControlStructure.NotAllowed, Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace ?>"
 								id="<?php echo esc_attr( $value['id'] ); ?>"
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
-								<?php echo implode( ' ', $custom_attributes ); ?>
-								<?php echo ( 'multiselect' == $value['type'] ) ? 'multiple="multiple"' : ''; ?>
+								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php echo ( 'multiselect' === $value['type'] ) ? 'multiple="multiple"' : ''; ?>
 								>
 								<?php
-								$option_attribute_array=isset($value['option_attribute']) && is_array($value['option_attribute']) ? $value['option_attribute']:array();
+								$option_attribute_array = isset( $value['option_attribute'] ) && is_array( $value['option_attribute'] ) ? $value['option_attribute'] : array();
 
-									foreach ( $value['options'] as $key => $val ) {
-										?>
-										<option value="<?php echo esc_attr( $key ); ?>" <?php
-
-											if ( is_array( $option_value ) ) {
-												selected( in_array( $key, $option_value ), true );
-											} else {
-												selected( $option_value, $key );
-											}
-
-											$option_attribute_value_array=isset($option_attribute_array[$key]) && is_array($option_attribute_array[$key]) ? $option_attribute_array[$key]:array();
-
-											  echo ess_array_to_html_attribute($option_attribute_value_array);
-											?>><?php echo $val ?></option>
-										<?php
+								foreach ( $value['options'] as $key => $val ) {
+									?>
+									<option value="<?php echo esc_attr( $key ); ?>"
+									<?php
+									if ( is_array( $option_value ) ) {
+										selected( in_array( $key, $option_value, true ), true );
+									} else {
+										selected( $option_value, $key );
 									}
+
+									$option_attribute_value_array = isset( $option_attribute_array[ $key ] ) && is_array( $option_attribute_array[ $key ] ) ? $option_attribute_array[ $key ] : array();
+
+									echo ess_array_to_html_attribute( $option_attribute_value_array ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+									?>
+									>
+										<?php echo esc_html( $val ); ?>
+									</option>
+									<?php
+								}
 								?>
-							</select> <?php echo $description; ?>
+							</select> <?php echo $description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						</td>
-					</tr><?php
+					</tr>
+					<?php
 					break;
 
 				// Radio inputs
-				case 'radio' :
-
+				case 'radio':
 					$option_value = self::get_option( $value['id'], $value['default'] );
-
-					?><tr valign="top">
+					?>
+					<tr valign="top">
 						<th scope="row" class="titledesc">
 							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?></label>
-							<?php echo $tooltip_html; ?>
+							<?php echo wp_kses_post( $tooltip_html ); ?>
 						</th>
-						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
+						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 							<fieldset>
-								<?php echo $description; ?>
+								<?php echo $description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 								<ul>
 								<?php
-									foreach ( $value['options'] as $key => $val ) {
-										?>
-										<li>
-											<label><input
-												name="<?php echo esc_attr( $value['id'] ); ?>"
-												value="<?php echo $key; ?>"
-												type="radio"
-												style="<?php echo esc_attr( $value['css'] ); ?>"
-												class="<?php echo esc_attr( $value['class'] ); ?>"
-												<?php echo implode( ' ', $custom_attributes ); ?>
-												<?php checked( $key, $option_value ); ?>
-												/> <?php echo $val ?></label>
-										</li>
-										<?php
-									}
+								foreach ( $value['options'] as $key => $val ) {
+									?>
+									<li>
+										<label><input
+											name="<?php echo esc_attr( $value['id'] ); ?>"
+											value="<?php echo esc_attr( $key ); ?>"
+											type="radio"
+											style="<?php echo esc_attr( $value['css'] ); ?>"
+											class="<?php echo esc_attr( $value['class'] ); ?>"
+											<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+											<?php checked( $key, $option_value ); ?>
+											/>
+											<?php echo esc_html( $val ); ?>
+											</label>
+									</li>
+									<?php
+								}
 								?>
 								</ul>
 							</fieldset>
 						</td>
-					</tr><?php
+					</tr>
+					<?php
 					break;
 
 				// Checkbox input
-				case 'checkbox' :
-
+				case 'checkbox':
 					$option_value    = self::get_option( $value['id'], $value['default'] );
 					$visbility_class = array();
 
@@ -437,20 +448,20 @@ class ESS_Admin_Settings {
 					if ( ! isset( $value['show_if_checked'] ) ) {
 						$value['show_if_checked'] = false;
 					}
-					if ( 'yes' == $value['hide_if_checked'] || 'yes' == $value['show_if_checked'] ) {
+					if ( 'yes' === $value['hide_if_checked'] || 'yes' === $value['show_if_checked'] ) {
 						$visbility_class[] = 'hidden_option';
 					}
-					if ( 'option' == $value['hide_if_checked'] ) {
+					if ( 'option' === $value['hide_if_checked'] ) {
 						$visbility_class[] = 'hide_options_if_checked';
 					}
-					if ( 'option' == $value['show_if_checked'] ) {
+					if ( 'option' === $value['show_if_checked'] ) {
 						$visbility_class[] = 'show_options_if_checked';
 					}
 
-					if ( ! isset( $value['checkboxgroup'] ) || 'start' == $value['checkboxgroup'] ) {
+					if ( ! isset( $value['checkboxgroup'] ) || 'start' === $value['checkboxgroup'] ) {
 						?>
 							<tr valign="top" class="<?php echo esc_attr( implode( ' ', $visbility_class ) ); ?>">
-								<th scope="row" class="titledesc"><?php echo esc_html( $value['title'] ) ?></th>
+								<th scope="row" class="titledesc"><?php echo esc_html( $value['title'] ); ?></th>
 								<td class="forminp forminp-checkbox">
 									<fieldset>
 						<?php
@@ -462,29 +473,29 @@ class ESS_Admin_Settings {
 
 					if ( ! empty( $value['title'] ) ) {
 						?>
-							<legend class="screen-reader-text"><span><?php echo esc_html( $value['title'] ) ?></span></legend>
+							<legend class="screen-reader-text"><span><?php echo esc_html( $value['title'] ); ?></span></legend>
 						<?php
 					}
 
 					?>
-						<label for="<?php echo $value['id'] ?>">
+						<label for="<?php echo esc_attr( $value['id'] ); ?>">
 							<input
 								name="<?php echo esc_attr( $value['id'] ); ?>"
 								id="<?php echo esc_attr( $value['id'] ); ?>"
 								type="checkbox"
 								class="<?php echo esc_attr( isset( $value['class'] ) ? $value['class'] : '' ); ?>"
 								value="1"
-								<?php checked( $option_value, 'yes'); ?>
-								<?php echo implode( ' ', $custom_attributes ); ?>
-							/> <?php echo $description ?>
-						</label> <?php echo $tooltip_html; ?>
+								<?php checked( $option_value, 'yes' ); ?>
+								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							/> <?php echo $description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</label> <?php echo wp_kses_post( $tooltip_html ); ?>
 					<?php
 
-					if ( ! isset( $value['checkboxgroup'] ) || 'end' == $value['checkboxgroup'] ) {
-									?>
-									</fieldset>
-								</td>
-							</tr>
+					if ( ! isset( $value['checkboxgroup'] ) || 'end' === $value['checkboxgroup'] ) {
+						?>
+						</fieldset>
+					</td>
+				</tr>
 						<?php
 					} else {
 						?>
@@ -494,8 +505,7 @@ class ESS_Admin_Settings {
 					break;
 
 				// Screens multiselect
-				case 'multi_select_screens' :
-
+				case 'multi_select_screens':
 					$selections = (array) self::get_option( $value['id'] );
 
 					if ( ! empty( $value['options'] ) ) {
@@ -505,23 +515,28 @@ class ESS_Admin_Settings {
 					}
 
 					asort( $screens );
-					?><tr valign="top">
+					?>
+					<tr valign="top">
 						<th scope="row" class="titledesc">
 							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?></label>
-							<?php echo $tooltip_html; ?>
+							<?php echo wp_kses_post( $tooltip_html ); ?>
 						</th>
 						<td class="forminp">
-							<select multiple="multiple" name="<?php echo esc_attr( $value['id'] ); ?>[]" style="width:350px" data-placeholder="<?php esc_attr_e( 'Choose Screens&hellip;', 'easy-social-sharing' ); ?>" title="<?php esc_attr_e( 'Screen', 'easy-social-sharing' ) ?>" class="ess-enhanced-select">
+							<select multiple="multiple" name="<?php echo esc_attr( $value['id'] ); ?>[]" style="width:350px" data-placeholder="<?php esc_attr_e( 'Choose Screens&hellip;', 'easy-social-sharing' ); ?>" title="<?php esc_attr_e( 'Screen', 'easy-social-sharing' ); ?>" class="ess-enhanced-select">
 								<?php
-									if ( ! empty( $screens ) ) {
-										foreach ( $screens as $key => $val ) {
-											echo '<option value="' . esc_attr( $key ) . '" ' . selected( in_array( $key, $selections ), true, false ) . '>' . $val . '</option>';
-										}
+								if ( ! empty( $screens ) ) {
+									foreach ( $screens as $key => $val ) {
+										echo '<option value="' . esc_attr( $key ) . '" ' . selected( in_array( $key, $selections, true ), true, false ) . '>' . esc_html( $val ) . '</option>';
 									}
+								}
 								?>
-							</select> <?php echo ( $description ) ? $description : ''; ?> </br /><a class="select_all button" href="#"><?php _e( 'Select all', 'easy-social-sharing' ); ?></a> <a class="select_none button" href="#"><?php _e( 'Select none', 'easy-social-sharing' ); ?></a>
+							</select>
+							<?php echo ( $description ) ? $description : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<br><a class="select_all button" href="#"><?php esc_html_e( 'Select all', 'easy-social-sharing' ); ?></a>
+							<a class="select_none button" href="#"><?php esc_html_e( 'Select none', 'easy-social-sharing' ); ?></a>
 						</td>
-					</tr><?php
+					</tr>
+					<?php
 					break;
 
 				// Default: run an action
@@ -551,18 +566,18 @@ class ESS_Admin_Settings {
 			$description  = $value['desc'];
 			$tooltip_html = $value['desc_tip'];
 		} elseif ( ! empty( $value['desc'] ) ) {
-			$description  = $value['desc'];
+			$description = $value['desc'];
 		}
 
-		if ( $description && in_array( $value['type'], array( 'textarea', 'radio' ) ) ) {
+		if ( $description && in_array( $value['type'], array( 'textarea', 'radio' ), true ) ) {
 			$description = '<p style="margin-top:0">' . wp_kses_post( $description ) . '</p>';
-		} elseif ( $description && in_array( $value['type'], array( 'checkbox' ) ) ) {
+		} elseif ( $description && in_array( $value['type'], array( 'checkbox' ), true ) ) {
 			$description = wp_kses_post( $description );
 		} elseif ( $description ) {
 			$description = '<span class="description">' . wp_kses_post( $description ) . '</span>';
 		}
 
-		if ( $tooltip_html && in_array( $value['type'], array( 'checkbox' ) ) ) {
+		if ( $tooltip_html && in_array( $value['type'], array( 'checkbox' ), true ) ) {
 			$tooltip_html = '<p class="description">' . $tooltip_html . '</p>';
 		} elseif ( $tooltip_html ) {
 			$tooltip_html = ess_help_tip( $tooltip_html );
@@ -570,7 +585,7 @@ class ESS_Admin_Settings {
 
 		return array(
 			'description'  => $description,
-			'tooltip_html' => $tooltip_html
+			'tooltip_html' => $tooltip_html,
 		);
 	}
 
@@ -583,8 +598,12 @@ class ESS_Admin_Settings {
 	 *
 	 * @return bool
 	 */
-	public static function save_fields( $options ) {
-		if ( empty( $_POST ) ) {
+	public static function save_fields( $options, $data = null ) {
+		if ( is_null( $data ) ) {
+			$data = $_POST; // phpcs:ignore WordPress.Security.NonceVerification
+		}
+
+		if ( empty( $data ) ) {
 			return false;
 		}
 
@@ -602,26 +621,26 @@ class ESS_Admin_Settings {
 				parse_str( $option['id'], $option_name_array );
 				$option_name  = current( array_keys( $option_name_array ) );
 				$setting_name = key( $option_name_array[ $option_name ] );
-				$raw_value    = isset( $_POST[ $option_name ][ $setting_name ] ) ? wp_unslash( $_POST[ $option_name ][ $setting_name ] ) : null;
+				$raw_value    = isset( $data[ $option_name ][ $setting_name ] ) ? wp_unslash( $data[ $option_name ][ $setting_name ] ) : null;
 			} else {
 				$option_name  = $option['id'];
 				$setting_name = '';
-				$raw_value    = isset( $_POST[ $option['id'] ] ) ? wp_unslash( $_POST[ $option['id'] ] ) : null;
+				$raw_value    = isset( $data[ $option['id'] ] ) ? wp_unslash( $data[ $option['id'] ] ) : null;
 			}
 
 			// Format the value based on option type.
 			switch ( $option['type'] ) {
-				case 'checkbox' :
+				case 'checkbox':
 					$value = is_null( $raw_value ) ? 'no' : 'yes';
 					break;
-				case 'textarea' :
+				case 'textarea':
 					$value = wp_kses_post( trim( $raw_value ) );
 					break;
-				case 'multiselect' :
-				case 'multi_select_screens' :
+				case 'multiselect':
+				case 'multi_select_screens':
 					$value = array_filter( array_map( 'ess_clean', (array) $raw_value ) );
 					break;
-				default :
+				default:
 					$value = ess_clean( $raw_value );
 					break;
 			}

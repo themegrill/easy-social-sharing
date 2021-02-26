@@ -29,7 +29,7 @@ class ESS_Admin_Notices {
 	 * @var array
 	 */
 	private static $core_notices = array(
-		'update' => 'update_notice'
+		'update' => 'update_notice',
 	);
 
 	/**
@@ -91,7 +91,7 @@ class ESS_Admin_Notices {
 	 * @return boolean
 	 */
 	public static function has_notice( $name ) {
-		return in_array( $name, self::get_notices() );
+		return in_array( $name, self::get_notices(), true );
 	}
 
 	/**
@@ -100,11 +100,11 @@ class ESS_Admin_Notices {
 	public static function hide_notices() {
 		if ( isset( $_GET['ess-hide-notice'] ) && isset( $_GET['_ess_notice_nonce'] ) ) {
 			if ( ! wp_verify_nonce( $_GET['_ess_notice_nonce'], 'easy_social_sharing_hide_notices_nonce' ) ) {
-				wp_die( __( 'Action failed. Please refresh the page and retry.', 'easy-social-sharing' ) );
+				wp_die( esc_html__( 'Action failed. Please refresh the page and retry.', 'easy-social-sharing' ) );
 			}
 
 			if ( ! current_user_can( 'manage_options' ) ) {
-				wp_die( __( 'Cheatin&#8217; huh?', 'easy-social-sharing' ) );
+				wp_die( esc_html__( 'Cheatin&#8217; huh?', 'easy-social-sharing' ) );
 			}
 
 			$hide_notice = sanitize_text_field( $_GET['ess-hide-notice'] );
@@ -153,7 +153,7 @@ class ESS_Admin_Notices {
 					$notice_html = get_option( 'easy_social_sharing_admin_notice_' . $notice );
 
 					if ( $notice_html ) {
-						include( 'views/html-notice-custom.php' );
+						include 'views/html-notice-custom.php';
 					}
 				}
 			}
@@ -166,13 +166,13 @@ class ESS_Admin_Notices {
 	public static function update_notice() {
 		if ( version_compare( get_option( 'easy_social_sharing_db_version' ), ESS_VERSION, '<' ) ) {
 			$updater = new ESS_Background_Updater();
-			if ( $updater->is_updating() || ! empty( $_GET['do_update_easy_social_sharing'] ) ) {
-				include( 'views/html-notice-updating.php' );
+			if ( $updater->is_updating() || ! empty( $_GET['do_update_easy_social_sharing'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				include 'views/html-notice-updating.php';
 			} else {
-				include( 'views/html-notice-update.php' );
+				include 'views/html-notice-update.php';
 			}
 		} else {
-			include( 'views/html-notice-updated.php' );
+			include 'views/html-notice-updated.php';
 		}
 	}
 }

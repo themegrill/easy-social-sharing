@@ -90,7 +90,7 @@ class ESS_Background_Updater extends WP_Background_Process {
 			define( 'ESS_UPDATING', true );
 		}
 
-		include_once( 'functions-ess-update.php' );
+		include_once 'functions-ess-update.php';
 
 		if ( is_callable( $callback ) ) {
 			call_user_func( $callback );

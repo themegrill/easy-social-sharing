@@ -27,26 +27,29 @@ class ESS_Meta_Box_Location_Data {
 
 		?>
 		<ul class="location_data">
-			<p class="form-field">
+			<div class="form-field">
 				<div class= "ess_metabox_checkbox">
-					<?php $checked = get_post_meta( $post->ID,'disable_ess', true );?>
-					<input type="checkbox" value="yes" id="disable_ess" name="disable_ess" <?php checked( $checked, "yes", true );?> ><?php _e( 'Disable Easy Social Sharing', 'easy-social-sharing' ); ?>
+					<?php $checked = get_post_meta( $post->ID, 'disable_ess', true ); ?>
+					<input type="checkbox" value="yes" id="disable_ess" name="disable_ess" <?php checked( $checked, 'yes', true ); ?> >
+					<label for="disable_ess"><?php esc_html_e( 'Disable Easy Social Sharing', 'easy-social-sharing' ); ?></label>
 				</div><br/>
 				<div class ="ess_metabox_description">
-					<label for="location_disabled"><b><?php _e( 'Disable Locations', 'easy-social-sharing' ); ?></b></label><br/>
-					<span class="description side"><?php _e( 'Select locations to disable on this screen.', 'easy-social-sharing' ); ?></span><br/>
+					<label for="location_disabled"><b><?php esc_html_e( 'Disable Locations', 'easy-social-sharing' ); ?></b></label><br/>
+					<span class="description side"><?php esc_html_e( 'Select locations to disable on this screen.', 'easy-social-sharing' ); ?></span><br/>
 					<select id="location_disabled" name="location_disabled[]" class="ess-enhanced-select" multiple="multiple" style="width:50%" data-placeholder="<?php esc_attr_e( 'No locations', 'easy-social-sharing' ); ?>">
 						<?php
 							$location_ids = (array) get_post_meta( $post->ID, '_ess_location_disabled', true );
 							$locations    = ess_get_allowed_screen_locations();
 
-							if ( $locations ) foreach ( $locations as $location_id => $location_name ) {
-								echo '<option value="' . esc_attr( $location_id ) . '"' . selected( in_array( $location_id, $location_ids ), true, false ) . '>' . esc_html( $location_name ) . '</option>';
+						if ( $locations ) {
+							foreach ( $locations as $location_id => $location_name ) {
+								echo '<option value="' . esc_attr( $location_id ) . '" ' . selected( in_array( $location_id, $location_ids, true ), true, false ) . ' >' . esc_html( $location_name ) . '</option>';
 							}
+						}
 						?>
 					</select>
 				</div>
-			</p>
+			</div>
 			<?php do_action( 'easy_social_sharing_settings_data_end', $post->ID ); ?>
 		</ul>
 		<?php
@@ -57,8 +60,11 @@ class ESS_Meta_Box_Location_Data {
 	 * @param int $post_id
 	 */
 	public static function save( $post_id ) {
+
+		$disable_ess = isset( $_POST['disable_ess'] ) ? sanitize_text_field( $_POST['disable_ess'] ) : ''; // phpcs:ignore -- nonce validation is not required here.
+
 		// Update meta
-		update_post_meta( $post_id, '_ess_location_disabled', isset( $_POST['location_disabled'] ) ? array_map( 'ess_clean', $_POST['location_disabled'] ) : array() );
-		update_post_meta( $post_id, 'disable_ess', isset( $_POST['disable_ess'] ) ? $_POST['disable_ess'] : '' );
+		update_post_meta( $post_id, '_ess_location_disabled', isset( $_POST['location_disabled'] ) ? array_map( 'ess_clean', $_POST['location_disabled'] ) : array() ); // phpcs:ignore -- nonce validation is not required here.
+		update_post_meta( $post_id, 'disable_ess', $disable_ess );
 	}
 }
