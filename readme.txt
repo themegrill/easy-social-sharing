@@ -64,6 +64,11 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 1. Easy Social Sharing.
 
 == Changelog ==
+= TBD =
+* Tweak - Include locally required libraries files.
+* Tweak - Remove the unnecessary files.
+* Tweak - Use of sanitization and escaping functions.
+
 = 1.3.4 - 08/02/2021 =
 * Fix   - PHP notice of undefined variable class when displayed the social sharing via shortcode.
 * Tweak - Modify screenshot, banner and icon images on wp.org plugin page to resolve trademark issues.
