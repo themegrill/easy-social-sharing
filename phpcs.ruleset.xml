@@ -3,6 +3,9 @@
 	<!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
 	<!-- See https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/blob/develop/WordPress-Core/ruleset.xml -->
 
+	<!-- Exclude paths -->
+	<exclude-pattern>includes/libraries/</exclude-pattern>
+
 	<!-- Set a description for this ruleset. -->
 	<description>A custom set of code standard rules to check for WordPress themes and plugins.</description>
 

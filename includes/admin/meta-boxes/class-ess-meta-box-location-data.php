@@ -61,10 +61,8 @@ class ESS_Meta_Box_Location_Data {
 	 */
 	public static function save( $post_id ) {
 
-		$disable_ess = isset( $_POST['disable_ess'] ) ? sanitize_text_field( $_POST['disable_ess'] ) : ''; // phpcs:ignore -- nonce validation is not required here.
-
 		// Update meta
 		update_post_meta( $post_id, '_ess_location_disabled', isset( $_POST['location_disabled'] ) ? array_map( 'ess_clean', $_POST['location_disabled'] ) : array() ); // phpcs:ignore -- nonce validation is not required here.
-		update_post_meta( $post_id, 'disable_ess', $disable_ess );
+		update_post_meta( $post_id, 'disable_ess', isset( $_POST['disable_ess'] ) ? ess_clean( $_POST['disable_ess'] ) : '' ); // phpcs:ignore -- nonce validation is not required here.
 	}
 }
