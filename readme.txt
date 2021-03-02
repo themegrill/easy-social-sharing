@@ -64,6 +64,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/themegrill/ea
 1. Easy Social Sharing.
 
 == Changelog ==
+= TBD =
+* Tweak - Use of sanitization and escaping functions.
+
 = 1.3.5 - 26/02/2021 =
 * Tweak - Include locally required libraries files.
 * Tweak - Remove the unnecessary files.
