@@ -3,11 +3,11 @@
  * Plugin Name: Easy Social Sharing
  * Plugin URI: http://themegrill.com/plugins/easy-social-sharing
  * Description: Easy Social Sharing provides you with an easy way to display various popular social share buttons.
- * Version: 1.3.5.1
+ * Version: 1.3.6
  * Author: ThemeGrill
  * Author URI: https://themegrill.com
  * Requires at least: 4.7
- * Tested up to: 5.6.2
+ * Tested up to: 6.1
  *
  * Text Domain: easy-social-sharing
  * Domain Path: /languages/
@@ -35,7 +35,7 @@ if ( ! class_exists( 'EasySocialSharing' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '1.3.5.1';
+		public $version = '1.3.6';
 
 		/**
 		 * The single instance of the class.
